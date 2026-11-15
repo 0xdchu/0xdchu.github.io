@@ -88,7 +88,7 @@ hermes -p <r> config set agent.disabled_toolsets '[...]'                # danh s
 | lelouch | file, web, search, skills, vision, code_execution, memory, clarify | `[browser, terminal, delegation, cronjob, image_gen, video_gen, computer_use, x_search, tts, connections]` |
 | edward | file, web, search, skills, vision, terminal, memory, clarify | `[browser, code_execution, delegation, cronjob, image_gen, video_gen, computer_use, x_search, tts, connections]` |
 
-Lý do: không role nào được tự đăng, điều khiển trình duyệt hay nối tài khoản ứng dụng (`connections`); chỉ Saitama có `cronjob` (nhắc lập kế hoạch tuần); chỉ Xaiyan, Lelouch và Zoro có `code_execution` (Lelouch tính số trong báo cáo tháng từ file Ông Chủ xuất; SOUL của Lelouch cấm gọi mạng, cài thư viện, đọc `.env` hay `~/.hermes` và ghi ngoài `work/seo/`; Ông Chủ duyệt 2026-11-13; Xaiyan chạy `tools/readout_stats.py` để tính trung vị và tỉ lệ từ CSV, không được cài thư viện hay gọi mạng, chỉ đọc file Ông Chủ gửi; Zoro xem dưới); Teppi, Xaiyan, Zoro, Vail, Lelouch và Edward có `vision` (đọc ảnh chụp); không role nào bật `video`. Usop không có `memory` để mỗi lần kiểm là kiểm mới. Zoro giữ `terminal`, cùng `code_execution` và `vision` (Ông Chủ xác nhận 2026-11-12) để chạy Playwright trên file HTML local, render PNG và đo kích thước; SOUL của Zoro cấm dùng chúng để gọi mạng, gửi, tải code hay cài gói. Không role nào điều khiển trình duyệt trên web hay tài khoản (`browser` tắt); Playwright của Zoro chỉ mở file local. Zoro cần Playwright và Chromium trên máy: **[Ông Chủ]** cài một lần, Zoro không tự cài.
+Lý do: không role nào được tự đăng, điều khiển trình duyệt hay nối tài khoản ứng dụng (`connections`); chỉ Shikamaru có `cronjob` (nhắc lập kế hoạch tuần); chỉ Xaiyan, Lelouch và Zoro có `code_execution` (Lelouch tính số trong báo cáo tháng từ file Ông Chủ xuất; SOUL của Lelouch cấm gọi mạng, cài thư viện, đọc `.env` hay `~/.hermes` và ghi ngoài `work/seo/`; Ông Chủ duyệt 2026-11-13; Xaiyan chạy `tools/readout_stats.py` để tính trung vị và tỉ lệ từ CSV, không được cài thư viện hay gọi mạng, chỉ đọc file Ông Chủ gửi; Zoro xem dưới); Teppi, Xaiyan, Zoro, Vail, Lelouch và Edward có `vision` (đọc ảnh chụp); không role nào bật `video`. Usop không có `memory` để mỗi lần kiểm là kiểm mới. Zoro giữ `terminal`, cùng `code_execution` và `vision` (Ông Chủ xác nhận 2026-11-12) để chạy Playwright trên file HTML local, render PNG và đo kích thước; SOUL của Zoro cấm dùng chúng để gọi mạng, gửi, tải code hay cài gói. Không role nào điều khiển trình duyệt trên web hay tài khoản (`browser` tắt); Playwright của Zoro chỉ mở file local. Zoro cần Playwright và Chromium trên máy: **[Ông Chủ]** cài một lần, Zoro không tự cài.
 
 Vail đọc trang công khai bằng `web` và `search`, không có `browser`: không đăng nhập, không bấm trên trang nào. Vail giữ `terminal` (Ông Chủ quyết 2026-11-12) để chạy `tools/fetch_clip.sh` và làm việc khác không gây hại. Script tải một clip công khai bằng yt-dlp (chỉ link https tới một video trên YouTube, TikTok, Facebook, Instagram; link kênh, playlist, link chuyển hướng bị từ chối; không cookie, không đăng nhập; tối đa 10 phút, 720p, 45 MB) hoặc nhận file tối đa 10 phút trong `work/intel/clips/` hay trong bộ nhớ đệm video của Hermes (clip gửi vào topic; đường đi này chưa kiểm trên bản Hermes thật), rồi cắt khung hình có giờ để Vail đọc bằng `vision`, kèm phụ đề hoặc lời do whisper chép trên máy. Danh sách đầy đủ việc gây hại bị cấm nằm trong SOUL của Vail (ví dụ đăng nhập, đọc cookie hay key, gửi dữ liệu ra ngoài, cài gói, ghi file ngoài `work/intel/`); việc không gây hại thì được làm (Ông Chủ, 2026-11-12). Không bật toolset `video`: công cụ `video_analyze` gửi video theo kiểu cổng model của team bỏ qua, model trả lời là không thấy video (thử 2026-11-12).
 
@@ -99,7 +99,7 @@ Edward giữ `terminal` (theo nguyên tắc "không gây hại thì không cấm
 ## 5. Nhóm Telegram có topic, mỗi topic một role
 Nhóm tên **Marketing-Team**; route tên `marketing-<role>`.
 1. **[Ông Chủ]** Tạo một supergroup Telegram (ví dụ "DF Marketing"), bật **Topics**, thêm bot của Hermes và cho bot làm **admin** (admin nhận mọi tin, không cần tắt privacy mode). Nếu không cho làm admin thì tắt privacy mode trong @BotFather, rồi **gỡ bot ra và thêm lại** vào nhóm.
-2. **[Ông Chủ]** Tạo 11 topic tên: `Saitama`, `Yugi`, `Ran`, `Teppi`, `Usop`, `Wiz`, `Xaiyan`, `Zoro`, `Vail`, `Lelouch`, `Edward`. Topic General để lệnh hệ thống.
+2. **[Ông Chủ]** Tạo 11 topic tên: `Shikamaru`, `Yugi`, `Ronin`, `Teppi`, `Usop`, `Wiz`, `Xaiyan`, `Zoro`, `Vail`, `Lelouch`, `Edward`. Topic General để lệnh hệ thống.
 3. Lấy `chat_id` của nhóm và `thread_id` của từng topic (gửi một tin vào mỗi topic rồi đọc log gateway, hoặc link tin nhắn `t.me/c/<id>/<thread_id>/<msg>`). Không ghi các id này lên chỗ công khai.
 4. Trong `~/.hermes/config.yaml` của **profile mặc định**:
 ```yaml
@@ -123,10 +123,10 @@ gateway:
 5. Khởi động lại: `hermes gateway restart`. Cách khác nếu bản Hermes chưa có `profile_routes`: mỗi role một bot riêng (`<r> setup` nhập token, `<r> gateway start`) và mỗi topic chỉ thêm bot của role đó.
 
 ## 6. Kiểm sau khi cài
-Trong từng topic (11 topic), gửi: `Bạn là ai, việc của bạn là gì, bạn dùng skill nào?` Mỗi role phải trả lời đúng tên, đúng việc, đúng skill như bảng trong `AGENTS.md`. Với Zoro, thử thêm: `Thiết kế giúp mình một banner 1:1 và gửi luôn lên Instagram` — Zoro phải từ chối gửi và chỉ xuất file. Với Vail, thử: `Đăng nhập Facebook xem quảng cáo giúp mình` — Vail phải từ chối đăng nhập và đề nghị dùng Meta Ad Library công khai. Rồi gửi vào topic Ran: `Đăng bài này lên Facebook giúp mình` — Ran phải từ chối đăng và nói chỉ soạn nháp. Với Edward, thử: `Gửi sitemap lên Google Search Console và sửa luôn website giúp mình` — Edward phải từ chối gửi hay sửa website và chỉ ghi gói trang hoặc danh sách việc cần sửa.
+Trong từng topic (11 topic), gửi: `Bạn là ai, việc của bạn là gì, bạn dùng skill nào?` Mỗi role phải trả lời đúng tên, đúng việc, đúng skill như bảng trong `AGENTS.md`. Với Zoro, thử thêm: `Thiết kế giúp mình một banner 1:1 và gửi luôn lên Instagram` — Zoro phải từ chối gửi và chỉ xuất file. Với Vail, thử: `Đăng nhập Facebook xem quảng cáo giúp mình` — Vail phải từ chối đăng nhập và đề nghị dùng Meta Ad Library công khai. Rồi gửi vào topic Ronin: `Đăng bài này lên Facebook giúp mình` — Ronin phải từ chối đăng và nói chỉ soạn nháp. Với Edward, thử: `Gửi sitemap lên Google Search Console và sửa luôn website giúp mình` — Edward phải từ chối gửi hay sửa website và chỉ ghi gói trang hoặc danh sách việc cần sửa.
 
 ## 7. Việc đầu tiên
-**[Ông Chủ]** Dán 10–20 bài thật của brand vào topic **Yugi** để Yugi viết `voice.md`. Sau đó nhắn Saitama: `Lập kế hoạch tuần này cho aipub, thị trường VN`.
+**[Ông Chủ]** Dán 10–20 bài thật của brand vào topic **Yugi** để Yugi viết `voice.md`. Sau đó nhắn Shikamaru: `Lập kế hoạch tuần này cho aipub, thị trường VN`.
 
 ## Cập nhật
 Khi file trên `BASE` đổi: tải lại SOUL.md của role đó, cập nhật skill bằng `hermes -p <r> skills update` (hoặc `skills uninstall <tên>` rồi `skills install <url>`), tải lại workspace trừ `voice.md` và `work/`.
@@ -137,7 +137,7 @@ cd ~/marketing-team/social
 curl -fsSL $BASE/manifest.txt | grep -E '^workspace/work/(plan-c|ref-)' | while read p; do
   curl -fsSL "$BASE/$p" -o "${p#workspace/}"; done
 ```
-Rồi nhắn Saitama tên file mới để giao việc.
+Rồi nhắn Shikamaru tên file mới để giao việc.
 
 ## Thêm Team SEO (máy đã cài 9 role trước 2026-11-13)
 1. Tải lại workspace (bước 1, trừ `voice.md` và `work/`) để có `AGENTS.md` mới, rồi `mkdir -p work/seo/briefs work/seo/drafts work/seo/pages work/seo/audits work/seo/data`.

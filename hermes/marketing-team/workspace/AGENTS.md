@@ -10,9 +10,9 @@ Team SEO viết bài cho website (aipub.social trước) để khách tìm thấ
 ## Vai trò và topic Telegram
 | Role | Tên | Topic | Việc | Skill |
 |---|---|---|---|---|
-| Lead | Saitama | Saitama | Kế hoạch tuần, pillar, chọn nền tảng và thị trường | social-playbook |
+| Lead | Shikamaru | Shikamaru | Kế hoạch tuần, pillar, chọn nền tảng và thị trường | social-playbook |
 | Voice keeper | Yugi | Yugi | Viết và cập nhật `voice.md` | voice-dossier |
-| Writer | Ran | Ran | Một ý tưởng thành bài cho từng nền tảng | social-playbook, linkedin-post, youtube-packaging |
+| Writer | Ronin | Ronin | Một ý tưởng thành bài cho từng nền tảng | social-playbook, linkedin-post, youtube-packaging |
 | Scripter (Social và SEO) | Teppi | Teppi | Kịch bản video dọc; bài website chuẩn SEO/GEO theo brief của Lelouch | short-video-script, seo-content-writer, geo-content-optimizer |
 | Editor | Usop | Usop | Cổng kiểm trước khi Ông Chủ duyệt | copy-editing |
 | Community | Wiz | Wiz | Soạn nháp trả lời comment, tin nhắn | engagement-inbox |
@@ -23,13 +23,13 @@ Team SEO viết bài cho website (aipub.social trước) để khách tìm thấ
 | Trinh sát đối thủ (dùng chung) | Vail | Vail | Mổ xẻ quảng cáo above-the-line và video trả tiền của đối thủ, bản tổng hợp tuần | ad-teardown |
 
 ## Quy trình mỗi tuần
-1. **Saitama** viết `work/plan-<YYYY-Www>.md` sau khi đọc báo cáo của Xaiyan và bản tổng hợp đối thủ `work/intel/tuan-<YYYY-Www>.md` của Vail; Ông Chủ duyệt trong topic Saitama.
-2. **Ran** viết bài, **Teppi** viết kịch bản video (đọc các teardown trong `work/intel/` khi cần ý hook và cấu trúc), mỗi ý tưởng một file `work/drafts/<YYYY-MM-DD>-<slug>.md`.
+1. **Shikamaru** viết `work/plan-<YYYY-Www>.md` sau khi đọc báo cáo của Xaiyan và bản tổng hợp đối thủ `work/intel/tuan-<YYYY-Www>.md` của Vail; Ông Chủ duyệt trong topic Shikamaru.
+2. **Ronin** viết bài, **Teppi** viết kịch bản video (đọc các teardown trong `work/intel/` khi cần ý hook và cấu trúc), mỗi ý tưởng một file `work/drafts/<YYYY-MM-DD>-<slug>.md`.
 3. **Usop** kiểm từng file. FAIL trả về người viết, tối đa 2 vòng, rồi Ông Chủ quyết.
 4. Ông Chủ duyệt trong topic Usop; bài đăng qua aipub.
-5. **Wiz** soạn trả lời hằng ngày từ dữ liệu Ông Chủ dán. **Xaiyan** viết báo cáo cuối tuần; Saitama đọc nó để lập tuần sau.
-6. **Zoro** nhận brief thiết kế (banner từ Saitama hoặc Ran, email từ chiến dịch), ghi `work/banners/<slug>/` hoặc `work/emails/<slug>/`, chuyển **Usop** kiểm trước khi Ông Chủ duyệt (Usop đọc cả `work/banners/` và `work/emails/`).
-7. **Vail** cập nhật `work/intel/` trong tuần (teardown từng tài sản của đối thủ trong `work/intel/doi-thu.md`, từ nguồn công khai, từ clip lấy bằng `tools/fetch_clip.sh` và từ ảnh, clip Ông Chủ gửi vào topic Vail) và viết `work/intel/tuan-<YYYY-Www>.md` trước khi Saitama lập kế hoạch tuần. Vail chỉ đề xuất thêm đối thủ, Saitama hoặc Ông Chủ quyết. Vail không có lịch tự chạy: Ông Chủ nhắn topic Vail để làm bản tuần. Chưa có bản tuần thì Saitama vẫn lập kế hoạch và ghi `Giả định: chưa có tổng hợp đối thủ tuần này`.
+5. **Wiz** soạn trả lời hằng ngày từ dữ liệu Ông Chủ dán. **Xaiyan** viết báo cáo cuối tuần; Shikamaru đọc nó để lập tuần sau.
+6. **Zoro** nhận brief thiết kế (banner từ Shikamaru hoặc Ronin, email từ chiến dịch), ghi `work/banners/<slug>/` hoặc `work/emails/<slug>/`, chuyển **Usop** kiểm trước khi Ông Chủ duyệt (Usop đọc cả `work/banners/` và `work/emails/`).
+7. **Vail** cập nhật `work/intel/` trong tuần (teardown từng tài sản của đối thủ trong `work/intel/doi-thu.md`, từ nguồn công khai, từ clip lấy bằng `tools/fetch_clip.sh` và từ ảnh, clip Ông Chủ gửi vào topic Vail) và viết `work/intel/tuan-<YYYY-Www>.md` trước khi Shikamaru lập kế hoạch tuần. Vail chỉ đề xuất thêm đối thủ, Shikamaru hoặc Ông Chủ quyết. Vail không có lịch tự chạy: Ông Chủ nhắn topic Vail để làm bản tuần. Chưa có bản tuần thì Shikamaru vẫn lập kế hoạch và ghi `Giả định: chưa có tổng hợp đối thủ tuần này`.
 
 ## Quy trình Team SEO (mỗi tháng)
 1. **Lelouch** viết `work/seo/ke-hoach-<YYYY-MM>.md` (đọc báo cáo tháng trước và `work/intel/`); Ông Chủ duyệt trong topic Lelouch. Mỗi bài một brief `work/seo/briefs/<slug>.md`.
@@ -39,7 +39,7 @@ Team SEO viết bài cho website (aipub.social trước) để khách tìm thấ
 5. Bài đã duyệt: **Edward** làm gói trang `work/seo/pages/<slug>/`; Ông Chủ đưa lên website. Edward kiểm kỹ thuật website mỗi tháng (`work/seo/audits/`).
 6. Cuối tháng **Lelouch** viết `work/seo/readout-<YYYY-MM>.md` từ dữ liệu Ông Chủ xuất (Search Console) và câu trả lời AI Ông Chủ dán.
 
-**Campaign nhiều tuần** có plan riêng `work/plan-c<số>-<tên>.md` do Ông Chủ giao. Plan đó được thêm file và nhịp riêng cho role trong thời gian campaign chạy (ví dụ C2: Xaiyan điền số mỗi ngày vào `work/c2-so-ngay.md`). Gặp chỗ khác với bảng trên thì làm theo plan campaign. Saitama đưa phần việc của campaign vào kế hoạch tuần.
+**Campaign nhiều tuần** có plan riêng `work/plan-c<số>-<tên>.md` do Ông Chủ giao. Plan đó được thêm file và nhịp riêng cho role trong thời gian campaign chạy (ví dụ C2: Xaiyan điền số mỗi ngày vào `work/c2-so-ngay.md`). Gặp chỗ khác với bảng trên thì làm theo plan campaign. Shikamaru đưa phần việc của campaign vào kế hoạch tuần.
 
 Bàn giao giữa các role đi qua file trong `work/`. Khi xong việc, role ghi một dòng vào topic của mình: đã làm gì, file nào, ai làm tiếp.
 
