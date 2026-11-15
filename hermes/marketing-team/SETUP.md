@@ -146,6 +146,9 @@ Brand nhà chạy như trên. Có khách ngoài thì thêm một lớp, và lớ
 
 Bộ hồ sơ mẫu để trình khách nằm ở `workspace/work/client/pilot-2-weeks/` (`scope.md`, `acceptance.md`).
 
+## 9. Kanban (tuỳ chọn, theo dõi việc)
+Board Hermes Kanban slug `marketing`, `default_workdir` là workspace của team. Tạo task luôn ở trạng thái `blocked` và ghim `--workspace dir:<workspace>`, vì gateway mặc định tự nhặt task `running` mỗi 60 giây. Chạy tay bằng `hermes kanban --board marketing dispatch --dry-run` rồi `--max 1`. Chi tiết trong `workspace/AGENTS.md`, mục "Kanban".
+
 ## Cập nhật
 Khi file trên `BASE` đổi: tải lại SOUL.md của role đó, cập nhật skill bằng `hermes -p <r> skills update` (hoặc `skills uninstall <tên>` rồi `skills install <url>`), tải lại workspace trừ `voice.md` và `work/`.
 

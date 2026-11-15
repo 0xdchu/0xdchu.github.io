@@ -77,3 +77,14 @@ Dự án brand nhà chạy như trên. Khách ngoài thì thêm một lớp, và
 6. **Tsunade** giữ `status.md` (cập nhật mỗi lần thay đổi) và `out-of-scope.md` (việc khách đòi thêm, có ngày, có người đòi).
 7. Trước khi báo xong: **Tsunade** đi hết `acceptance.md`, mục nào cũng phải `pass` kèm bằng chứng, `fail` kèm lý do, hoặc `not checked` kèm lý do. Không có "chắc là ổn".
 8. Team **không đăng, không lên lịch, không gửi** gì cho khách; không nhận credential của khách. Khách tự đăng.
+
+## Kanban (board `marketing`)
+
+Có board Hermes Kanban riêng cho team: slug `marketing`, `default_workdir = /home/dc-group/marketing-team/social`, DB ở `~/.hermes/kanban/boards/marketing/kanban.db`. Board để theo dõi việc, không phải để agent tự chạy.
+
+- **Ai tạo task:** Tsunade (dự án khách) và Shikamaru (việc tuần của brand nhà). Người khác không tạo.
+- **Mỗi task phải đủ 5 dòng** như cách giao việc: việc, người làm, nguồn, xong khi (kiểm được), hạn.
+- **Luôn ghim workspace:** `hermes kanban --board marketing create "<việc>" --assignee <role> --workspace dir:/home/dc-group/marketing-team/social --initial-status blocked`. Không dùng workspace mặc định `scratch`: task chạy trong thư mục riêng sẽ tạo bản lệch thứ hai.
+- **Tạo ở trạng thái `blocked`.** Gateway có `kanban.dispatch_in_gateway: true` và tick 60 giây, nên task ở `running` sẽ bị nhặt và chạy không cần Ông Chủ.
+- **Chạy tay:** Ông Chủ chạy `hermes kanban --board marketing dispatch --dry-run` xem trước, rồi `--max 1` để chạy một việc. Không bật tự chạy cho tới khi quy trình ổn định.
+- **Đóng task:** chỉ Tsunade đóng, và chỉ khi có bằng chứng (đường dẫn file, link, số) ghi trong comment. Không có bằng chứng thì `blocked`, kèm lý do.
