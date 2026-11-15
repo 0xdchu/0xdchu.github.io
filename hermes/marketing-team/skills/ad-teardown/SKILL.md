@@ -1,6 +1,6 @@
 ---
 name: ad-teardown
-description: 'Dùng khi Ông Chủ hoặc Saitama nhờ "xem đối thủ đang chạy quảng cáo gì", "mổ xẻ TVC / video quảng cáo / OOH này", "báo cáo đối thủ tuần này". Quét nguồn công khai (không đăng nhập), viết teardown từng tài sản vào work/intel/<đối-thủ>/ và bản tổng hợp tuần work/intel/tuan-<YYYY-Www>.md với brief cho Teppi và tham chiếu cho Zoro. Đọc, ghi file trong work/intel/ và lấy clip công khai bằng tools/fetch_clip.sh: không đăng nhập, không liên hệ ai, không ước lượng chi tiêu.'
+description: 'Dùng khi Ông Chủ hoặc Shikamaru nhờ "xem đối thủ đang chạy quảng cáo gì", "mổ xẻ TVC / video quảng cáo / OOH này", "báo cáo đối thủ tuần này". Quét nguồn công khai (không đăng nhập), viết teardown từng tài sản vào work/intel/<đối-thủ>/ và bản tổng hợp tuần work/intel/tuan-<YYYY-Www>.md với brief cho Teppi và tham chiếu cho Zoro. Đọc, ghi file trong work/intel/ và lấy clip công khai bằng tools/fetch_clip.sh: không đăng nhập, không liên hệ ai, không ước lượng chi tiêu.'
 ---
 
 # Ad teardown: mổ xẻ quảng cáo của đối thủ
@@ -22,7 +22,7 @@ Skill do team viết, không lấy từ nguồn ngoài. Dùng cho role Vail (Tri
 - Về aipub, chỉ viết "đăng qua aipub".
 
 ## Đầu vào
-- `work/intel/doi-thu.md`: danh sách đối thủ do Saitama hoặc Ông Chủ giữ. Chưa có thì dừng và hỏi Ông Chủ. Muốn thêm đối thủ thì đề xuất kèm lý do, không tự thêm.
+- `work/intel/doi-thu.md`: danh sách đối thủ do Shikamaru hoặc Ông Chủ giữ. Chưa có thì dừng và hỏi Ông Chủ. Muốn thêm đối thủ thì đề xuất kèm lý do, không tự thêm.
 - `work/intel/nguon.md`: ghi chú làm việc của Vail, có bảng "Nguồn đã kiểm" (xem dưới).
 - Ảnh OOH/TV/radio/báo in, clip do Ông Chủ hoặc team gửi vào topic Vail. Vail không tự thấy các thứ này ngoài đường.
 
@@ -52,13 +52,13 @@ Phạm vi mỗi nguồn khác nhau theo nước và đổi theo thời gian. Ví
 Nguồn không phủ thị trường cần xem thì ghi rõ "không phủ" và dùng nguồn khác, hoặc xin Ông Chủ gửi ảnh, clip.
 
 ## Quy trình
-1. **Chọn đối thủ.** Đọc `work/intel/doi-thu.md`. Mặc định quét đối thủ ưu tiên; Ông Chủ hoặc Saitama chỉ định đối thủ nào thì làm đúng đối thủ đó.
+1. **Chọn đối thủ.** Đọc `work/intel/doi-thu.md`. Mặc định quét đối thủ ưu tiên; Ông Chủ hoặc Shikamaru chỉ định đối thủ nào thì làm đúng đối thủ đó.
 2. **Quét nguồn.** Với mỗi đối thủ, lần lượt xem từng nguồn trong `nguon.md` đã kiểm: quảng cáo mới, TVC mới đăng, KOL mới xuất hiện, sự kiện, tài trợ. Mỗi tài sản đáng xem ghi lại link và ngày xem.
 3. **Chọn tài sản đáng mổ.** Chỉ mổ cái mới, hoặc lặp lại nhiều lần, hoặc có điểm lạ. Không mổ mọi quảng cáo.
 4. **Xem tài sản.** Xem mục "Xem video" dưới đây. Ảnh OOH, báo in thì dùng vision để đọc chữ, bố cục, màu.
 5. **Viết teardown** theo mẫu, một file cho mỗi tài sản.
-6. **Cuối tuần viết bản tổng hợp** theo mẫu, trước khi Saitama lập kế hoạch tuần.
-7. **Báo vào topic Vail:** một dòng, đã làm gì, file nào, Saitama và Teppi đọc tiếp.
+6. **Cuối tuần viết bản tổng hợp** theo mẫu, trước khi Shikamaru lập kế hoạch tuần.
+7. **Báo vào topic Vail:** một dòng, đã làm gì, file nào, Shikamaru và Teppi đọc tiếp.
 
 ## Xem video
 Không dùng `video_analyze`: với model của team, video gửi qua công cụ này bị bỏ trên đường đi và model trả lời là không thấy video (thử ngày 2026-11-12). Xem clip bằng khung hình và chữ:
@@ -127,11 +127,11 @@ Mỗi dòng "suy đoán" ghi rõ chữ "suy đoán" ở đầu.
 - <tham chiếu hình ảnh: bố cục, màu, kiểu chữ; gắn file teardown>
 
 ## Đề xuất thêm vào doi-thu.md
-- <đối thủ mới nổi, kèm lý do và link; Saitama hoặc Ông Chủ quyết>
+- <đối thủ mới nổi, kèm lý do và link; Shikamaru hoặc Ông Chủ quyết>
 ```
 Mỗi một trong 3 ý phải gắn một file teardown có thật. Không đủ 3 ý có căn cứ thì ghi ít hơn và nói vì sao, không bịa.
 
 ## Bàn giao
-- Saitama đọc bản tổng hợp tuần trước khi lập kế hoạch tuần.
+- Shikamaru đọc bản tổng hợp tuần trước khi lập kế hoạch tuần.
 - Teppi đọc teardown khi viết kịch bản; Zoro đọc phần "tham chiếu cho Zoro".
 - Không file nào trong `work/intel/` ra ngoài team khi Ông Chủ chưa duyệt.
