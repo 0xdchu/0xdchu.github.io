@@ -1,6 +1,6 @@
 # Cài Marketing Team cho Hermes Agent
 
-Hermes ơi, đây là hướng dẫn dựng **Marketing Team** của Distraction Foundry: 11 role (7 role của Team Social, 2 role của Team SEO là Lelouch và Edward, Zoro là Designer và Vail là Trinh sát đối thủ, hai role dùng chung cho mọi team; Teppi viết cho cả Team Social và Team SEO), mỗi role là một **profile** Hermes riêng (SOUL.md, skill, toolset riêng), mỗi role nói chuyện trong **một topic** của một nhóm Telegram. Đọc hết file này, làm theo từng bước, dừng lại hỏi Ông Chủ ở các bước có ghi **[Ông Chủ]**.
+Hermes ơi, đây là hướng dẫn dựng **Marketing Team** của Distraction Foundry: 12 role (7 role của Team Social, 2 role của Team SEO là Lelouch và Edward, Zoro là Designer, Vail là Trinh sát đối thủ và Tsunade là Account lead giữ phạm vi, hạn, nghiệm thu khi làm dự án khách, ba role dùng chung cho mọi team; Teppi viết cho cả Team Social và Team SEO), mỗi role là một **profile** Hermes riêng (SOUL.md, skill, toolset riêng), mỗi role nói chuyện trong **một topic** của một nhóm Telegram. Đọc hết file này, làm theo từng bước, dừng lại hỏi Ông Chủ ở các bước có ghi **[Ông Chủ]**.
 
 Mọi file nằm dưới `BASE = https://0xdonniechu.github.io/hermes/marketing-team/`. Danh sách đầy đủ: `BASE/manifest.txt` (mỗi dòng một đường dẫn tương đối).
 
@@ -8,10 +8,10 @@ Tham chiếu tài liệu Hermes: Profiles, Running Many Gateways (multiplexing, 
 
 ## 0. Kiểm trước
 - `hermes --version` chạy được và gateway Telegram của profile mặc định đã chạy (đã có bot token, `TELEGRAM_ALLOWED_USERS` gồm Ông Chủ).
-- Không ghi đè profile đã có: nếu trùng tên `saitama yugi ran teppi usop wiz xaiyan zoro vail lelouch edward`, dừng và hỏi Ông Chủ. Máy đã cài 9 role trước ngày 2026-11-13 thì làm theo mục "Thêm Team SEO" ở cuối file.
+- Không ghi đè profile đã có: nếu trùng tên `shikamaru yugi ronin teppi usop wiz xaiyan zoro vail lelouch edward tsunade`, dừng và hỏi Ông Chủ. Máy đã cài 9 role trước ngày 2026-11-13 thì làm theo mục "Thêm Team SEO" ở cuối file.
 
 ## 1. Tải workspace của team
-Workspace là thư mục làm việc chung của 11 role: `~/marketing-team/social/` (thư mục của Team Social; Zoro, Vail và Team SEO làm việc ở đây, Zoro vì cần `formats/` và `voice.md`, Vail vì ghi vào `work/intel/`, Team SEO vì ghi vào `work/seo/` và đọc `voice.md`, `work/intel/`).
+Workspace là thư mục làm việc chung của 12 role: `~/marketing-team/social/` (thư mục của Team Social; Zoro, Vail và Team SEO làm việc ở đây, Zoro vì cần `formats/` và `voice.md`, Vail vì ghi vào `work/intel/`, Team SEO vì ghi vào `work/seo/` và đọc `voice.md`, `work/intel/`).
 ```bash
 BASE=https://0xdonniechu.github.io/hermes/marketing-team
 mkdir -p ~/marketing-team/social && cd ~/marketing-team/social
@@ -24,29 +24,32 @@ Kết quả phải có: `AGENTS.md`, `formats/` (6 file), `tactics/` (2 file), `
 
 ## 2. Tạo 11 profile, mỗi profile một SOUL.md
 ```bash
-for r in saitama yugi ran teppi usop wiz xaiyan zoro vail lelouch edward; do
+for r in shikamaru yugi ronin teppi usop wiz xaiyan zoro vail lelouch edward tsunade; do
   hermes profile create $r --description "Marketing Team: $r"   # profile trắng; KHÔNG dùng --clone (nó chép cả bộ nhớ và skill của profile mặc định)
   curl -fsSL $BASE/roles/$r/SOUL.md -o ~/.hermes/profiles/$r/SOUL.md
   hermes -p $r skills opt-out --remove --yes   # bỏ skill có sẵn của Hermes, chỉ giữ skill của team (bước 3)
 done
 ```
-**Model:** cho mỗi role dùng cùng model với profile mặc định: chép các khoá `model.*` và `fallback_providers` từ `~/.hermes/config.yaml` bằng `hermes -p <r> config set ...`, và chép **chỉ dòng key của nhà cung cấp model** từ `~/.hermes/.env` sang `~/.hermes/profiles/<r>/.env`. Không chép `TELEGRAM_*` hay token nhắn tin nào: cả 11 role dùng chung bot của profile mặc định (bước 5). Muốn role dùng model khác thì hỏi Ông Chủ.
+**Model:** cho mỗi role dùng cùng model với profile mặc định: chép các khoá `model.*` và `fallback_providers` từ `~/.hermes/config.yaml` bằng `hermes -p <r> config set ...`, và chép **chỉ dòng key của nhà cung cấp model** từ `~/.hermes/.env` sang `~/.hermes/profiles/<r>/.env`. Không chép `TELEGRAM_*` hay token nhắn tin nào: cả 12 role dùng chung bot của profile mặc định (bước 5). Muốn role dùng model khác thì hỏi Ông Chủ.
 
 ## 3. Cài skill cho từng role
 Mỗi skill là một `SKILL.md` kèm file tham chiếu; cài bằng URL:
 ```bash
 S=$BASE/skills
-hermes -p saitama  skills install $S/social-playbook/SKILL.md --yes
+hermes -p shikamaru skills install $S/social-playbook/SKILL.md --yes
+hermes -p shikamaru skills install $S/positioning-brief/SKILL.md --yes   # brief định vị, viết trước mọi nội dung cho khách
 hermes -p yugi skills install $S/voice-dossier/SKILL.md --yes
-hermes -p ran skills install $S/social-playbook/SKILL.md --yes
-hermes -p ran skills install $S/linkedin-post/SKILL.md --yes
-hermes -p ran skills install $S/youtube-packaging/SKILL.md --yes
+hermes -p ronin skills install $S/social-playbook/SKILL.md --yes
+hermes -p ronin skills install $S/linkedin-post/SKILL.md --yes
+hermes -p ronin skills install $S/youtube-packaging/SKILL.md --yes
+# Tsunade: 1 skill giữ phạm vi, hạn, nghiệm thu cho dự án khách
+hermes -p tsunade skills install $S/client-delivery/SKILL.md --yes
 hermes -p teppi  skills install $S/short-video-script/SKILL.md --yes
 hermes -p usop skills install $S/copy-editing/SKILL.md --yes
 hermes -p wiz skills install $S/engagement-inbox/SKILL.md --yes
 hermes -p xaiyan skills install $S/measurement-loop/SKILL.md --yes
 # Zoro: 4 skill; impeccable có thêm `reference/`. Cài SKILL.md rồi tải phần còn lại theo manifest vào thư mục skill của profile.
-for s in html-banner-design email-newsletter-design bento-carousel-design-v3 impeccable; do
+for s in html-banner-design email-newsletter-design bento-carousel-design-v3 impeccable brand-identity-kit; do
   hermes -p zoro skills install $S/$s/SKILL.md --yes
   curl -fsSL $BASE/manifest.txt | grep "^skills/$s/" | while read p; do
     f="${p#skills/$s/}"; [ "$f" = SKILL.md ] && continue
@@ -76,9 +79,10 @@ hermes -p <r> config set agent.disabled_toolsets '[...]'                # danh s
 
 | Role | Cần | `agent.disabled_toolsets` |
 |---|---|---|
-| saitama | file, web, search, skills, todo, memory, session_search, clarify, cronjob | `[browser, terminal, code_execution, delegation, image_gen, video_gen, computer_use, x_search, tts, connections]` |
+| shikamaru | file, web, search, skills, todo, memory, session_search, clarify, cronjob | `[browser, terminal, code_execution, delegation, image_gen, video_gen, computer_use, x_search, tts, connections]` |
 | yugi | file, skills, memory, clarify | `[browser, terminal, code_execution, delegation, cronjob, web, search, image_gen, video_gen, computer_use, x_search, tts, connections]` |
-| ran | file, web, search, skills, memory, clarify | `[browser, terminal, code_execution, delegation, cronjob, image_gen, video_gen, computer_use, x_search, tts, connections]` |
+| ronin | file, web, search, skills, memory, clarify |
+| tsunade | file, web, search, skills, memory, clarify | `[browser, terminal, code_execution, delegation, cronjob, image_gen, video_gen, computer_use, x_search, tts, connections]` |
 | teppi | file, web, search, skills, vision, memory, clarify | `[browser, terminal, code_execution, delegation, cronjob, image_gen, video_gen, computer_use, x_search, tts, connections]` |
 | usop | file, web, search, skills, clarify | `[browser, terminal, code_execution, delegation, cronjob, image_gen, video_gen, computer_use, x_search, tts, memory, connections]` |
 | wiz | file, skills, memory, clarify | `[browser, terminal, code_execution, delegation, cronjob, web, search, image_gen, video_gen, computer_use, x_search, tts, connections]` |
@@ -99,16 +103,16 @@ Edward giữ `terminal` (theo nguyên tắc "không gây hại thì không cấm
 ## 5. Nhóm Telegram có topic, mỗi topic một role
 Nhóm tên **Marketing-Team**; route tên `marketing-<role>`.
 1. **[Ông Chủ]** Tạo một supergroup Telegram (ví dụ "DF Marketing"), bật **Topics**, thêm bot của Hermes và cho bot làm **admin** (admin nhận mọi tin, không cần tắt privacy mode). Nếu không cho làm admin thì tắt privacy mode trong @BotFather, rồi **gỡ bot ra và thêm lại** vào nhóm.
-2. **[Ông Chủ]** Tạo 11 topic tên: `Shikamaru`, `Yugi`, `Ronin`, `Teppi`, `Usop`, `Wiz`, `Xaiyan`, `Zoro`, `Vail`, `Lelouch`, `Edward`. Topic General để lệnh hệ thống.
+2. **[Ông Chủ]** Tạo 12 topic tên: `Shikamaru`, `Yugi`, `Ronin`, `Teppi`, `Usop`, `Wiz`, `Xaiyan`, `Zoro`, `Vail`, `Lelouch`, `Edward`, `Tsunade`. Topic General để lệnh hệ thống.
 3. Lấy `chat_id` của nhóm và `thread_id` của từng topic (gửi một tin vào mỗi topic rồi đọc log gateway, hoặc link tin nhắn `t.me/c/<id>/<thread_id>/<msg>`). Không ghi các id này lên chỗ công khai.
 4. Trong `~/.hermes/config.yaml` của **profile mặc định**:
 ```yaml
 gateway:
   multiplex_profiles: true
   profile_routes:
-    - {name: marketing-saitama,  platform: telegram, chat_id: "<CHAT_ID>", thread_id: "<THREAD_SAITAMA>",  profile: saitama}
+    - {name: marketing-shikamaru, platform: telegram, chat_id: "<CHAT_ID>", thread_id: "<THREAD_SHIKAMARU>", profile: shikamaru}
     - {name: marketing-yugi, platform: telegram, chat_id: "<CHAT_ID>", thread_id: "<THREAD_YUGI>", profile: yugi}
-    - {name: marketing-ran, platform: telegram, chat_id: "<CHAT_ID>", thread_id: "<THREAD_RAN>", profile: ran}
+    - {name: marketing-ronin, platform: telegram, chat_id: "<CHAT_ID>", thread_id: "<THREAD_RONIN>", profile: ronin}
     - {name: marketing-teppi,  platform: telegram, chat_id: "<CHAT_ID>", thread_id: "<THREAD_TEPPI>",  profile: teppi}
     - {name: marketing-usop, platform: telegram, chat_id: "<CHAT_ID>", thread_id: "<THREAD_USOP>", profile: usop}
     - {name: marketing-wiz, platform: telegram, chat_id: "<CHAT_ID>", thread_id: "<THREAD_WIZ>", profile: wiz}
@@ -117,16 +121,30 @@ gateway:
     - {name: marketing-vail, platform: telegram, chat_id: "<CHAT_ID>", thread_id: "<THREAD_VAIL>", profile: vail}
     - {name: marketing-lelouch, platform: telegram, chat_id: "<CHAT_ID>", thread_id: "<THREAD_LELOUCH>", profile: lelouch}
     - {name: marketing-edward, platform: telegram, chat_id: "<CHAT_ID>", thread_id: "<THREAD_EDWARD>", profile: edward}
+    - {name: marketing-tsunade, platform: telegram, chat_id: "<CHAT_ID>", thread_id: "<THREAD_TSUNADE>", profile: tsunade}
 ```
-   Nếu nhóm dùng bot riêng thay vì bot của profile mặc định: đặt `TELEGRAM_BOT_TOKEN` của bot đó trong `.env` của một profile (ví dụ saitama) và thêm `bot_profile: saitama` vào mỗi route.
-   Tin trong topic nào thì profile đó trả lời, với SOUL, skill, bộ nhớ và phiên riêng. Tin ngoài 11 topic (General) về profile mặc định.
+   Nếu nhóm dùng bot riêng thay vì bot của profile mặc định: đặt `TELEGRAM_BOT_TOKEN` của bot đó trong `.env` của một profile (ví dụ shikamaru) và thêm `bot_profile: shikamaru` vào mỗi route.
+   Tin trong topic nào thì profile đó trả lời, với SOUL, skill, bộ nhớ và phiên riêng. Tin ngoài 12 topic (General) về profile mặc định.
 5. Khởi động lại: `hermes gateway restart`. Cách khác nếu bản Hermes chưa có `profile_routes`: mỗi role một bot riêng (`<r> setup` nhập token, `<r> gateway start`) và mỗi topic chỉ thêm bot của role đó.
 
 ## 6. Kiểm sau khi cài
-Trong từng topic (11 topic), gửi: `Bạn là ai, việc của bạn là gì, bạn dùng skill nào?` Mỗi role phải trả lời đúng tên, đúng việc, đúng skill như bảng trong `AGENTS.md`. Với Zoro, thử thêm: `Thiết kế giúp mình một banner 1:1 và gửi luôn lên Instagram` — Zoro phải từ chối gửi và chỉ xuất file. Với Vail, thử: `Đăng nhập Facebook xem quảng cáo giúp mình` — Vail phải từ chối đăng nhập và đề nghị dùng Meta Ad Library công khai. Rồi gửi vào topic Ronin: `Đăng bài này lên Facebook giúp mình` — Ronin phải từ chối đăng và nói chỉ soạn nháp. Với Edward, thử: `Gửi sitemap lên Google Search Console và sửa luôn website giúp mình` — Edward phải từ chối gửi hay sửa website và chỉ ghi gói trang hoặc danh sách việc cần sửa.
+Trong từng topic (12 topic), gửi: `Bạn là ai, việc của bạn là gì, bạn dùng skill nào?` Mỗi role phải trả lời đúng tên, đúng việc, đúng skill như bảng trong `AGENTS.md`. Với Zoro, thử thêm: `Thiết kế giúp mình một banner 1:1 và gửi luôn lên Instagram` — Zoro phải từ chối gửi và chỉ xuất file. Với Vail, thử: `Đăng nhập Facebook xem quảng cáo giúp mình` — Vail phải từ chối đăng nhập và đề nghị dùng Meta Ad Library công khai. Rồi gửi vào topic Ronin: `Đăng bài này lên Facebook giúp mình` — Ronin phải từ chối đăng và nói chỉ soạn nháp. Với Edward, thử: `Gửi sitemap lên Google Search Console và sửa luôn website giúp mình` — Edward phải từ chối gửi hay sửa website và chỉ ghi gói trang hoặc danh sách việc cần sửa.
 
 ## 7. Việc đầu tiên
 **[Ông Chủ]** Dán 10–20 bài thật của brand vào topic **Yugi** để Yugi viết `voice.md`. Sau đó nhắn Shikamaru: `Lập kế hoạch tuần này cho aipub, thị trường VN`.
+
+## 8. Dự án khách ngoài (khi có khách thật)
+Brand nhà chạy như trên. Có khách ngoài thì thêm một lớp, và lớp đó là của **Tsunade** (Account lead):
+
+1. Tsunade viết `work/client/<du-an>/scope.md`: trong phạm vi, ngoài phạm vi, giả định, người duyệt, hạn. Ông Chủ duyệt trước khi giao việc.
+2. Tsunade chia scope thành `tasks.md`: mỗi dòng một người làm, một điều kiện nghiệm thu kiểm được, một hạn.
+3. Shikamaru viết `positioning.md` bằng skill `positioning-brief` trước khi ai viết nội dung; Ronin, Teppi, Lelouch, Zoro đọc file đó trước bản nháp đầu.
+4. Khách chưa có nhận diện thì Zoro làm bằng skill `brand-identity-kit`: 3 hướng, mark SVG, `tokens.css`, `sheet.html`. Ngoài phạm vi mặc định: brand book, nhãn hiệu, licence font.
+5. Mọi bản nháp vẫn qua Usop; quá 2 vòng thì Tsunade báo Ông Chủ, không tự gia hạn.
+6. Trước khi báo xong, Tsunade đi hết `acceptance.md`: mỗi mục `pass` kèm bằng chứng, `fail` kèm lý do, hoặc `not checked` kèm lý do.
+7. Team không đăng, không gửi, không giữ credential của khách. Khách tự đăng.
+
+Bộ hồ sơ mẫu để trình khách nằm ở `workspace/work/client/pilot-2-weeks/` (`scope.md`, `acceptance.md`).
 
 ## Cập nhật
 Khi file trên `BASE` đổi: tải lại SOUL.md của role đó, cập nhật skill bằng `hermes -p <r> skills update` (hoặc `skills uninstall <tên>` rồi `skills install <url>`), tải lại workspace trừ `voice.md` và `work/`.

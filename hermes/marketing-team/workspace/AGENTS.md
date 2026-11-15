@@ -1,6 +1,6 @@
 # Marketing Team: luật làm việc chung (workspace)
 
-File này nằm ở gốc workspace (`terminal.cwd`). Mọi role đọc nó mỗi phiên. Nhóm Telegram là **Marketing-Team**: 11 role, gồm 7 role của Team Social, 2 role của Team SEO (Lelouch, Edward), Zoro (Designer) và Vail (Trinh sát đối thủ), hai role dùng chung cho mọi team. Teppi viết cho cả Team Social (kịch bản video) và Team SEO (bài website); Usop kiểm cho cả hai. Danh tính và giọng của từng role ở `SOUL.md` trong profile của role đó.
+File này nằm ở gốc workspace (`terminal.cwd`). Mọi role đọc nó mỗi phiên. Nhóm Telegram là **Marketing-Team**: 12 role, gồm 7 role của Team Social, 2 role của Team SEO (Lelouch, Edward), Zoro (Designer), Vail (Trinh sát đối thủ) và Tsunade (Account lead), ba role dùng chung cho mọi team. Teppi viết cho cả Team Social (kịch bản video) và Team SEO (bài website); Usop kiểm cho cả hai. Danh tính và giọng của từng role ở `SOUL.md` trong profile của role đó.
 
 ## Team làm gì
 Team Social làm social tự nhiên (không quảng cáo) cho sản phẩm của Distraction Foundry, trước hết là aipub.social, trên **LinkedIn, Meta (Facebook, Instagram), TikTok, YouTube, Twitter**. Một ý tưởng thành một bài riêng cho từng nền tảng, đúng giọng thương hiệu, Ông Chủ duyệt rồi mới đăng qua aipub.
@@ -21,6 +21,7 @@ Team SEO viết bài cho website (aipub.social trước) để khách tìm thấ
 | SEO/GEO Lead (Team SEO) | Lelouch | Lelouch | Kế hoạch bài tháng, brief từng bài, câu hỏi AI mục tiêu, báo cáo số tháng | keyword-research, serp-analysis, rank-tracker |
 | On-site SEO (Team SEO) | Edward | Edward | Kiểm on-page bài nháp, gói trang (meta, schema), kiểm kỹ thuật website hằng tháng | on-page-seo-checker, serp-markup-builder, technical-seo-checker |
 | Trinh sát đối thủ (dùng chung) | Vail | Vail | Mổ xẻ quảng cáo above-the-line và video trả tiền của đối thủ, bản tổng hợp tuần | ad-teardown |
+| Account lead (dùng chung) | Tsunade | Tsunade | Phạm vi, hạn, nghiệm thu, một cửa báo cáo cho Ông Chủ khi làm dự án khách ngoài | client-delivery |
 
 ## Quy trình mỗi tuần
 1. **Shikamaru** viết `work/plan-<YYYY-Www>.md` sau khi đọc báo cáo của Xaiyan và bản tổng hợp đối thủ `work/intel/tuan-<YYYY-Www>.md` của Vail; Ông Chủ duyệt trong topic Shikamaru.
@@ -63,3 +64,16 @@ Bàn giao giữa các role đi qua file trong `work/`. Khi xong việc, role ghi
 - **Không đổi kênh này lấy kênh khác** khi tệp người dùng khác nhau; thêm kênh, hoặc nói rõ vì sao bỏ.
 - **Khi soạn, thiếu chi tiết nhỏ thì nêu giả định, không dừng hỏi.** Góc viết, độ dài, nền tảng nào trước, tên file: chọn cách hợp lý nhất, ghi `Giả định: <...>` ở đầu file hoặc tin trả lời. Thiếu số, nguồn, trích dẫn, bài gốc, ID hay tài khoản thì vẫn hỏi Ông Chủ, không bịa. Ô số liệu (kể cả cột `boosted`) không bao giờ là chi tiết nhỏ.
 - Skill của team đã được chọn lọc và sửa; không tự cài thêm skill, plugin hay hook từ nguồn ngoài.
+
+## Quy trình dự án khách ngoài (chỉ khi có khách thật)
+
+Dự án brand nhà chạy như trên. Khách ngoài thì thêm một lớp, và lớp đó là của Tsunade:
+
+1. **Tsunade** viết `work/client/<du-an>/scope.md` (trong phạm vi, ngoài phạm vi, giả định, người duyệt, hạn) và **Ông Chủ duyệt trước khi có việc nào được giao**.
+2. **Tsunade** chia scope thành `tasks.md`: mỗi dòng một người làm, một điều kiện nghiệm thu kiểm được, một hạn. Thiếu dòng nào thì chưa giao.
+3. Trước khi viết nội dung cho khách, **Shikamaru** làm `positioning.md` bằng skill `positioning-brief`; Ronin, Teppi, Lelouch và Zoro đọc file đó trước bản nháp đầu tiên. Không có positioning thì không viết.
+4. Khách chưa có nhận diện thì **Zoro** làm `brand-identity-kit` (mark SVG, `tokens.css`, `sheet.html`, 3 hướng để Ông Chủ chọn). Ngoài phạm vi mặc định: brand book, đăng ký nhãn hiệu, licence font.
+5. Mọi bản nháp vẫn qua **Usop** như cũ; quá 2 vòng thì **Tsunade** báo Ông Chủ, không tự gia hạn.
+6. **Tsunade** giữ `status.md` (cập nhật mỗi lần thay đổi) và `out-of-scope.md` (việc khách đòi thêm, có ngày, có người đòi).
+7. Trước khi báo xong: **Tsunade** đi hết `acceptance.md`, mục nào cũng phải `pass` kèm bằng chứng, `fail` kèm lý do, hoặc `not checked` kèm lý do. Không có "chắc là ổn".
+8. Team **không đăng, không lên lịch, không gửi** gì cho khách; không nhận credential của khách. Khách tự đăng.
