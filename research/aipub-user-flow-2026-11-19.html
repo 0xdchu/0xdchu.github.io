@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>aipub.social — Hành trình từ ý tưởng đến bài đã duyệt</title>
+<meta name="description" content="Luồng người dùng aipub.social: để lại link kênh, nhận thẻ giọng nháp, duyệt bài, đăng khi máy mở và nâng gói khi cần thêm kênh.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--fg:#1a1a1a;--muted:#666;--line:#e5e5e5;--bg:#fff;--accent:#1d4ed8;--soft:#f6f7f9;--warn:#8a4b00}
+@media (prefers-color-scheme:dark){:root{--fg:#e8e8e8;--muted:#9a9a9a;--line:#333;--bg:#121212;--accent:#7aa2ff;--soft:#1c1c1c;--warn:#f0b35a}}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.65 "Be Vietnam Pro",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--fg);background:var(--bg)}
+main{max-width:1500px;margin:0 auto;padding:24px 18px 80px}
+a{color:var(--accent)}
+.top{font-size:.9rem;color:var(--muted);margin:0 0 14px}
+h1{font-size:clamp(1.5rem,3vw,2rem);line-height:1.25;margin:.2em 0 .5em}
+h2{font-size:1.2rem;margin:1.7em 0 .5em;padding-top:.4em;border-top:1px solid var(--line)}
+p,li{max-width:75ch}
+.lead{font-size:1.06rem;color:var(--muted)}
+.diagram{overflow-x:auto;margin:1.2em 0 .4em;border:1px solid var(--line);border-radius:10px;background:#fff}
+.diagram img{display:block;width:100%;min-width:900px;height:auto}
+figure{margin:1.4em 0}
+figcaption{font-size:.88rem;color:var(--muted);margin-top:.6em}
+.zoom{font-size:.9rem;margin:.2em 0 1.4em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:1em 0}
+.card{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--soft)}
+.card h3{margin:0 0 .3em;font-size:1rem}
+.card p{margin:0;font-size:.92rem;color:var(--muted)}
+.gate{border-left:3px solid var(--warn);padding:.5em .9em;background:var(--soft);border-radius:0 8px 8px 0}
+code{font:.88em "JetBrains Mono",ui-monospace,monospace;background:var(--soft);padding:.1em .35em;border-radius:4px}
+.src{font-size:.85rem;color:var(--muted);margin-top:42px;border-top:1px solid var(--line);padding-top:12px}
+.src ul{padding-left:1.2em}
+</style>
+</head>
+<body>
+<main>
+<p class="top"><a href="../index.html">0xdonniechu.github.io</a> · 2026-11-19 · Bản công khai</p>
+<h1>aipub.social — Hành trình từ ý tưởng đến bài đã duyệt</h1>
+<p class="lead">Một ý tưởng, caption riêng cho từng kênh, và chỉ đăng khi khách bấm duyệt. Trang này là bản công khai của luồng người dùng; chi tiết hạ tầng và cách đăng bài được lược bỏ.</p>
+
+<figure>
+  <div class="diagram">
+    <img src="aipub-user-flow-2026-11-19.svg" width="1440" height="962" alt="Sơ đồ bốn chặng của aipub.social: đăng ký waitlist và nhận thẻ giọng nháp; mở app, nhập một ý tưởng và nhận các bài nháp; khách bấm duyệt rồi bài đăng khi máy mở; chạm giới hạn kênh thì nâng gói.">
+  </div>
+  <figcaption>Bốn chặng: đăng ký → kích hoạt → duyệt và đăng → mở rộng. Bài chưa duyệt thì không lên.</figcaption>
+</figure>
+<p class="zoom"><a href="aipub-user-flow-2026-11-19.svg">Mở sơ đồ ở kích thước đầy đủ</a></p>
+
+<h2>Bốn chặng</h2>
+<div class="grid">
+  <div class="card">
+    <h3>1 · Đăng ký waitlist</h3>
+    <p>Khách để lại email, số điện thoại và link kênh đang có. aipub đọc vài bài công khai gần nhất, dựng thẻ giọng nháp, rồi gửi email xác nhận kèm thẻ giọng.</p>
+  </div>
+  <div class="card">
+    <h3>2 · Kích hoạt</h3>
+    <p>Khách mở app, sửa nhanh thẻ giọng, thả một ý tưởng thô kèm ảnh hoặc video. aipub viết caption riêng cho từng kênh và để tất cả chờ khách duyệt.</p>
+  </div>
+  <div class="card">
+    <h3>3 · Duyệt và đăng</h3>
+    <p>Khách bấm <strong>ĐÃ DUYỆT</strong> hoặc sửa lại. Bài đã duyệt mới vào lịch; khi máy mở đúng giờ hẹn, aipub đăng và báo lại trong app cùng email.</p>
+  </div>
+  <div class="card">
+    <h3>4 · Mở rộng</h3>
+    <p>Chạm giới hạn kênh của gói hiện tại thì nâng Pro hoặc Business, mở thêm kênh, mời team và có thể duyệt qua Telegram/Discord.</p>
+  </div>
+</div>
+
+<h2>Ba điều giữ nguyên</h2>
+<ul>
+  <li><strong>Bài chưa duyệt thì không lên.</strong> Không có thao tác duyệt rõ ràng thì bài không vào lịch và không được đăng.</li>
+  <li><strong>Máy chỉ cần bật lúc đến giờ đăng.</strong> Nếu lúc hẹn máy đang đóng, lần mở kế tiếp khách chọn đăng ngay hoặc dời giờ.</li>
+  <li><strong>Không đếm credit, không giới hạn số bài.</strong> Giá tính theo độ phủ kênh và quy mô vận hành, không theo số bài đăng.</li>
+</ul>
+
+<h2>Điều trang này cố ý không nói</h2>
+<p class="gate">Bản công khai không mô tả hạ tầng backend, cách aipub đăng bài, hay các bước xử lý nội bộ. Trang sản phẩm chỉ nói “đăng qua aipub”.</p>
+
+<h2>Nguồn</h2>
+<p>Dựng từ nội dung công khai trên <a href="https://aipub.social">aipub.social</a> và kế hoạch sản phẩm đã công bố của aipub. Sơ đồ là bản diễn giải luồng người dùng, không phải đặc tả kỹ thuật.</p>
+<p class="src">Cập nhật 2026-11-19 · <a href="../index.html">về mục lục báo cáo</a> · <a href="https://aipub.social">aipub.social</a></p>
+</main>
+</body>
+</html>
