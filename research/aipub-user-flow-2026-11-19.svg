@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 962" role="img" aria-labelledby="t d" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1084" role="img" aria-labelledby="t d" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
   <title id="t">aipub.social — Hành trình từ ý tưởng đến bài đã duyệt</title>
-  <desc id="d">Khách để lại email, số điện thoại và link kênh; aipub dựng hồ sơ giọng nháp, gửi email, viết caption từng kênh; khách bấm duyệt; bài đăng khi máy mở; chạm giới hạn kênh thì nâng gói. Bản công khai lược chi tiết hạ tầng nội bộ.</desc>
+  <desc id="d">Khách để lại email, số điện thoại và link kênh; aipub dựng hồ sơ giọng nháp, gửi email, viết caption từng kênh; khách bấm duyệt; bài đăng khi máy mở; chạm giới hạn kênh thì nâng gói. Sơ đồ có thêm nhánh lỗi và phục hồi cho email, link kênh, đăng bài và duyệt. Bản công khai lược chi tiết hạ tầng nội bộ.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--muted, #6b7280)"/>
@@ -12,7 +12,7 @@
 
   <!-- Header -->
   <text x="24" y="36" font-size="22" font-weight="700" fill="var(--fg, #111827)">aipub.social — Hành trình từ ý tưởng đến bài đã duyệt</text>
-  <text x="24" y="58" font-size="13" fill="var(--muted, #6b7280)">Một ý tưởng → đúng giọng thương hiệu → khách bấm duyệt → đăng khi máy mở. Bài chưa duyệt thì không lên.</text>
+  <text x="24" y="58" font-size="13" fill="var(--muted, #6b7280)">Một ý tưởng → đúng giọng → khách duyệt → đăng khi máy mở. Actor: khách · agency/team · aipub · nền tảng ngoài. Bài chưa duyệt thì không lên.</text>
   <g font-size="11.5" fill="var(--muted, #6b7280)">
     <rect x="1032" y="28" width="10" height="10" rx="2" fill="var(--surface, #fff)" stroke="var(--c1, #2563eb)"/>
     <text x="1048" y="37">Người dùng / UI</text>
@@ -24,6 +24,8 @@
     <text x="1168" y="55">Quyết định</text>
     <rect x="1248" y="28" width="10" height="10" rx="2" fill="var(--surface, #fff)" stroke="var(--muted, #6b7280)"/>
     <text x="1264" y="37">Nền tảng ngoài</text>
+    <rect x="1248" y="46" width="10" height="10" rx="2" fill="var(--surface, #fff)" stroke="var(--error, #b91c1c)"/>
+    <text x="1264" y="55">Nhánh lỗi</text>
   </g>
 
   <!-- Stage panels -->
@@ -43,45 +45,33 @@
   <!-- Stage 1 -->
   <g>
     <rect x="44" y="146" width="380" height="54" rx="10" fill="var(--surface, #fff)" stroke="var(--c1, #2563eb)" stroke-width="1.2"/>
-    <circle cx="62" cy="168" r="9" fill="none" stroke="var(--muted, #6b7280)"/>
-    <text x="62" y="172" text-anchor="middle" font-size="9" fill="var(--muted, #6b7280)">1</text>
     <text x="80" y="171" font-size="13" font-weight="600" fill="var(--fg, #111827)">Khách thấy bài / link aipub.social</text>
     <text x="80" y="189" font-size="11.5" fill="var(--muted, #6b7280)">từ Facebook, TikTok, Zalo, bài PR…</text>
   </g>
   <g>
     <rect x="44" y="216" width="380" height="64" rx="10" fill="var(--surface, #fff)" stroke="var(--c1, #2563eb)" stroke-width="1.2"/>
-    <circle cx="62" cy="238" r="9" fill="none" stroke="var(--muted, #6b7280)"/>
-    <text x="62" y="242" text-anchor="middle" font-size="9" fill="var(--muted, #6b7280)">2</text>
     <text x="80" y="241" font-size="13" font-weight="600" fill="var(--fg, #111827)">Form #join</text>
     <text x="80" y="259" font-size="11.5" fill="var(--muted, #6b7280)">Email · SĐT · link kênh có sẵn</text>
   </g>
   <g>
     <rect x="44" y="296" width="380" height="66" rx="10" fill="var(--surface, #fff)" stroke="var(--success, #15803d)" stroke-width="1.2"/>
-    <circle cx="62" cy="318" r="9" fill="none" stroke="var(--muted, #6b7280)"/>
-    <text x="62" y="322" text-anchor="middle" font-size="9" fill="var(--muted, #6b7280)">3</text>
     <text x="80" y="321" font-size="13" font-weight="600" fill="var(--fg, #111827)">aipub xử lý đăng ký</text>
     <text x="80" y="339" font-size="11.5" fill="var(--muted, #6b7280)">kiểm tra hợp lệ · chống spam</text>
     <text x="80" y="354" font-size="11.5" fill="var(--muted, #6b7280)">tạo hồ sơ nháp cho khách</text>
   </g>
   <g>
     <rect x="44" y="378" width="380" height="58" rx="10" fill="var(--surface, #fff)" stroke="var(--c2, #7c3aed)" stroke-width="1.2"/>
-    <circle cx="62" cy="400" r="9" fill="none" stroke="var(--muted, #6b7280)"/>
-    <text x="62" y="404" text-anchor="middle" font-size="9" fill="var(--muted, #6b7280)">4</text>
     <text x="80" y="403" font-size="13" font-weight="600" fill="var(--fg, #111827)">aipub đọc bài công khai gần nhất</text>
     <text x="80" y="421" font-size="11.5" fill="var(--muted, #6b7280)">chỉ bài gần nhất, không quét nhiều năm</text>
   </g>
   <g>
     <rect x="44" y="452" width="380" height="80" rx="10" fill="var(--surface, #fff)" stroke="var(--c2, #7c3aed)" stroke-width="1.2"/>
-    <circle cx="62" cy="474" r="9" fill="none" stroke="var(--muted, #6b7280)"/>
-    <text x="62" y="478" text-anchor="middle" font-size="9" fill="var(--muted, #6b7280)">5</text>
     <text x="80" y="477" font-size="13" font-weight="600" fill="var(--fg, #111827)">Thẻ giọng nháp</text>
     <text x="80" y="495" font-size="11.5" fill="var(--muted, #6b7280)">cặp xưng hô · độ dài câu · cách kết bài</text>
     <text x="80" y="510" font-size="11.5" fill="var(--muted, #6b7280)">từ cấm tuyệt đối ("giá sốc", "siêu phẩm")</text>
   </g>
   <g>
     <rect x="44" y="548" width="380" height="72" rx="10" fill="var(--surface, #fff)" stroke="var(--muted, #6b7280)" stroke-width="1.2"/>
-    <circle cx="62" cy="570" r="9" fill="none" stroke="var(--muted, #6b7280)"/>
-    <text x="62" y="574" text-anchor="middle" font-size="9" fill="var(--muted, #6b7280)">6</text>
     <text x="80" y="573" font-size="13" font-weight="600" fill="var(--fg, #111827)">Email xác nhận + thẻ giọng</text>
     <text x="80" y="591" font-size="11.5" fill="var(--muted, #6b7280)">gửi ngay sau khi đăng ký</text>
     <text x="80" y="606" font-size="11.5" fill="var(--muted, #6b7280)">kèm link mở thẳng màn duyệt thử</text>
@@ -99,36 +89,26 @@
   <!-- Stage 2 -->
   <g>
     <rect x="494" y="146" width="380" height="54" rx="10" fill="var(--surface, #fff)" stroke="var(--c1, #2563eb)" stroke-width="1.2"/>
-    <circle cx="512" cy="168" r="9" fill="none" stroke="var(--muted, #6b7280)"/>
-    <text x="512" y="172" text-anchor="middle" font-size="9" fill="var(--muted, #6b7280)">7</text>
     <text x="530" y="171" font-size="13" font-weight="600" fill="var(--fg, #111827)">Mở aipub Web App</text>
     <text x="530" y="189" font-size="11.5" fill="var(--muted, #6b7280)">mở trên máy tính, như Claude Cowork</text>
   </g>
   <g>
     <rect x="494" y="216" width="380" height="58" rx="10" fill="var(--surface, #fff)" stroke="var(--c1, #2563eb)" stroke-width="1.2"/>
-    <circle cx="512" cy="238" r="9" fill="none" stroke="var(--muted, #6b7280)"/>
-    <text x="512" y="242" text-anchor="middle" font-size="9" fill="var(--muted, #6b7280)">8</text>
     <text x="530" y="241" font-size="13" font-weight="600" fill="var(--fg, #111827)">Sửa Thẻ giọng 1 chạm</text>
     <text x="530" y="259" font-size="11.5" fill="var(--muted, #6b7280)">thêm/xóa từ cấm ngay trên màn soạn bài</text>
   </g>
   <g>
     <rect x="494" y="290" width="380" height="66" rx="10" fill="var(--surface, #fff)" stroke="var(--c1, #2563eb)" stroke-width="1.2"/>
-    <circle cx="512" cy="312" r="9" fill="none" stroke="var(--muted, #6b7280)"/>
-    <text x="512" y="316" text-anchor="middle" font-size="9" fill="var(--muted, #6b7280)">9</text>
     <text x="530" y="315" font-size="13" font-weight="600" fill="var(--fg, #111827)">1 ý tưởng thô + ảnh/video</text>
     <text x="530" y="333" font-size="11.5" fill="var(--muted, #6b7280)">vài gạch đầu dòng cũng được</text>
   </g>
   <g>
     <rect x="494" y="372" width="380" height="66" rx="10" fill="var(--surface, #fff)" stroke="var(--c2, #7c3aed)" stroke-width="1.2"/>
-    <circle cx="512" cy="394" r="9" fill="none" stroke="var(--muted, #6b7280)"/>
-    <text x="512" y="398" text-anchor="middle" font-size="9" fill="var(--muted, #6b7280)">10</text>
     <text x="530" y="397" font-size="13" font-weight="600" fill="var(--fg, #111827)">aipub viết caption riêng từng kênh</text>
     <text x="530" y="415" font-size="11.5" fill="var(--muted, #6b7280)">Facebook hỏi mở · TikTok từ khóa · LinkedIn chuyên môn</text>
   </g>
   <g>
     <rect x="494" y="454" width="380" height="76" rx="10" fill="var(--surface, #fff)" stroke="var(--success, #15803d)" stroke-width="1.2"/>
-    <circle cx="512" cy="476" r="9" fill="none" stroke="var(--muted, #6b7280)"/>
-    <text x="512" y="480" text-anchor="middle" font-size="9" fill="var(--muted, #6b7280)">11</text>
     <text x="530" y="479" font-size="13" font-weight="600" fill="var(--fg, #111827)">Bài nháp chờ duyệt</text>
     <text x="530" y="497" font-size="11.5" fill="var(--muted, #6b7280)">không tự đăng · chưa vào lịch</text>
     <text x="530" y="512" font-size="11.5" fill="var(--muted, #6b7280)">khách xem, sửa hoặc duyệt</text>
@@ -137,7 +117,7 @@
   <text x="510" y="574" font-size="12" font-weight="600" fill="var(--warning, #b45309)">Chốt chặn an toàn</text>
   <text x="510" y="592" font-size="11.5" fill="var(--muted, #6b7280)">Không có thao tác duyệt = không lên sóng, không auto-post.</text>
   <text x="494" y="646" font-size="11.5" fill="var(--muted, #6b7280)">Máy chỉ cần bật lúc đến giờ đăng.</text>
-  <text x="494" y="662" font-size="11.5" fill="var(--muted, #6b7280)">Máy đóng thì job chờ lần mở kế tiếp.</text>
+  <text x="494" y="662" font-size="11.5" fill="var(--muted, #6b7280)">Máy đóng thì lịch chờ lần mở kế tiếp.</text>
 
   <!-- Stage 2 arrows -->
   <path d="M 684 200 V 216" fill="none" stroke="var(--muted, #6b7280)" marker-end="url(#arrow)"/>
@@ -196,9 +176,11 @@
 
   <!-- Stage 3 arrows -->
   <path d="M 1084 228 V 248" fill="none" stroke="var(--muted, #6b7280)" marker-end="url(#arrow)"/>
+  <text x="1092" y="242" font-size="10.5" fill="var(--success, #15803d)">rồi</text>
   <path d="M 1084 310 V 330" fill="none" stroke="var(--muted, #6b7280)" marker-end="url(#arrow)"/>
   <path d="M 1084 392 V 408" fill="none" stroke="var(--muted, #6b7280)" marker-end="url(#arrow)"/>
   <path d="M 1084 496 V 516" fill="none" stroke="var(--muted, #6b7280)" marker-end="url(#arrow)"/>
+  <text x="1092" y="510" font-size="10.5" fill="var(--success, #15803d)">có</text>
   <path d="M 1084 578 V 596" fill="none" stroke="var(--muted, #6b7280)" marker-end="url(#arrow)"/>
   <path d="M 1084 642 V 654" fill="none" stroke="var(--muted, #6b7280)" marker-end="url(#arrow)"/>
   <path d="M 1204 182 H 1244" fill="none" stroke="var(--warning, #b45309)" marker-end="url(#arrow-warn)"/>
@@ -206,8 +188,8 @@
   <path d="M 1320 136 V 118 H 1084 V 136" fill="none" stroke="var(--warning, #b45309)" stroke-dasharray="4 4" marker-end="url(#arrow-warn)"/>
   <text x="1328" y="124" font-size="10.5" fill="var(--warning, #b45309)">quay lại</text>
   <path d="M 1204 452 H 1244" fill="none" stroke="var(--warning, #b45309)" marker-end="url(#arrow-warn)"/>
-  <text x="1216" y="444" font-size="10.5" fill="var(--warning, #b45309)">không</text>
-  <path d="M 1320 492 V 508 H 1224 V 547" fill="none" stroke="var(--warning, #b45309)" stroke-dasharray="4 4" marker-end="url(#arrow-warn)"/>
+  <text x="1208" y="440" font-size="10.5" fill="var(--warning, #b45309)">không</text>
+  <path d="M 1320 492 V 547 H 1224" fill="none" stroke="var(--warning, #b45309)" stroke-dasharray="4 4" marker-end="url(#arrow-warn)"/>
   <text x="1240" y="504" font-size="10.5" fill="var(--warning, #b45309)">mở máy sau</text>
 
   <!-- Cross-stage connectors -->
@@ -233,13 +215,38 @@
     <rect x="868" y="778" width="340" height="86" rx="10" fill="var(--surface, #fff)" stroke="var(--success, #15803d)" stroke-width="1.2"/>
     <text x="886" y="802" font-size="12.5" font-weight="600" fill="var(--fg, #111827)">Mở khóa kênh + mời team</text>
     <text x="886" y="820" font-size="11.5" fill="var(--muted, #6b7280)">Business: duyệt Telegram/Discord, auto-comment link</text>
-    <text x="886" y="836" font-size="11.5" fill="var(--muted, #6b7280)">quay lại vòng lặp tuần sau (Bước 2)</text>
+    <text x="886" y="836" font-size="11.5" fill="var(--muted, #6b7280)">quay lại vòng lặp tuần sau (Chặng 2)</text>
   </g>
   <path d="M 344 821 H 376" fill="none" stroke="var(--muted, #6b7280)" marker-end="url(#arrow)"/>
   <path d="M 836 821 H 868" fill="none" stroke="var(--muted, #6b7280)" marker-end="url(#arrow)"/>
   <path d="M 1084 696 V 718 H 194 V 778" fill="none" stroke="var(--muted, #6b7280)" stroke-dasharray="5 5" marker-end="url(#arrow)"/>
   <text x="600" y="712" font-size="10.5" fill="var(--muted, #6b7280)">khi chạm giới hạn kênh, hoặc cần team / duyệt qua Telegram</text>
 
-  <text x="24" y="934" font-size="11.5" fill="var(--muted, #6b7280)">Bản công khai từ trang aipub.social và kế hoạch sản phẩm đã công bố. Chi tiết hạ tầng và cách đăng bài không nằm trong bản này.</text>
-  <text x="24" y="952" font-size="11" fill="var(--muted, #6b7280)">Nguồn: aipub.social · cập nhật 2026-11-19 · bài chưa duyệt thì không lên.</text>
+  <!-- Failure and recovery branches -->
+  <rect x="24" y="918" width="1392" height="108" rx="14" fill="none" stroke="var(--error, #b91c1c)" stroke-dasharray="5 5"/>
+  <text x="44" y="944" font-size="14" font-weight="700" fill="var(--fg, #111827)">5 · Nhánh lỗi &amp; phục hồi</text>
+  <text x="258" y="944" font-size="11.5" fill="var(--muted, #6b7280)">4 nhánh rủi ro cao · bảng spec có đủ bước</text>
+  <g>
+    <rect x="44" y="956" width="320" height="54" rx="10" fill="var(--surface, #fff)" stroke="var(--error, #b91c1c)" stroke-width="1.2"/>
+    <text x="62" y="976" font-size="12.5" font-weight="600" fill="var(--fg, #111827)">Email không tới</text>
+    <text x="62" y="994" font-size="11" fill="var(--muted, #6b7280)">gửi lại/đổi email → bước 4</text>
+  </g>
+  <g>
+    <rect x="384" y="956" width="320" height="54" rx="10" fill="var(--surface, #fff)" stroke="var(--error, #b91c1c)" stroke-width="1.2"/>
+    <text x="402" y="976" font-size="12.5" font-weight="600" fill="var(--fg, #111827)">Link kênh riêng tư / ít bài</text>
+    <text x="402" y="994" font-size="11" fill="var(--muted, #6b7280)">chọn giọng nhanh → bước 3</text>
+  </g>
+  <g>
+    <rect x="724" y="956" width="320" height="54" rx="10" fill="var(--surface, #fff)" stroke="var(--error, #b91c1c)" stroke-width="1.2"/>
+    <text x="742" y="976" font-size="12.5" font-weight="600" fill="var(--fg, #111827)">Đăng lỗi / mất mạng</text>
+    <text x="742" y="994" font-size="11" fill="var(--muted, #6b7280)">thử lại/báo lỗi/dời lịch → bước 8</text>
+  </g>
+  <g>
+    <rect x="1064" y="956" width="332" height="54" rx="10" fill="var(--surface, #fff)" stroke="var(--error, #b91c1c)" stroke-width="1.2"/>
+    <text x="1082" y="976" font-size="12.5" font-weight="600" fill="var(--fg, #111827)">Khách chưa duyệt</text>
+    <text x="1082" y="994" font-size="11" fill="var(--muted, #6b7280)">vẫn là nháp → bước 7</text>
+  </g>
+
+  <text x="24" y="1054" font-size="11.5" fill="var(--muted, #6b7280)">Cấu trúc: entry (khách thấy bài) → happy path → nhánh lỗi/phục hồi → exit (bài đã đăng + xác nhận). Tham chiếu ISO 9241-210/11/110 và WCAG 2.2.</text>
+  <text x="24" y="1072" font-size="11" fill="var(--muted, #6b7280)">Bản công khai từ aipub.social · cập nhật 2026-11-20 · chi tiết hạ tầng và cách đăng bài không nằm trong bản này.</text>
 </svg>

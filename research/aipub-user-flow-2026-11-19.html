@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>aipub.social — Hành trình từ ý tưởng đến bài đã duyệt</title>
-<meta name="description" content="Luồng người dùng aipub.social: để lại link kênh, nhận thẻ giọng nháp, duyệt bài, đăng khi máy mở và nâng gói khi cần thêm kênh.">
+<meta name="description" content="Luồng người dùng aipub.social: entry, flow spec, nhánh lỗi/phục hồi, accessibility và tiêu chí đo, tham chiếu ISO 9241 và WCAG 2.2.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -30,7 +30,19 @@ figcaption{font-size:.88rem;color:var(--muted);margin-top:.6em}
 .card{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--soft)}
 .card h3{margin:0 0 .3em;font-size:1rem}
 .card p{margin:0;font-size:.92rem;color:var(--muted)}
+.card ul{margin:.4em 0 0;padding-left:1.2em}
+.card li{font-size:.92rem;color:var(--muted);margin:.2em 0}
 .gate{border-left:3px solid var(--warn);padding:.5em .9em;background:var(--soft);border-radius:0 8px 8px 0}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;-webkit-overflow-scrolling:touch}
+.tw table{min-width:560px}
+.flow-spec table{min-width:820px}
+.hint{display:none;font-size:.85rem;color:var(--muted);margin:.2em 0}
+@media(max-width:700px){.hint{display:block}}
+table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.55}
+th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+th{background:var(--soft);font-weight:600}
+tr:last-child td{border-bottom:none}
+caption{caption-side:top;text-align:left;color:var(--muted);font-size:.85rem;padding:8px 10px}
 code{font:.88em "JetBrains Mono",ui-monospace,monospace;background:var(--soft);padding:.1em .35em;border-radius:4px}
 .src{font-size:.85rem;color:var(--muted);margin-top:42px;border-top:1px solid var(--line);padding-top:12px}
 .src ul{padding-left:1.2em}
@@ -38,15 +50,15 @@ code{font:.88em "JetBrains Mono",ui-monospace,monospace;background:var(--soft);p
 </head>
 <body>
 <main>
-<p class="top"><a href="../index.html">0xdonniechu.github.io</a> · 2026-11-19 · Bản công khai</p>
+<p class="top"><a href="../index.html">0xdonniechu.github.io</a> · cập nhật 2026-11-20 · Bản công khai</p>
 <h1>aipub.social — Hành trình từ ý tưởng đến bài đã duyệt</h1>
 <p class="lead">Một ý tưởng, caption riêng cho từng kênh, và chỉ đăng khi khách bấm duyệt. Trang này là bản công khai của luồng người dùng; chi tiết hạ tầng và cách đăng bài được lược bỏ.</p>
 
 <figure>
   <div class="diagram">
-    <img src="aipub-user-flow-2026-11-19.svg" width="1440" height="962" alt="Sơ đồ bốn chặng của aipub.social: đăng ký waitlist và nhận thẻ giọng nháp; mở app, nhập một ý tưởng và nhận các bài nháp; khách bấm duyệt rồi bài đăng khi máy mở; chạm giới hạn kênh thì nâng gói.">
+    <img src="aipub-user-flow-2026-11-19.svg" width="1440" height="1084" alt="Sơ đồ năm phần của aipub.social: đăng ký waitlist và nhận thẻ giọng nháp; mở app, nhập một ý tưởng và nhận các bài nháp; khách bấm duyệt rồi bài đăng khi máy mở; chạm giới hạn kênh thì nâng gói; nhánh lỗi và phục hồi cho email, link kênh, đăng bài và duyệt.">
   </div>
-  <figcaption>Bốn chặng: đăng ký → kích hoạt → duyệt và đăng → mở rộng. Bài chưa duyệt thì không lên.</figcaption>
+  <figcaption>Sơ đồ vẽ 4 nhánh rủi ro cao; bảng Flow spec liệt kê đủ 9 bước kèm nhánh phục hồi. Bài chưa duyệt thì không lên.</figcaption>
 </figure>
 <p class="zoom"><a href="aipub-user-flow-2026-11-19.svg">Mở sơ đồ ở kích thước đầy đủ</a></p>
 
@@ -70,6 +82,30 @@ code{font:.88em "JetBrains Mono",ui-monospace,monospace;background:var(--soft);p
   </div>
 </div>
 
+<p><strong>Actor:</strong> khách (chủ shop/chủ brand), agency/team, aipub và nền tảng ngoài. Mỗi bước dưới đây ghi rõ actor, điều kiện trước, kết quả và nhánh lỗi.</p>
+
+<h2>Flow spec</h2>
+<p class="hint">Trên màn hình hẹp, kéo ngang bảng để xem đủ cột.</p>
+<div class="tw flow-spec">
+<table>
+  <caption>Vòng lặp chính (Chặng 1–3), gồm happy path và nhánh phục hồi. Chặng 4 “Mở rộng” là vòng phụ, chỉ chạy khi chạm giới hạn kênh.</caption>
+  <thead>
+    <tr><th scope="col">#</th><th scope="col">Bước / actor</th><th scope="col">Điều kiện trước</th><th scope="col">Kết quả</th><th scope="col">Nhánh lỗi / phục hồi</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td><strong>Entry</strong> — Khách</td><td>Có link hoặc thấy bài</td><td>Mở landing aipub.social</td><td>Link hỏng → về trang chủ</td></tr>
+    <tr><td>2</td><td><strong>Form #join</strong> — Khách</td><td>Có email, SĐT, link kênh</td><td>Gửi đăng ký</td><td>Thiếu/sai định dạng → lỗi tại trường; link riêng tư → chọn giọng nhanh</td></tr>
+    <tr><td>3</td><td><strong>Hồ sơ giọng nháp</strong> — aipub</td><td>Form hợp lệ</td><td>Thẻ giọng nháp</td><td>Ít bài công khai → câu hỏi chọn giọng</td></tr>
+    <tr><td>4</td><td><strong>Email xác nhận</strong> — aipub</td><td>Có email</td><td>Email + link mở app</td><td>Không tới → gửi lại hoặc đổi email</td></tr>
+    <tr><td>5</td><td><strong>Mở app, sửa thẻ giọng</strong> — Khách</td><td>Có link mở app</td><td>Thẻ giọng đã lưu</td><td>Link hết hạn → yêu cầu link mới</td></tr>
+    <tr><td>6</td><td><strong>Nhập ý tưởng, nhận bài nháp</strong> — Khách + aipub</td><td>Đã có thẻ giọng</td><td>Các bài nháp chờ duyệt</td><td>Thiếu ý tưởng/media → hướng dẫn; nội dung không hợp lệ → báo lỗi</td></tr>
+    <tr><td>7</td><td><strong>Duyệt</strong> — Khách hoặc agency/team (Business)</td><td>Có bài nháp</td><td>Đã duyệt hoặc vẫn là nháp</td><td>Chưa duyệt → không lên sóng</td></tr>
+    <tr><td>8</td><td><strong>Đăng</strong> — aipub + nền tảng ngoài</td><td>Đã duyệt, đến giờ, máy mở</td><td>Bài đã đăng + xác nhận</td><td>Máy đóng → đăng ngay/dời giờ; lỗi mạng → thử lại, báo lỗi hoặc dời lịch</td></tr>
+    <tr><td>9</td><td><strong>Exit</strong> — Khách</td><td>Bài đã đăng</td><td>Xác nhận trong app/email</td><td>Không thấy xác nhận → hỗ trợ</td></tr>
+  </tbody>
+</table>
+</div>
+
 <h2>Ba điều giữ nguyên</h2>
 <ul>
   <li><strong>Bài chưa duyệt thì không lên.</strong> Không có thao tác duyệt rõ ràng thì bài không vào lịch và không được đăng.</li>
@@ -77,12 +113,54 @@ code{font:.88em "JetBrains Mono",ui-monospace,monospace;background:var(--soft);p
   <li><strong>Không đếm credit, không giới hạn số bài.</strong> Giá tính theo độ phủ kênh và quy mô vận hành, không theo số bài đăng.</li>
 </ul>
 
+<h2>Chuẩn áp dụng</h2>
+<div class="tw">
+<table>
+  <caption>Không có chuẩn riêng cho “user flow diagram”; các chuẩn dưới đây chi phối quy trình, chất lượng và cách đọc flow.</caption>
+  <thead>
+    <tr><th scope="col">Chuẩn / nguồn</th><th scope="col">Áp dụng trong flow này</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><a href="https://www.iso.org/standard/77520.html">ISO 9241-210:2019</a></td><td>Flow là artifact ở bước “produce design solutions”; phải được kiểm chứng ở bước “evaluate design” với người dùng thật.</td></tr>
+    <tr><td><a href="https://www.iso.org/standard/63500.html">ISO 9241-11:2018</a></td><td>Exit criteria dùng effectiveness, efficiency và satisfaction trong context xác định, không chỉ “chạy hết các bước”.</td></tr>
+    <tr><td><a href="https://www.iso.org/standard/75258.html">ISO 9241-110:2020</a></td><td>Bảy nguyên tắc tương tác làm checklist từng bước: phù hợp task, tự mô tả, đúng kỳ vọng, dễ học, kiểm soát, chịu lỗi, engaging.</td></tr>
+    <tr><td><a href="https://www.iso.org/standard/78176.html">ISO/IEC 25010:2023</a></td><td>“Interaction capability” là yêu cầu chất lượng; flow phải chỉ ra điểm đo, không chỉ mô tả màn hình.</td></tr>
+    <tr><td><a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a> / <a href="https://www.iso.org/standard/91029.html">ISO/IEC 40500:2025</a></td><td>Ghi chú keyboard, focus, label, error identification, contrast và target size trong đặc tả flow.</td></tr>
+    <tr><td><a href="https://www.omg.org/spec/BPMN">BPMN 2.0.2</a> / <a href="https://www.omg.org/spec/UML/2.5.1">UML 2.5.1</a></td><td>Chỉ dùng khi cần mô hình formal nhiều vai trò/hệ thống. Trang này là flowchart đơn giản, không giả vờ là BPMN/UML.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Accessibility &amp; đo lường</h2>
+<div class="grid">
+  <div class="card">
+    <h3>Accessibility (WCAG 2.2)</h3>
+    <ul>
+      <li>Mọi bước làm được bằng bàn phím; focus luôn nhìn thấy.</li>
+      <li>Label gắn với field; lỗi nói cách sửa, không chỉ đổi màu.</li>
+      <li>Contrast đạt AA; target tối thiểu 24×24 CSS px.</li>
+      <li>Không tự chuyển bước khi khách đang nhập; luôn có đường quay lại.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Đo lường</h3>
+    <ul>
+      <li>Completion rate theo từng bước, không chỉ cuối flow.</li>
+      <li>Thời gian đến bài nháp đầu tiên.</li>
+      <li>Tỷ lệ duyệt / sửa / từ chối; tỷ lệ đăng thành công.</li>
+      <li>Satisfaction: phản hồi sau lần đăng đầu và tỷ lệ quay lại; không suy ra từ completion.</li>
+      <li>Lỗi theo loại: email, link kênh, nội dung, mạng, đăng bài.</li>
+      <li>Chưa đặt target số khi chưa có baseline.</li>
+    </ul>
+  </div>
+</div>
+
 <h2>Điều trang này cố ý không nói</h2>
 <p class="gate">Bản công khai không mô tả hạ tầng backend, cách aipub đăng bài, hay các bước xử lý nội bộ. Trang sản phẩm chỉ nói “đăng qua aipub”.</p>
 
 <h2>Nguồn</h2>
 <p>Dựng từ nội dung công khai trên <a href="https://aipub.social">aipub.social</a> và kế hoạch sản phẩm đã công bố của aipub. Sơ đồ là bản diễn giải luồng người dùng, không phải đặc tả kỹ thuật.</p>
-<p class="src">Cập nhật 2026-11-19 · <a href="../index.html">về mục lục báo cáo</a> · <a href="https://aipub.social">aipub.social</a></p>
+<p class="src">Cập nhật 2026-11-20 · <a href="../index.html">về mục lục báo cáo</a> · <a href="https://aipub.social">aipub.social</a></p>
 </main>
 </body>
 </html>
