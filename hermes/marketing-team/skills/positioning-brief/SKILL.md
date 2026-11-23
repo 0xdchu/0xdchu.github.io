@@ -63,4 +63,4 @@ Ban:   <AI tells: "revolutionary", "supercharge", "game-changing", "seamless", "
 
 ## Handoff
 
-Store as `work/client/<client>/positioning.md`. Ronin, Teppi, Lelouch and Zoro read it before their first draft; Yugi derives `voice.md` from it plus the client's real writing; Usop rejects any piece that contradicts the hierarchy or prints an unverified claim.
+Store as `work/client/<client>/positioning.md`. Ronin, Quintaro, Lelouch and Zoro read it before their first draft; Yugi derives `voice.md` from it plus the client's real writing; Usop rejects any piece that contradicts the hierarchy or prints an unverified claim.

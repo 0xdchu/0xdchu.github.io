@@ -6,9 +6,9 @@ Các file mọi role đọc trước bản nháp đầu của mỗi phiên, theo
 | File | Là gì | Ai giữ | Ai đọc |
 |---|---|---|---|
 | `../voice.md` | **File giọng của brain.** Giọng thương hiệu. Nằm ở gốc workspace, không chuyển vào `brain/` | Yugi (đổi giọng chỉ qua Yugi) | mọi role viết, kiểm hoặc thiết kế |
-| `icp-offer.md` | Khách mục tiêu (ICP) và offer | Kakashi, chép từ lời Ông Chủ | Shikamaru, Lelouch, Tsunade, Ronin, Teppi, Zoro, Usop |
+| `icp-offer.md` | Khách mục tiêu (ICP) và offer | Kakashi, chép từ lời Ông Chủ | Shikamaru, Lelouch, Tsunade, Ronin, Quintaro, Zoro, Usop |
 | `brand-rules.md` | Luật thương hiệu: nên và không nên, từ cấm, tên riêng, màu và logo ở mức luật | Kakashi, chép từ lời Ông Chủ | mọi role |
-| `examples/<loại>/` | Ví dụ tốt đã được Ông Chủ duyệt, mỗi loại một thư mục: `social-post/`, `video-script/`, `article/`, `banner/` | Kakashi, chỉ khi Ông Chủ trả lời `mẫu tốt <file>` | Ronin, Teppi, Zoro, Usop, Kakashi |
+| `examples/<loại>/` | Ví dụ tốt đã được Ông Chủ duyệt, mỗi loại một thư mục: `social-post/`, `video-script/`, `article/`, `banner/` | Kakashi, chỉ khi Ông Chủ trả lời `mẫu tốt <file>` | Ronin, Quintaro, Zoro, Usop, Kakashi |
 
 ## Luật
 - Brain không có số liệu kết quả; số tuần và campaign nằm trong `work/learnings/`.

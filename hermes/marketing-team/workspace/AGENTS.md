@@ -1,6 +1,6 @@
 # Marketing Team: luật làm việc chung (workspace)
 
-File này nằm ở gốc workspace (`terminal.cwd`). Mọi role đọc nó mỗi phiên. Nhóm Telegram là **Marketing-Team**: 13 role, gồm 7 role của Team Social, 2 role của Team SEO (Lelouch, Edward), Zoro (Designer), Vail (Trinh sát đối thủ), Tsunade (Account lead) và Kakashi (Brain keeper), bốn role dùng chung cho mọi team. Teppi viết cho cả Team Social (kịch bản video) và Team SEO (bài website); Usop kiểm cho cả hai. Danh tính và giọng của từng role ở `SOUL.md` trong profile của role đó.
+File này nằm ở gốc workspace (`terminal.cwd`). Mọi role đọc nó mỗi phiên. Nhóm Telegram là **Marketing-Team**: 13 role, gồm 7 role của Team Social, 2 role của Team SEO (Lelouch, Edward), Zoro (Designer), Vail (Trinh sát đối thủ), Tsunade (Account lead) và Kakashi (Brain keeper), bốn role dùng chung cho mọi team. Quintaro viết cho cả Team Social (kịch bản video) và Team SEO (bài website); Usop kiểm cho cả hai. Danh tính và giọng của từng role ở `SOUL.md` trong profile của role đó.
 
 ## Team làm gì
 Team Social làm social tự nhiên (không quảng cáo) cho sản phẩm của Distraction Foundry, trước hết là aipub.social, trên **LinkedIn, Meta (Facebook, Instagram), TikTok, YouTube, Twitter**. Một ý tưởng thành một bài riêng cho từng nền tảng, đúng giọng thương hiệu, Ông Chủ duyệt rồi mới đăng qua aipub.
@@ -13,7 +13,7 @@ Team SEO viết bài cho website (aipub.social trước) để khách tìm thấ
 | Lead | Shikamaru | Shikamaru | Kế hoạch tuần, pillar, chọn nền tảng và thị trường | social-playbook |
 | Voice keeper | Yugi | Yugi | Viết và cập nhật `voice.md` | voice-dossier |
 | Writer | Ronin | Ronin | Một ý tưởng thành bài cho từng nền tảng | social-playbook, linkedin-post, youtube-packaging |
-| Scripter (Social và SEO) | Teppi | Teppi | Kịch bản video dọc; bài website chuẩn SEO/GEO theo brief của Lelouch | short-video-script, seo-content-writer, geo-content-optimizer |
+| Scripter (Social và SEO) | Quintaro | Quintaro | Kịch bản video dọc; bài website chuẩn SEO/GEO theo brief của Lelouch | short-video-script, seo-content-writer, geo-content-optimizer |
 | Editor | Usop | Usop | Cổng kiểm trước khi Ông Chủ duyệt | copy-editing |
 | Community | Wiz | Wiz | Soạn nháp trả lời comment, tin nhắn | engagement-inbox |
 | Analyst | Xaiyan | Xaiyan | Báo cáo số tuần: Giữ, Dừng, Thử | measurement-loop |
@@ -26,7 +26,7 @@ Team SEO viết bài cho website (aipub.social trước) để khách tìm thấ
 
 ## Quy trình mỗi tuần
 1. **Shikamaru** viết `work/plan-<YYYY-Www>.md` sau khi đọc báo cáo của Xaiyan, bản tổng hợp đối thủ `work/intel/tuan-<YYYY-Www>.md` của Vail và learnings mới nhất `work/learnings/<YYYY-Www>.md` của Kakashi (nêu tên file trong plan; chưa có thì ghi `Giả định: chưa có learnings`); Ông Chủ duyệt trong topic Shikamaru.
-2. **Ronin** viết bài, **Teppi** viết kịch bản video (đọc các teardown trong `work/intel/` khi cần ý hook và cấu trúc), mỗi ý tưởng một file `work/drafts/<YYYY-MM-DD>-<slug>.md`.
+2. **Ronin** viết bài, **Quintaro** viết kịch bản video (đọc các teardown trong `work/intel/` khi cần ý hook và cấu trúc), mỗi ý tưởng một file `work/drafts/<YYYY-MM-DD>-<slug>.md`.
 3. **Usop** kiểm từng file. FAIL trả về người viết, tối đa 2 vòng, rồi Ông Chủ quyết.
 4. Ông Chủ duyệt trong topic Usop; bài đăng qua aipub.
 5. **Wiz** soạn trả lời hằng ngày từ dữ liệu Ông Chủ dán. **Xaiyan** viết báo cáo cuối tuần; Shikamaru đọc nó để lập tuần sau.
@@ -36,9 +36,9 @@ Team SEO viết bài cho website (aipub.social trước) để khách tìm thấ
 
 ## Quy trình Team SEO (mỗi tháng)
 1. **Lelouch** viết `work/seo/ke-hoach-<YYYY-MM>.md` (đọc báo cáo tháng trước, `work/intel/` và learnings mới nhất của Kakashi, nêu tên file trong kế hoạch); Ông Chủ duyệt trong topic Lelouch. Mỗi bài một brief `work/seo/briefs/<slug>.md`.
-2. **Teppi** viết bài `work/seo/drafts/<YYYY-MM-DD>-<slug>.md` theo brief.
-3. **Edward** kiểm on-page (mục "On-page" trong file). FAIL trả Teppi, tối đa 2 vòng, rồi Ông Chủ quyết. PASS chuyển **Usop**.
-4. **Usop** kiểm giọng, sự thật, cách nói về aipub. FAIL trả Teppi, tối đa 2 vòng, rồi Ông Chủ quyết. PASS gửi Ông Chủ duyệt trong topic Usop.
+2. **Quintaro** viết bài `work/seo/drafts/<YYYY-MM-DD>-<slug>.md` theo brief.
+3. **Edward** kiểm on-page (mục "On-page" trong file). FAIL trả Quintaro, tối đa 2 vòng, rồi Ông Chủ quyết. PASS chuyển **Usop**.
+4. **Usop** kiểm giọng, sự thật, cách nói về aipub. FAIL trả Quintaro, tối đa 2 vòng, rồi Ông Chủ quyết. PASS gửi Ông Chủ duyệt trong topic Usop.
 5. Bài đã duyệt: **Edward** làm gói trang `work/seo/pages/<slug>/`; Ông Chủ đưa lên website. Edward kiểm kỹ thuật website mỗi tháng (`work/seo/audits/`).
 6. Cuối tháng **Lelouch** viết `work/seo/readout-<YYYY-MM>.md` từ dữ liệu Ông Chủ xuất (Search Console) và câu trả lời AI Ông Chủ dán.
 
@@ -79,7 +79,7 @@ Dự án brand nhà chạy như trên. Khách ngoài thì thêm một lớp, và
 
 1. **Tsunade** viết `work/client/<du-an>/scope.md` (trong phạm vi, ngoài phạm vi, giả định, người duyệt, hạn) và **Ông Chủ duyệt trước khi có việc nào được giao**.
 2. **Tsunade** chia scope thành `tasks.md`: mỗi dòng một người làm, một điều kiện nghiệm thu kiểm được, một hạn. Thiếu dòng nào thì chưa giao.
-3. Trước khi viết nội dung cho khách, **Shikamaru** làm `positioning.md` bằng skill `positioning-brief`; Ronin, Teppi, Lelouch và Zoro đọc file đó trước bản nháp đầu tiên. Không có positioning thì không viết.
+3. Trước khi viết nội dung cho khách, **Shikamaru** làm `positioning.md` bằng skill `positioning-brief`; Ronin, Quintaro, Lelouch và Zoro đọc file đó trước bản nháp đầu tiên. Không có positioning thì không viết.
 4. Khách chưa có nhận diện thì **Zoro** làm `brand-identity-kit` (mark SVG, `tokens.css`, `sheet.html`, 3 hướng để Ông Chủ chọn). Ngoài phạm vi mặc định: brand book, đăng ký nhãn hiệu, licence font.
 5. Mọi bản nháp vẫn qua **Usop** như cũ; quá 2 vòng thì **Tsunade** báo Ông Chủ, không tự gia hạn.
 6. **Tsunade** giữ `status.md` (cập nhật mỗi lần thay đổi) và `out-of-scope.md` (việc khách đòi thêm, có ngày, có người đòi).

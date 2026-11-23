@@ -1,6 +1,6 @@
 # C2: Sơ đồ 30 ngày "aipub tự chạy kênh của chính nó"
 
-- **Chủ campaign:** Shikamaru (Lead). Người làm: Teppi, Ronin, Usop, Wiz, Xaiyan, Yugi (mục 8).
+- **Chủ campaign:** Shikamaru (Lead). Người làm: Quintaro, Ronin, Usop, Wiz, Xaiyan, Yugi (mục 8).
 - **Trạng thái:** Ông Chủ duyệt hướng đi ngày 2026-11-08. Bản này là plan để giao việc, chưa phải bài đăng.
 - **Nguồn:** plan marketing aipub (https://0xdonniechu.github.io/marketing/aipub-marketing-plan-2026-11-07.html), C2 ở Phần 3, pillar ở Phần 4, KPI ở Phần 7, lộ trình ở Phần 8. Mẫu tham khảo: clip của Structure Webworks (@restructureai, TikTok, 2026-08-27), một sơ đồ 7 node sáng dần, không tiếng.
 - **Tinh thần (Ông Chủ, 2026-11-08):** cái họ sai thì ta làm đúng, cái họ nói quá thì ta nói thật, cái họ yếu thì ta làm mạnh.
@@ -49,7 +49,7 @@ Mỗi ngày dùng cùng một khung, chỉ thay số, trạng thái node và "b�
 | # | Node | Ghi số gì (của hôm qua) | Ai cung cấp số |
 |---|---|---|---|
 | 1 | Ý tưởng | Số ý tưởng; nguồn (comment, câu hỏi, pillar) | Shikamaru |
-| 2 | Soạn bài theo nền tảng | Số bài đã soạn, số nền tảng | Ronin, Teppi |
+| 2 | Soạn bài theo nền tảng | Số bài đã soạn, số nền tảng | Ronin, Quintaro |
 | 3 | **Ông Chủ duyệt** (node người) | Số bài duyệt, sửa, bỏ; số phút | Ông Chủ |
 | 4 | **Đăng qua aipub** (ô kín) | Số bài đã lên. Không gì khác | Ông Chủ |
 | 5 | Phản hồi | Số comment, tin nhắn; số câu người đã trả lời | Wiz |
@@ -85,9 +85,9 @@ Thông số lấy từ `formats/<nền tảng>.md`. Số nào `formats/` chưa c
 | LinkedIn | Video 4:5 hoặc document carousel | Tiếng Việt và tiếng Anh | Đăng ở profile founder. Build in public, kể bài học |
 | Twitter | Video ngắn + thread ghi số ngày | Tiếng Anh | Build in public cho cộng đồng AI và founder |
 
-Lỗ hổng `formats/` cần lấp trước Ngày 1 (Teppi tra trang chính thức, thêm vào `formats/` kèm link và ngày): tỉ lệ khung cho bài thường trên TikTok, và vùng an toàn 9:16 trên TikTok và Reels.
+Lỗ hổng `formats/` cần lấp trước Ngày 1 (Quintaro tra trang chính thức, thêm vào `formats/` kèm link và ngày): tỉ lệ khung cho bài thường trên TikTok, và vùng an toàn 9:16 trên TikTok và Reels.
 
-**Nhãn AI:** sơ đồ là đồ hoạ cách điệu, không phải hình hay giọng giống người thật. Teppi ghi rõ quyết định nhãn AI theo skill `short-video-script` (bỏ nhãn phải có lý do và Ông Chủ xác nhận).
+**Nhãn AI:** sơ đồ là đồ hoạ cách điệu, không phải hình hay giọng giống người thật. Quintaro ghi rõ quyết định nhãn AI theo skill `short-video-script` (bỏ nhãn phải có lý do và Ông Chủ xác nhận).
 
 ## 7. Mạch 30 ngày
 
@@ -107,14 +107,14 @@ Lỗ hổng `formats/` cần lấp trước Ngày 1 (Teppi tra trang chính th�
 |---|---|---|---|
 | **Shikamaru** (Lead, chủ campaign) | Kiểm 5 điều kiện ở mục 2; đưa C2 vào plan tuần; giữ lịch mục 7 | Chọn node nổi và bài học hôm nay; đưa C2 vào `plan-<tuần>.md` (C2 nằm trong phần 30% Campaign) | `work/plan-<YYYY-Www>.md` |
 | **Yugi** (Voice keeper) | Viết `voice.md` nếu chưa có; mục riêng về chữ trên sơ đồ (ngắn, số trước) | Không có việc hằng ngày | `voice.md` |
-| **Teppi** (Video scripter, kiêm dựng hình) | Đọc file tham khảo kênh @restructureai. Viết đặc tả bộ khung (mục 4): node, trạng thái, nhịp sáng, thời lượng, chữ trên màn hình, khung 9:16, 4:5, 1:1. Dựng bản remake. Viết kịch bản cả 30 ngày. Lấp lỗ hổng `formats/` ở mục 6 | Điền số vào kịch bản của ngày, dựng video và ảnh | mục "Video" trong `work/drafts/<ngày>-c2-ngay-<n>.md`, file media |
+| **Quintaro** (Video scripter, kiêm dựng hình) | Đọc file tham khảo kênh @restructureai. Viết đặc tả bộ khung (mục 4): node, trạng thái, nhịp sáng, thời lượng, chữ trên màn hình, khung 9:16, 4:5, 1:1. Dựng bản remake. Viết kịch bản cả 30 ngày. Lấp lỗ hổng `formats/` ở mục 6 | Điền số vào kịch bản của ngày, dựng video và ảnh | mục "Video" trong `work/drafts/<ngày>-c2-ngay-<n>.md`, file media |
 | **Ronin** (Writer) | Viết mẫu caption cho từng nền tảng | Caption của ngày cho từng nền tảng; thread Twitter tiếng Anh; bài LinkedIn | cùng file nháp |
 | **Usop** (Editor, cổng) | Duyệt bộ khung theo mục 5 | Kiểm: số khớp bảng số, luật mục 5 (cả hình lẫn chữ), không có dấu hiệu văn AI, đúng `formats/` | PASS/FAIL trong file nháp |
 | **Wiz** (Community) | Không có việc | Soạn nháp trả lời comment; gom câu hỏi hay làm ý tưởng cho hôm sau; đếm comment cho node 5 | `work/replies/<ngày>.md` |
 | **Xaiyan** (Analyst) | Lập bảng số ngày (mục 9), mẫu số cố định | Điền số hôm qua; đề xuất bài học hôm nay | `work/c2-so-ngay.md`; báo cáo tuần `work/readout-<YYYY-Www>.md` |
 | **Ông Chủ** | Duyệt bản remake và 30 kịch bản | Gửi số nền tảng và số danh sách chờ; ghi phút làm; duyệt; đăng qua aipub | |
 
-Dựng hình do team Social làm (Ông Chủ, 2026-11-08), giao cho Teppi. **Chưa chạy được:** `hermes/SETUP.md` đang tắt `image_gen`, `video_gen`, `terminal`, `code_execution` cho Teppi, và skill `short-video-script` chỉ viết kịch bản. Trước bước 3 của Giai đoạn 0, Ông Chủ chốt công cụ dựng và mở toolset tương ứng cho Teppi (SETUP và SOUL của Teppi đổi theo).
+Dựng hình do team Social làm (Ông Chủ, 2026-11-08), giao cho Quintaro. **Chưa chạy được:** `hermes/SETUP.md` đang tắt `image_gen`, `video_gen`, `terminal`, `code_execution` cho Quintaro, và skill `short-video-script` chỉ viết kịch bản. Trước bước 3 của Giai đoạn 0, Ông Chủ chốt công cụ dựng và mở toolset tương ứng cho Quintaro (SETUP và SOUL của Quintaro đổi theo).
 
 File và nhịp riêng của C2 (`work/c2-so-ngay.md`, `work/readout-c2.md`, Xaiyan điền số mỗi ngày) chỉ áp dụng trong 30 ngày của C2. Theo `AGENTS.md`, plan campaign được giao thêm việc như vậy.
 
@@ -122,7 +122,7 @@ File và nhịp riêng của C2 (`work/c2-so-ngay.md`, `work/readout-c2.md`, Xai
 1. Sáng: Ông Chủ gửi số của hôm qua vào topic Xaiyan.
 2. Xaiyan điền `work/c2-so-ngay.md` và đề xuất bài học hôm nay.
 3. Shikamaru chốt node nổi và bài học.
-4. Teppi viết kịch bản sơ đồ, Ronin viết caption, cùng một file nháp.
+4. Quintaro viết kịch bản sơ đồ, Ronin viết caption, cùng một file nháp.
 5. Usop kiểm. FAIL thì trả về người viết, tối đa 2 vòng, sau đó Ông Chủ quyết.
 6. Dựng hình.
 7. Ông Chủ duyệt, đăng qua aipub.
@@ -138,13 +138,13 @@ Bảng `work/c2-so-ngay.md` có một dòng mỗi ngày, cột theo bảng node 
    - **Pro hơn:** cùng một hệ khung cho mọi kênh và mọi tỉ lệ, không lỗi chữ.
 
    Học dạng và nhịp, **không chép** hình, bố cục nhận diện, chữ hay tên của họ.
-3. Teppi: đặc tả bộ khung và dựng bản remake bằng **số giả ghi rõ là giả**, ba ngày mẫu, chỉ xem nội bộ, không đăng.
+3. Quintaro: đặc tả bộ khung và dựng bản remake bằng **số giả ghi rõ là giả**, ba ngày mẫu, chỉ xem nội bộ, không đăng.
 4. Usop: duyệt bản remake theo mục 5.
 5. Ông Chủ duyệt bản remake.
-6. Teppi và Ronin: viết kịch bản cả 30 ngày (mạch ở mục 7). Usop kiểm, Ông Chủ chốt.
+6. Quintaro và Ronin: viết kịch bản cả 30 ngày (mạch ở mục 7). Usop kiểm, Ông Chủ chốt.
 7. Xaiyan: bảng `work/c2-so-ngay.md` rỗng, có sẵn cột.
 8. Yugi: `voice.md`.
-9. Teppi: lấp lỗ hổng `formats/` ở mục 6.
+9. Quintaro: lấp lỗ hổng `formats/` ở mục 6.
 10. Ronin: mẫu caption từng nền tảng.
 
 ## 11. Đo
@@ -165,7 +165,7 @@ Bảng `work/c2-so-ngay.md` có một dòng mỗi ngày, cột theo bảng node 
 | Thiếu số một ngày | Ghi "--" và nói lý do, không đoán |
 
 ## 13. Quyết định của Ông Chủ (2026-11-08)
-1. **Dựng hình:** team Social làm (Teppi).
+1. **Dựng hình:** team Social làm (Quintaro).
 2. **Công khai doanh thu thật, kể cả 0:** có.
 3. **Công khai "phút người làm hôm nay":** có.
 4. **Ngày bắt đầu:** sau khi chốt hết kịch bản 30 ngày và xem hết kênh @restructureai để remake (mục 2 và mục 10), không sớm hơn C1.

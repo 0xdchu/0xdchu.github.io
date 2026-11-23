@@ -1,6 +1,6 @@
 # Tham khảo: kênh TikTok @restructureai (Structure Webworks)
 
-Dùng cho Giai đoạn 0 của `plan-c2-so-do-30-ngay.md`. Người đọc chính: Teppi (remake bộ khung), Ronin (caption), Shikamaru (mạch 30 ngày).
+Dùng cho Giai đoạn 0 của `plan-c2-so-do-30-ngay.md`. Người đọc chính: Quintaro (remake bộ khung), Ronin (caption), Shikamaru (mạch 30 ngày).
 
 **Nguồn:** cả 95 video của https://www.tiktok.com/@restructureai, đăng từ 2026-06-25 đến 2026-11-07, đọc ngày 2026-11-08. Số lượt xem, thích, lưu và comment lấy từ metadata TikTok qua yt-dlp, là số tại ngày đọc. Mỗi video được xem qua 12 khung hình cắt đều, kèm lời chép bằng whisper. Một video: `https://www.tiktok.com/@restructureai/video/<id>`.
 

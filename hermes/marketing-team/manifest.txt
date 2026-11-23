@@ -1,9 +1,9 @@
 roles/edward/SOUL.md
 roles/kakashi/SOUL.md
 roles/lelouch/SOUL.md
+roles/quintaro/SOUL.md
 roles/ronin/SOUL.md
 roles/shikamaru/SOUL.md
-roles/teppi/SOUL.md
 roles/tsunade/SOUL.md
 roles/usop/SOUL.md
 roles/vail/SOUL.md

@@ -1,6 +1,6 @@
 ---
 name: ad-teardown
-description: 'Dùng khi Ông Chủ hoặc Shikamaru nhờ "xem đối thủ đang chạy quảng cáo gì", "mổ xẻ TVC / video quảng cáo / OOH này", "báo cáo đối thủ tuần này". Quét nguồn công khai (không đăng nhập), viết teardown từng tài sản vào work/intel/<đối-thủ>/ và bản tổng hợp tuần work/intel/tuan-<YYYY-Www>.md với brief cho Teppi và tham chiếu cho Zoro. Đọc, ghi file trong work/intel/ và lấy clip công khai bằng tools/fetch_clip.sh: không đăng nhập, không liên hệ ai, không ước lượng chi tiêu.'
+description: 'Dùng khi Ông Chủ hoặc Shikamaru nhờ "xem đối thủ đang chạy quảng cáo gì", "mổ xẻ TVC / video quảng cáo / OOH này", "báo cáo đối thủ tuần này". Quét nguồn công khai (không đăng nhập), viết teardown từng tài sản vào work/intel/<đối-thủ>/ và bản tổng hợp tuần work/intel/tuan-<YYYY-Www>.md với brief cho Quintaro và tham chiếu cho Zoro. Đọc, ghi file trong work/intel/ và lấy clip công khai bằng tools/fetch_clip.sh: không đăng nhập, không liên hệ ai, không ước lượng chi tiêu.'
 ---
 
 # Ad teardown: mổ xẻ quảng cáo của đối thủ
@@ -58,7 +58,7 @@ Nguồn không phủ thị trường cần xem thì ghi rõ "không phủ" và d
 4. **Xem tài sản.** Xem mục "Xem video" dưới đây. Ảnh OOH, báo in thì dùng vision để đọc chữ, bố cục, màu.
 5. **Viết teardown** theo mẫu, một file cho mỗi tài sản.
 6. **Cuối tuần viết bản tổng hợp** theo mẫu, trước khi Shikamaru lập kế hoạch tuần.
-7. **Báo vào topic Vail:** một dòng, đã làm gì, file nào, Shikamaru và Teppi đọc tiếp.
+7. **Báo vào topic Vail:** một dòng, đã làm gì, file nào, Shikamaru và Quintaro đọc tiếp.
 
 ## Xem video
 Không dùng `video_analyze`: với model của team, video gửi qua công cụ này bị bỏ trên đường đi và model trả lời là không thấy video (thử ngày 2026-11-12). Xem clip bằng khung hình và chữ:
@@ -120,7 +120,7 @@ Mỗi dòng "suy đoán" ghi rõ chữ "suy đoán" ở đầu.
 2. ...
 3. ...
 
-## Brief cho Teppi
+## Brief cho Quintaro
 - <ý hook hoặc cấu trúc để viết kịch bản; từng ý gắn file teardown; không chép lời của đối thủ>
 
 ## Tham chiếu cho Zoro
@@ -133,5 +133,5 @@ Mỗi một trong 3 ý phải gắn một file teardown có thật. Không đủ
 
 ## Bàn giao
 - Shikamaru đọc bản tổng hợp tuần trước khi lập kế hoạch tuần.
-- Teppi đọc teardown khi viết kịch bản; Zoro đọc phần "tham chiếu cho Zoro".
+- Quintaro đọc teardown khi viết kịch bản; Zoro đọc phần "tham chiếu cho Zoro".
 - Không file nào trong `work/intel/` ra ngoài team khi Ông Chủ chưa duyệt.

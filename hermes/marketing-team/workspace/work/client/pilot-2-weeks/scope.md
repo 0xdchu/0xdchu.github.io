@@ -14,7 +14,7 @@ A startup that already has a working product and nothing else: no positioning, n
 | 2 | Voice file from the client's real writing | Yugi | 1 file | Built from 3+ real samples the client supplied; use/ban lists concrete; owner approved |
 | 3 | Landing page copy | Ronin | 1 file | Headline, sub, 3 proof blocks, objections, CTA, meta title/description; every claim traceable to the positioning proof list |
 | 4 | Social posts | Ronin | 10 posts, 5 platforms (LinkedIn, Facebook, Instagram, TikTok script, Twitter) | Native to each platform per `formats/`, no cross-posting of identical text, no unverified numbers |
-| 5 | SEO articles | Lelouch → Teppi → Edward | 2 articles | Brief, on-page pass, meta + schema package, target question stated per article |
+| 5 | SEO articles | Lelouch → Quintaro → Edward | 2 articles | Brief, on-page pass, meta + schema package, target question stated per article |
 | 6 | Design assets | Zoro | 3 banners + 1 email header | Rendered PNG at the stated sizes, opens, text from the approved copy, on-palette |
 | 7 | Editor gate | Usop | 1 pass over items 3–6 | Written PASS/FAIL per item with reasons; 2 rounds maximum |
 | 8 | Weekly readout format | Xaiyan | 1 template | Table the client fills with their real numbers, with Keep/Stop/Try columns defined |
