@@ -10,6 +10,8 @@ Ví dụ chỉ vào đây khi Ông Chủ trả lời `mẫu tốt <file>` trong 
 | `article/` | Bài website |
 | `banner/` | Banner, email, hero card |
 
+Chỉ có bốn thư mục này; không bao giờ tạo thư mục khác. Không loại nào khớp thì hỏi Ông Chủ.
+
 ## Một ví dụ là một file
 Tên `<YYYY-MM-DD>-<slug>.md`, đầu file có:
 

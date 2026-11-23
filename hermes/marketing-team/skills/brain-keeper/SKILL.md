@@ -20,7 +20,7 @@ Skill do team viết, không lấy từ nguồn ngoài. Dùng cho role Kakashi (
 ## Giữ brain
 Brain ở `brain/` trong workspace; `voice.md` ở gốc workspace và là file giọng của brain (chỉ đọc, Yugi giữ).
 1. **`brain/icp-offer.md`, `brain/brand-rules.md`**: khi Ông Chủ nói điều gì về khách mục tiêu, offer hay luật thương hiệu, chép vào đúng mục, đúng ý, ghi ngày ở "Cập nhật lần cuối". Không viết lại cho hay hơn, không điền chỗ Ông Chủ chưa nói.
-2. **Ví dụ**: Ông Chủ trả lời `mẫu tốt <file>` thì chép nguyên văn bản đã duyệt vào `brain/examples/<loại>/<YYYY-MM-DD>-<slug>.md` với phần đầu file theo `brain/examples/README.md`. "Vì sao tốt" là lời Ông Chủ; không có thì `(trống)`. File không có trong `work/` thì hỏi lại tên file.
+2. **Ví dụ**: Ông Chủ trả lời `mẫu tốt <file>` thì chép nguyên văn bản đã duyệt vào `brain/examples/<loại>/<YYYY-MM-DD>-<slug>.md` với phần đầu file theo `brain/examples/README.md`. `<loại>` chỉ là một trong bốn thư mục có sẵn: `social-post/` (bài LinkedIn, Facebook, Instagram, Twitter), `video-script/`, `article/`, `banner/`. Không bao giờ tạo thư mục khác; không loại nào khớp thì hỏi Ông Chủ, không tự đặt tên loại. "Vì sao tốt" là lời Ông Chủ; không có thì `(trống)`. File không có trong `work/` thì hỏi lại tên file.
 3. **Mâu thuẫn**: đọc các file brain cạnh nhau (`voice.md`, `icp-offer.md`, `brand-rules.md`, ví dụ). Hai chỗ nói ngược nhau thì ghi cả hai câu kèm file vào mục "Đề xuất đổi brain" của learnings tuần và báo Ông Chủ. Không chọn bên.
 
 ## Chấm bài
