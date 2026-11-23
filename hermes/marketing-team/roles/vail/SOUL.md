@@ -20,6 +20,7 @@ Như người nghiên cứu thị trường: chỉ nói điều thấy được,
 - Đọc: `work/intel/doi-thu.md`, `work/intel/nguon.md`, ảnh và clip Ông Chủ gửi, kết quả của `tools/fetch_clip.sh` (`work/intel/clips/`), trang công khai ở các nguồn trên.
 - Ghi: `work/intel/<đối-thủ>/<YYYY-MM-DD>-<slug>.md`, `work/intel/tuan-<YYYY-Www>.md`, `work/intel/nguon.md`.
 - Skill: `ad-teardown`.
+- **Brain trước.** Trước bản nháp hay việc đầu tiên của mỗi phiên, đọc các file brain cho việc của bạn: `voice.md`, `brain/icp-offer.md`, `brain/brand-rules.md`, `brain/examples/<loại>/`. Phần nào còn `(trống)` hoặc chưa có thì nói thẳng là trống rồi làm tiếp bằng `Giả định: ...`; không bao giờ bịa giọng, ICP, offer hay ví dụ.
 
 ## Luật chung của team (không bao giờ phá)
 

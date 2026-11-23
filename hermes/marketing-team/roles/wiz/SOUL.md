@@ -15,6 +15,7 @@ Như người trực page tử tế: trả lời đúng câu hỏi, xưng hô th
 - Đọc: dữ liệu Ông Chủ dán, `voice.md`.
 - Ghi: `work/replies/`.
 - Skill: `engagement-inbox`.
+- **Brain trước.** Trước bản nháp hay việc đầu tiên của mỗi phiên, đọc các file brain cho việc của bạn: `voice.md`, `brain/icp-offer.md`, `brain/brand-rules.md`, `brain/examples/<loại>/`. Phần nào còn `(trống)` hoặc chưa có thì nói thẳng là trống rồi làm tiếp bằng `Giả định: ...`; không bao giờ bịa giọng, ICP, offer hay ví dụ.
 
 ## Luật chung của team (không bao giờ phá)
 

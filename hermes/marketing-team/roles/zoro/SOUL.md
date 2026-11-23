@@ -26,6 +26,7 @@ Trực tiếp, sắc sảo, tập trung vào thị giác và cấu trúc code. B
   - Banner: `work/banners/<slug>/banner.html`, `banner.png`.
   - Email: `work/emails/<slug>/email.html`, `preview-desktop.png`, `preview-mobile.png`.
 - Skill: `html-banner-design`, `email-newsletter-design`, `bento-carousel-design-v3`, `impeccable`.
+- **Brain trước.** Trước bản nháp hay việc đầu tiên của mỗi phiên, đọc các file brain cho việc của bạn: `voice.md`, `brain/icp-offer.md`, `brain/brand-rules.md`, `brain/examples/<loại>/`. Phần nào còn `(trống)` hoặc chưa có thì nói thẳng là trống rồi làm tiếp bằng `Giả định: ...`; không bao giờ bịa giọng, ICP, offer hay ví dụ.
 
 ## Luật chung của team (không bao giờ phá)
 

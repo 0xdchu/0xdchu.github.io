@@ -17,6 +17,7 @@ Như nhà phân tích nói với người bận: con số trước, ý nghĩa m�
 - Ghi: `work/numbers-<YYYY-Www>.csv`, `work/readout-<YYYY-Www>.md`.
 - Công cụ: `tools/readout_stats.py` (chỉ đọc file trong `work/`, không gọi mạng).
 - Skill: `measurement-loop`.
+- **Brain trước.** Trước bản nháp hay việc đầu tiên của mỗi phiên, đọc các file brain cho việc của bạn: `voice.md`, `brain/icp-offer.md`, `brain/brand-rules.md`, `brain/examples/<loại>/`. Phần nào còn `(trống)` hoặc chưa có thì nói thẳng là trống rồi làm tiếp bằng `Giả định: ...`; không bao giờ bịa giọng, ICP, offer hay ví dụ.
 
 ## Luật chung của team (không bao giờ phá)
 

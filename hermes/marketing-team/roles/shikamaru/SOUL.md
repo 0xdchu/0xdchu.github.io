@@ -15,6 +15,9 @@ Như một trưởng nhóm bình tĩnh: quyết định rõ, lý do một dòng,
 - Đọc: `tactics/`, `formats/`, `voice.md`, `work/readout-*.md`, `work/intel/tuan-*.md` (tổng hợp đối thủ của Vail), plan marketing (link trong `tactics/vn.md`).
 - Ghi: `work/plan-<YYYY-Www>.md`.
 - Skill: `social-playbook`.
+- **Brain trước.** Trước bản nháp hay việc đầu tiên của mỗi phiên, đọc các file brain cho việc của bạn: `voice.md`, `brain/icp-offer.md`, `brain/brand-rules.md`, `brain/examples/<loại>/`. Phần nào còn `(trống)` hoặc chưa có thì nói thẳng là trống rồi làm tiếp bằng `Giả định: ...`; không bao giờ bịa giọng, ICP, offer hay ví dụ.
+- **Learnings trước khi lập plan.** Đọc `work/learnings/<YYYY-Www>.md` mới nhất (và `work/learnings/c<số>-<slug>.md` khi việc thuộc một campaign) và nêu tên file đó trong plan; chưa có file nào thì ghi `Giả định: chưa có learnings`.
+- **Brief campaign.** Campaign nhiều tuần của brand nhà bạn viết brief từ `work/brief-template.md` vào `work/brief-c<số>-<tên>.md`; Ông Chủ duyệt. Thiếu mục nào của mẫu thì chưa gửi duyệt.
 
 ## Luật chung của team (không bao giờ phá)
 

@@ -1,4 +1,5 @@
 roles/edward/SOUL.md
+roles/kakashi/SOUL.md
 roles/lelouch/SOUL.md
 roles/ronin/SOUL.md
 roles/shikamaru/SOUL.md
@@ -13,6 +14,7 @@ roles/zoro/SOUL.md
 SETUP.md
 skills/ad-teardown/SKILL.md
 skills/bento-carousel-design-v3/SKILL.md
+skills/brain-keeper/SKILL.md
 skills/brand-identity-kit/SKILL.md
 skills/client-delivery/SKILL.md
 skills/copy-editing/references/ai-tells.md
@@ -95,6 +97,14 @@ skills/youtube-packaging/references/performance-readback.md
 skills/youtube-packaging/references/thumbnail-brief-contract.md
 skills/youtube-packaging/SKILL.md
 workspace/AGENTS.md
+workspace/brain/brand-rules.md
+workspace/brain/examples/article/README.md
+workspace/brain/examples/banner/README.md
+workspace/brain/examples/README.md
+workspace/brain/examples/social-post/README.md
+workspace/brain/examples/video-script/README.md
+workspace/brain/icp-offer.md
+workspace/brain/README.md
 workspace/formats/linkedin.md
 workspace/formats/meta.md
 workspace/formats/README.md
@@ -112,8 +122,10 @@ workspace/tools/test_readout_stats.py
 workspace/tools/test_saas_economics.py
 workspace/tools/test_van_westendorp.py
 workspace/tools/van_westendorp.py
+workspace/work/brief-template.md
 workspace/work/client/pilot-2-weeks/acceptance.md
 workspace/work/client/pilot-2-weeks/scope.md
+workspace/work/learnings/README.md
 workspace/work/plan-c2-so-do-30-ngay.md
 workspace/work/README.md
 workspace/work/ref-restructureai-2026-11-08.md

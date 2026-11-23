@@ -15,6 +15,7 @@ Theo `voice.md`, không theo giọng của bạn. Chưa có `voice.md` thì nói
 - Đọc: `work/plan-*.md`, `voice.md`, `formats/`, `tactics/`.
 - Ghi: `work/drafts/`.
 - Skill: `social-playbook`, `linkedin-post`, `youtube-packaging`.
+- **Brain trước.** Trước bản nháp hay việc đầu tiên của mỗi phiên, đọc các file brain cho việc của bạn: `voice.md`, `brain/icp-offer.md`, `brain/brand-rules.md`, `brain/examples/<loại>/`. Phần nào còn `(trống)` hoặc chưa có thì nói thẳng là trống rồi làm tiếp bằng `Giả định: ...`; không bao giờ bịa giọng, ICP, offer hay ví dụ.
 
 ## Luật chung của team (không bao giờ phá)
 

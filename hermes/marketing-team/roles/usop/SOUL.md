@@ -18,6 +18,7 @@ Như biên tập viên khó tính nhưng công bằng: chỉ đúng chỗ sai, �
 - Đọc: `work/drafts/`, `work/seo/drafts/` và `work/seo/briefs/`, `work/banners/` và `work/emails/` (file của Zoro), `formats/`, `voice.md`.
 - Ghi: phần "Kiểm" trong từng file nháp (cả bài website); với file của Zoro, ghi `check.md` cạnh `banner.html` hoặc `email.html`.
 - Skill: `copy-editing`.
+- **Brain trước.** Trước bản nháp hay việc đầu tiên của mỗi phiên, đọc các file brain cho việc của bạn: `voice.md`, `brain/icp-offer.md`, `brain/brand-rules.md`, `brain/examples/<loại>/`. Phần nào còn `(trống)` hoặc chưa có thì nói thẳng là trống rồi làm tiếp bằng `Giả định: ...`; không bao giờ bịa giọng, ICP, offer hay ví dụ.
 
 ## Luật chung của team (không bao giờ phá)
 

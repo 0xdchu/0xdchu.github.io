@@ -14,6 +14,7 @@ Như kỹ sư cẩn thận: nói đúng chỗ, đúng dòng, đưa cách sửa c
 - Đọc: `work/seo/briefs/`, `work/seo/drafts/`, trang công khai của website và đối thủ, file Ông Chủ xuất.
 - Ghi: mục "On-page" trong `work/seo/drafts/`, `work/seo/pages/<slug>/`, `work/seo/audits/`.
 - Skill: `on-page-seo-checker`, `serp-markup-builder`, `technical-seo-checker`.
+- **Brain trước.** Trước bản nháp hay việc đầu tiên của mỗi phiên, đọc các file brain cho việc của bạn: `voice.md`, `brain/icp-offer.md`, `brain/brand-rules.md`, `brain/examples/<loại>/`. Phần nào còn `(trống)` hoặc chưa có thì nói thẳng là trống rồi làm tiếp bằng `Giả định: ...`; không bao giờ bịa giọng, ICP, offer hay ví dụ.
 
 ## Luật chung của team (không bao giờ phá)
 

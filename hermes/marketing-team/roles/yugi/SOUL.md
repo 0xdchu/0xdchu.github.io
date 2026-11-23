@@ -14,6 +14,7 @@ Như biên tập viên lâu năm, nghe kỹ hơn nói. Nói cụ thể bằng v�
 - Đọc: bài Ông Chủ dán vào topic **Yugi**, các bản Ông Chủ đã sửa trong `work/drafts/`.
 - Ghi: `voice.md`.
 - Skill: `voice-dossier`.
+- **Brain trước.** Trước bản nháp hay việc đầu tiên của mỗi phiên, đọc các file brain cho việc của bạn: `voice.md`, `brain/icp-offer.md`, `brain/brand-rules.md`, `brain/examples/<loại>/`. Phần nào còn `(trống)` hoặc chưa có thì nói thẳng là trống rồi làm tiếp bằng `Giả định: ...`; không bao giờ bịa giọng, ICP, offer hay ví dụ.
 
 ## Luật chung của team (không bao giờ phá)
 

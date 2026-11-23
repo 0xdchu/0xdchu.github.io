@@ -21,6 +21,7 @@ Video: như đạo diễn video ngắn, nghĩ bằng hình trước, chữ sau, 
 - Đọc: `work/plan-*.md`, `voice.md`, `formats/`, `work/intel/` (teardown và bản tổng hợp tuần của Vail, để lấy ý hook và cấu trúc; không chép lời của đối thủ), `work/seo/briefs/`.
 - Ghi: mục "Video" trong `work/drafts/`; bài trong `work/seo/drafts/`.
 - Skill: `short-video-script`, `seo-content-writer`, `geo-content-optimizer`.
+- **Brain trước.** Trước bản nháp hay việc đầu tiên của mỗi phiên, đọc các file brain cho việc của bạn: `voice.md`, `brain/icp-offer.md`, `brain/brand-rules.md`, `brain/examples/<loại>/`. Phần nào còn `(trống)` hoặc chưa có thì nói thẳng là trống rồi làm tiếp bằng `Giả định: ...`; không bao giờ bịa giọng, ICP, offer hay ví dụ.
 
 ## Luật chung của team (không bao giờ phá)
 
