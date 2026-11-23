@@ -4,601 +4,221 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>aipub.social — Dựng đủ 10 kênh mạng xã hội trong một buổi</title>
-<meta name="description" content="Hướng dẫn cho người chưa có tài khoản mạng xã hội: tạo một Gmail, dựng 10 tài khoản cùng một bộ nhận diện, rồi kết nối vào app.aipub.social.">
+<title>aipub.social — 10 kênh, một cái tên</title>
+<meta name="description" content="Chưa có tài khoản mạng xã hội: tạo một Gmail, dựng 10 kênh cùng một handle, rồi kết nối vào app.aipub.social. Làm trong 60–90 phút.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --fg:#1a1a1a; --muted:#5d6470; --line:#e5e7eb; --bg:#fff; --soft:#f6f7f9;
-  --accent:#1d4ed8; --accent-soft:#eef2ff;
-  --ok:#1f6b3a; --ok-soft:#eaf5ee; --ok-line:#b9d9c5;
-  --warn:#8a4b00; --warn-soft:#fff8e6; --warn-line:#e8c37a;
-  --stop:#a3282d; --stop-soft:#fdeeee; --stop-line:#e7b4b4;
+  --fg:#1a1a1a;--muted:#5d6470;--line:#e5e7eb;--bg:#fff;--soft:#f6f7f9;
+  --accent:#1d4ed8;--accent-soft:#eef2ff;
+  --warn:#8a4b00;--warn-soft:#fff8e6;--warn-line:#e8c37a;
+  --stop:#a3282d;--stop-soft:#fdeeee;--stop-line:#e7b4b4;
 }
-@media (prefers-color-scheme:dark){
-  :root{
-    --fg:#e8e8e8; --muted:#a2a8b3; --line:#31343a; --bg:#121212; --soft:#1c1c1c;
-    --accent:#8aa9ff; --accent-soft:#1b2334;
-    --ok:#8fd0a7; --ok-soft:#152219; --ok-line:#2f4a38;
-    --warn:#f0c07a; --warn-soft:#241d10; --warn-line:#54411f;
-    --stop:#f0a5a5; --stop-soft:#241414; --stop-line:#523030;
-  }
-}
+@media (prefers-color-scheme:dark){:root{
+  --fg:#e8e8e8;--muted:#a2a8b3;--line:#31343a;--bg:#121212;--soft:#1c1c1c;
+  --accent:#8aa9ff;--accent-soft:#1b2334;
+  --warn:#f0c07a;--warn-soft:#241d10;--warn-line:#54411f;
+  --stop:#f0a5a5;--stop-soft:#241414;--stop-line:#523030;
+}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font:17px/1.7 "Be Vietnam Pro",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--fg);background:var(--bg);-webkit-text-size-adjust:100%}
-main{max-width:1020px;margin:0 auto;padding:28px 20px 100px}
-a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
-a:hover{text-decoration-thickness:2px}
-a:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-p,li{max-width:72ch}
-strong{font-weight:650}
-
-.top{font-size:.9rem;color:var(--muted);margin:0 0 18px}
-.crumbs{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-h1{font-size:clamp(1.6rem,3.4vw,2.35rem);line-height:1.2;margin:.1em 0 .45em;letter-spacing:-.01em}
-h2{font-size:clamp(1.2rem,2.2vw,1.45rem);line-height:1.3;margin:2.6em 0 .7em;padding-top:1.1em;border-top:1px solid var(--line);scroll-margin-top:16px}
-h3{font-size:1.06rem;margin:1.6em 0 .4em}
-h4{font-size:.98rem;margin:1.2em 0 .3em}
-.lead{font-size:1.1rem;color:var(--muted);max-width:70ch;margin:0 0 18px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;padding:0;list-style:none}
-.chip{font-size:.82rem;line-height:1.2;border:1px solid var(--line);background:var(--soft);border-radius:999px;padding:6px 12px;color:var(--muted);white-space:nowrap}
-.chip b{color:var(--fg);font-weight:600}
-
-.note,.warn,.stop,.tip{border-radius:10px;padding:.75em 1em;margin:1.1em 0;font-size:.95rem;border:1px solid var(--line);background:var(--soft)}
-.note{border-color:var(--accent-soft);background:var(--accent-soft)}
-.warn{border-color:var(--warn-line);background:var(--warn-soft);color:var(--fg)}
-.stop{border-color:var(--stop-line);background:var(--stop-soft);color:var(--fg)}
-.tip{border-color:var(--ok-line);background:var(--ok-soft);color:var(--fg)}
-.note p,.warn p,.stop p,.tip p{margin:.2em 0}
-.warn strong,.tip strong{color:inherit}
-.stop .stop-title{color:var(--stop);font-weight:700;margin:0 0 .35em}
-.stop ol{margin:.2em 0 0;padding-left:1.25em}
-.stop li{margin:.35em 0;max-width:68ch}
-.warn a,.stop a,.tip a,.note a{color:inherit;text-decoration:underline}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:1.2em 0}
-.card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--soft)}
-.card h3{margin:0 0 .25em;font-size:1rem}
-.card p{margin:0;font-size:.93rem;color:var(--muted)}
-
-.toc{border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:1.6em 0;background:var(--soft)}
-.toc h3{margin:0 0 .5em;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.toc ol{margin:0;padding-left:1.3em;columns:2;column-gap:28px}
-.toc li{margin:.25em 0;max-width:none;break-inside:avoid}
-@media(max-width:620px){.toc ol{columns:1}}
-
-.step{display:flex;gap:14px;align-items:flex-start;margin:2.6em 0 0}
-.step+.step{margin-top:2.2em}
-.step-num{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:1rem;margin-top:.15em}
-.step-body{flex:1 1 auto;min-width:0}
-.step-body>h2{margin:0 0 .5em;padding-top:0;border-top:none;font-size:clamp(1.15rem,2.2vw,1.35rem)}
-.step-body>h2 .sub{display:block;font-weight:400;font-size:.82rem;color:var(--muted);letter-spacing:0;margin-top:.15em}
-@media(max-width:560px){.step{gap:10px}.step-num{width:30px;height:30px;font-size:.9rem}}
-
-figure{margin:1.6em 0}
-.diagram{border:1px solid var(--line);border-radius:12px;background:#fff;padding:10px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+body{margin:0;font:17px/1.68 "Be Vietnam Pro",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--fg);background:var(--bg);-webkit-text-size-adjust:100%}
+main{max-width:980px;margin:0 auto;padding:26px 20px 90px}
+a{color:var(--accent);text-underline-offset:2px}
+a:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+p,li{max-width:72ch;margin:.55em 0}
+h1{font-size:clamp(1.6rem,3.4vw,2.2rem);line-height:1.2;margin:.1em 0 .4em;letter-spacing:-.01em}
+h2{font-size:clamp(1.12rem,2.1vw,1.32rem);line-height:1.3;margin:2.1em 0 .5em;padding-top:.9em;border-top:1px solid var(--line);scroll-margin-top:14px}
+h2 .n{display:inline-grid;place-items:center;width:1.55em;height:1.55em;margin-right:.45em;border-radius:50%;background:var(--accent);color:#fff;font-size:.72em;vertical-align:.15em}
+.top{font-size:.88rem;color:var(--muted);margin:0 0 16px}
+.lead{font-size:1.06rem;color:var(--muted);margin:0 0 16px}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 18px;padding:0;list-style:none}
+.chip{font-size:.8rem;border:1px solid var(--line);background:var(--soft);border-radius:999px;padding:5px 11px;color:var(--muted);white-space:nowrap}
+.chip b{color:var(--fg)}
+.toc{font-size:.9rem;color:var(--muted);margin:0 0 8px;display:flex;gap:6px 14px;flex-wrap:wrap}
+.toc a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+.note,.warn,.stop{border-radius:10px;padding:.7em 1em;margin:1em 0;font-size:.94rem;border:1px solid var(--line);background:var(--soft);color:var(--fg)}
+.note{background:var(--accent-soft);border-color:var(--accent-soft)}
+.warn{background:var(--warn-soft);border-color:var(--warn-line)}
+.stop{background:var(--stop-soft);border-color:var(--stop-line)}
+.note p,.warn p,.stop p{margin:.15em 0}
+.stop .stop-title{color:var(--stop);font-weight:700}
+figure{margin:1.3em 0}
+.diagram{border:1px solid var(--line);border-radius:12px;background:#fff;padding:8px;overflow-x:auto}
 .diagram img{display:block;width:100%;height:auto;margin:0 auto}
-.diagram img.narrow{max-width:520px}
-.diagram img.mid{max-width:700px}
-figcaption{font-size:.86rem;color:var(--muted);margin-top:.5em;max-width:72ch}
-.zoom{font-size:.86rem;margin:.3em 0 1.6em}
-
-.tw{overflow-x:auto;margin:1.2em 0;border:1px solid var(--line);border-radius:10px;-webkit-overflow-scrolling:touch}
-table{border-collapse:collapse;width:100%;font-size:.92rem;line-height:1.55}
-th,td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+.diagram img.narrow{max-width:470px}
+figcaption{font-size:.85rem;color:var(--muted);margin-top:.45em}
+.tw{overflow-x:auto;margin:1.1em 0;border:1px solid var(--line);border-radius:10px;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.5}
+th,td{border-bottom:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
 th{background:var(--soft);font-weight:600;white-space:nowrap}
 tr:last-child td{border-bottom:none}
-td code,p code,li code{font:.86em "JetBrains Mono",ui-monospace,monospace;background:var(--soft);padding:.12em .38em;border-radius:5px;overflow-wrap:anywhere}
-.tw table{min-width:620px}
-.tw.wide table{min-width:760px}
-
-details{border:1px solid var(--line);border-radius:10px;padding:0;margin:.7em 0;background:var(--bg)}
-details[open]{background:var(--soft)}
-summary{cursor:pointer;padding:.8em 1em;font-weight:600;list-style:none;display:flex;gap:10px;align-items:baseline}
-summary::-webkit-details-marker{display:none}
-summary::before{content:"+";font-weight:700;color:var(--accent);width:1ch;flex:0 0 auto}
-details[open] summary::before{content:"–"}
-summary .meta{font-weight:400;font-size:.88rem;color:var(--muted)}
-details>div.details-body{padding:0 1em 1em 2.4em}
-details>div.details-body>:first-child{margin-top:0}
-
-ol.steps{padding-left:1.25em;margin:.8em 0}
-ol.steps>li{margin:.45em 0;max-width:68ch}
-ul.plain{padding-left:1.15em;margin:.7em 0}
-ul.plain>li{margin:.3em 0}
-
-.checklist{list-style:none;padding:0;margin:1.1em 0}
-.checklist li{display:flex;gap:10px;align-items:flex-start;padding:.45em 0;border-bottom:1px dashed var(--line);max-width:none}
-.checklist li:last-child{border-bottom:none}
-.checklist input{margin-top:.34em;flex:0 0 auto;width:1.05em;height:1.05em;accent-color:var(--accent)}
-.checklist .why{display:block;font-size:.86rem;color:var(--muted)}
-
-.rank{display:inline-flex;align-items:center;justify-content:center;min-width:1.5em;height:1.5em;border-radius:6px;background:var(--soft);border:1px solid var(--line);font-size:.8rem;font-weight:600;color:var(--muted);margin-right:6px}
-
-.src{font-size:.86rem;color:var(--muted);margin-top:56px;border-top:1px solid var(--line);padding-top:16px}
-.src h2{font-size:1rem;border:none;padding:0;margin:0 0 .5em}
-.src ul{padding-left:1.2em;margin:.4em 0}
-.src li{margin:.25em 0;max-width:80ch}
-
-@media(max-width:560px){
-  body{font-size:16px}
-  main{padding:22px 16px 80px}
-  h1{font-size:1.62rem}
-  .lead{font-size:1.02rem}
+code{font:.85em "JetBrains Mono",ui-monospace,monospace;background:var(--soft);padding:.1em .35em;border-radius:4px;overflow-wrap:anywhere}
+td code{white-space:nowrap}
+.tw table{min-width:560px}
+.tw.wide table{min-width:700px}
+@media(max-width:640px){
+  .tw.stack{border:none;border-radius:0;overflow:visible}
+  .tw.stack table{min-width:0;width:100%;font-size:.95rem}
+  .tw.stack thead{display:none}
+  .tw.stack tbody,.tw.stack tr,.tw.stack td{display:block;width:100%}
+  .tw.stack tr{border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin-bottom:9px}
+  .tw.stack tr:last-child{margin-bottom:0}
+  .tw.stack td{border:none;padding:1px 0}
+  .tw.stack td:first-child{font-weight:650;margin-bottom:3px}
+  .tw.stack td[data-label]::before{content:attr(data-label) " · ";color:var(--muted);font-weight:400;font-size:.85rem}
+  .tw.stack td code{white-space:normal;overflow-wrap:anywhere;font-size:.82em}
 }
-
+ul.plain{padding-left:1.15em;margin:.6em 0}
+ul.plain>li{margin:.3em 0}
+.checklist{list-style:none;padding:0;margin:.9em 0}
+.checklist li{display:flex;gap:10px;align-items:flex-start;padding:.4em 0;border-bottom:1px dashed var(--line);max-width:none}
+.checklist li:last-child{border-bottom:none}
+.checklist input{margin-top:.35em;flex:0 0 auto;width:1.05em;height:1.05em;accent-color:var(--accent)}
+.checklist .why{display:block;font-size:.85rem;color:var(--muted)}
+.src{font-size:.85rem;color:var(--muted);margin-top:44px;border-top:1px solid var(--line);padding-top:14px}
+.src p{margin:.3em 0}
+@media(max-width:560px){body{font-size:16px}main{padding:20px 15px 70px}.lead{font-size:1rem}}
 @media print{
-  body{font-size:11pt;background:#fff;color:#000}
-  main{max-width:none;padding:0}
-  .toc,.zoom,.step-num{display:none}
-  h2{break-after:avoid;page-break-after:avoid}
-  details{break-inside:avoid}
-  details>div.details-body{display:block!important}
-  .diagram{overflow:visible;border:none;padding:0}
-  a{text-decoration:none;color:#000}
+  body{font-size:11pt;background:#fff;color:#000}main{max-width:none;padding:0}
+  .toc,.chips{display:none}h2{break-after:avoid}.diagram{overflow:visible;border:none;padding:0}
+  a{color:#000;text-decoration:none}
 }
 </style>
 </head>
 <body>
 <main>
 
-<p class="top crumbs"><a href="../index.html">0xdonniechu.github.io</a> <span aria-hidden="true">·</span> <span>Hướng dẫn aipub.social</span> <span aria-hidden="true">·</span> <span>cập nhật 2026-11-23</span></p>
+<p class="top"><a href="../index.html">0xdonniechu.github.io</a> · Hướng dẫn aipub.social · cập nhật 2026-11-23</p>
 
-<h1>Chưa có tài khoản mạng xã hội? Dựng đủ 10 kênh trong một buổi</h1>
-<p class="lead">Hướng dẫn dành cho người mới: tạo một Gmail, dựng 10 tài khoản mạng xã hội cùng một bộ nhận diện, rồi mới mở <strong>app.aipub.social</strong> để kết nối. Làm đúng thứ tự thì không phải sửa lại lần hai.</p>
+<h1>10 kênh, một cái tên</h1>
+<p class="lead">Chưa có tài khoản mạng xã hội? Làm đúng thứ tự này: <strong>một Gmail</strong> → <strong>mười kênh cùng một handle</strong> → <strong>kết nối vào app.aipub.social</strong>. Khoảng 60–90 phút cho mỗi thương hiệu.</p>
 
 <ul class="chips">
-  <li class="chip"><b>90–120 phút</b> mỗi thương hiệu</li>
-  <li class="chip"><b>1 Gmail</b> đứng tên tất cả</li>
-  <li class="chip"><b>10 kênh</b> cùng bộ nhận diện</li>
-  <li class="chip"><b>2 buổi</b> là xong</li>
+  <li class="chip"><b>60–90 phút</b></li>
+  <li class="chip"><b>1 Gmail</b></li>
+  <li class="chip"><b>1 số điện thoại</b> cho Telegram</li>
+  <li class="chip"><b>10 kênh</b> một handle</li>
+</ul>
+
+<p class="toc"><a href="#handle">1 · Chọn handle</a> <a href="#so-bo">2 · Một hay hai bộ</a> <a href="#tao">3 · Tạo 10 tài khoản</a> <a href="#dong-bo">4 · Đồng bộ</a> <a href="#app">5 · Vào aipub</a> <a href="#loi">6 · Lỗi hay gặp</a></p>
+
+<figure>
+  <div class="diagram">
+    <img class="narrow" src="aipub-account-setup-2026-11-23-1.svg" alt="Ba bước: một Gmail tạo ra mười tài khoản cùng bộ nhận diện, qua bước kiểm tra handle và logo, rồi kết nối vào một workspace tại app.aipub.social.">
+  </div>
+</figure>
+
+<h2 id="handle"><span class="n">1</span>Chọn một handle, dùng cho cả 10 nơi</h2>
+
+<p>“URL hồ sơ” ở đây là <strong>phần đứng sau dấu <code>/</code></strong>, không phải website của bạn. Ví dụ <code>instagram.com/nhasachfaha</code> — thì <code>nhasachfaha</code> là handle, và nó phải giống nhau ở mọi kênh.</p>
+
+<div class="tw stack">
+  <table>
+    <thead><tr><th>Kênh</th><th>URL sau khi xong</th><th>Tạo bằng</th><th>Lưu ý</th></tr></thead>
+    <tbody>
+      <tr><td>YouTube</td><td><code>youtube.com/@nhasachfaha</code></td><td data-label="Tạo bằng">Gmail</td><td data-label="Lưu ý">Handle gắn với kênh, không phải tài khoản Google</td></tr>
+      <tr><td>Facebook Page</td><td><code>facebook.com/nhasachfaha</code></td><td data-label="Tạo bằng">Hồ sơ Facebook</td><td data-label="Lưu ý">Page lấy handle sạch; tên thương hiệu đặt ở đây</td></tr>
+      <tr><td>Facebook cá nhân</td><td><code>facebook.com/nhasachfaha.me</code></td><td data-label="Tạo bằng">Gmail</td><td data-label="Lưu ý">Tên thật của người vận hành; Facebook không cho trùng handle với Page</td></tr>
+      <tr><td>Instagram</td><td><code>instagram.com/nhasachfaha</code></td><td data-label="Tạo bằng">Gmail</td><td data-label="Lưu ý">Bật tài khoản Professional (miễn phí)</td></tr>
+      <tr><td>Threads</td><td><code>threads.net/@nhasachfaha</code></td><td data-label="Tạo bằng">Instagram</td><td data-label="Lưu ý">Tự lấy handle và avatar từ Instagram</td></tr>
+      <tr><td>TikTok</td><td><code>tiktok.com/@nhasachfaha</code></td><td data-label="Tạo bằng">Gmail</td><td data-label="Lưu ý">Chuyển sang tài khoản Doanh nghiệp nếu có bán hàng</td></tr>
+      <tr><td>Lemon8</td><td><code>lemon8-app.com/@nhasachfaha</code></td><td data-label="Tạo bằng">TikTok</td><td data-label="Lưu ý">Đăng nhập bằng TikTok, trong app</td></tr>
+      <tr><td>LinkedIn</td><td><code>linkedin.com/company/nhasachfaha</code></td><td data-label="Tạo bằng">Gmail</td><td data-label="Lưu ý">Hồ sơ cá nhân tên thật, Company Page mang tên brand</td></tr>
+      <tr><td>X (Twitter)</td><td><code>x.com/nhasachfaha</code></td><td data-label="Tạo bằng">Gmail</td><td data-label="Lưu ý">Tối đa 15 ký tự — đây là giới hạn quyết định độ dài handle</td></tr>
+      <tr><td>Telegram</td><td><code>t.me/nhasachfaha</code></td><td data-label="Tạo bằng">Số điện thoại</td><td data-label="Lưu ý">Tạo một Kênh (Channel), đặt username công khai</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="note">
+  <p><strong>Chốt handle trước khi tạo bất cứ thứ gì:</strong> tối đa 15 ký tự, chỉ chữ thường không dấu, số và dấu gạch dưới. Gõ thử vào ô đăng ký của TikTok và Instagram trước — trống ở hai nơi đó thì gần như chắc chắn trống ở tám nơi còn lại. Bị chiếm thì chọn biến thể <em>ngay từ đầu</em> (<code>nhasachfaha.vn</code>, <code>nhasachfaha.hn</code>) rồi dùng đúng biến thể đó cho tất cả.</p>
+</div>
+
+<h2 id="so-bo"><span class="n">2</span>Một bộ hay hai bộ?</h2>
+
+<p>Một chủ thể thương hiệu = <strong>một Gmail = một bộ 10 kênh = một workspace</strong>. Có hai tổ chức cần giọng viết khác nhau (ví dụ thương hiệu cá nhân và công ty) thì làm hai bộ, hai Gmail, hai profile trình duyệt.</p>
+
+<div class="stop">
+  <p class="stop-title">Đừng làm ba điều này</p>
+  <p>Dùng chung một Gmail cho hai brand · dùng Gmail cá nhân của bạn làm Gmail chủ · dùng chung một số điện thoại cho cả hai bộ.</p>
+</div>
+
+<h2 id="tao"><span class="n">3</span>Tạo 10 tài khoản</h2>
+
+<figure>
+  <div class="diagram">
+    <img src="aipub-account-setup-2026-11-23-2.svg" alt="Bản đồ phụ thuộc: Gmail tạo trực tiếp YouTube, Facebook cá nhân, Instagram, TikTok, LinkedIn và X. Từ Facebook cá nhân tạo Facebook Page; từ Instagram tạo Threads; Lemon8 đăng nhập bằng TikTok; Telegram tạo bằng số điện thoại.">
+  </div>
+  <figcaption>Mũi tên là bắt buộc: Page cần hồ sơ Facebook trước, Threads cần Instagram, Lemon8 đi theo TikTok.</figcaption>
+</figure>
+
+<p><strong>Thứ tự:</strong> Gmail → YouTube → Facebook cá nhân → Facebook Page → Instagram → Threads → TikTok → Lemon8 → LinkedIn → X → Telegram.</p>
+
+<ul class="plain">
+  <li><strong>Gmail:</strong> đặt theo tên thương hiệu (<code>nhasachfaha@gmail.com</code>), bật xác thực hai lớp ngay, lưu mã khôi phục. Mất Gmail này là mất cả bộ.</li>
+  <li><strong>Telegram:</strong> tạo bằng số điện thoại, không phải Gmail. Sau đó tạo một <strong>Kênh</strong> riêng cho thương hiệu và đặt username công khai đúng handle.</li>
+  <li><strong>Chia hai buổi:</strong> buổi 1 làm Gmail + YouTube + Facebook; buổi 2 làm phần còn lại. Tạo 10 tài khoản liên tiếp trong 20 phút rất dễ bị xếp vào nhóm tài khoản hàng loạt.</li>
+  <li><strong>Xong một kênh thì “làm ấm” ngay:</strong> xác minh email → thêm logo → đăng một bài chào → rồi mới sang kênh kế.</li>
+  <li><strong>Hồ sơ Facebook mới</strong> thường bị hạn chế vài ngày — tạo sớm, đừng đợi đến ngày cần đăng bài.</li>
+</ul>
+
+<h2 id="dong-bo"><span class="n">4</span>Đồng bộ 5 thứ</h2>
+
+<ul class="checklist">
+  <li><input type="checkbox" id="c1" aria-labelledby="c1l"><span id="c1l"><strong>Handle</strong> giống nhau ở cả 10 nơi <span class="why">Chỉ khác ở X nếu handle dài hơn 15 ký tự, và ở hồ sơ Facebook cá nhân.</span></span></li>
+  <li><input type="checkbox" id="c2" aria-labelledby="c2l"><span id="c2l"><strong>Tên hiển thị</strong> giống nhau, có dấu tiếng Việt được.</span></li>
+  <li><input type="checkbox" id="c3" aria-labelledby="c3l"><span id="c3l"><strong>Logo</strong> vuông 1024×1024, đúng một file cho mười nơi.</span></li>
+  <li><input type="checkbox" id="c4" aria-labelledby="c4l"><span id="c4l"><strong>Câu giới thiệu</strong> một câu định vị, dưới 150 ký tự, giống nhau.</span></li>
+  <li><input type="checkbox" id="c5" aria-labelledby="c5l"><span id="c5l"><strong>Email xác minh</strong> đã bấm ở cả 10 nơi <span class="why">Kiểm tra hộp thư Gmail chủ, kể cả mục Spam.</span></span></li>
+</ul>
+
+<h2 id="app"><span class="n">5</span>Vào app.aipub.social</h2>
+
+<p>Chỉ làm khi bước 4 đã tick đủ. Kênh lệch tên hoặc rỗng thì máy học sai giọng, bài nháp đầu tiên sẽ lệch.</p>
+
+<ul class="plain">
+  <li>Mở <a href="https://app.aipub.social" target="_blank" rel="noopener">app.aipub.social</a> và <strong>đăng ký bằng đúng Gmail chủ</strong> — không dùng Gmail khác, không dùng email công ty.</li>
+  <li>Xác minh email, vào màn <strong>Kết nối kênh</strong>, kết nối 10 kênh vừa tạo, chọn gói theo số kênh cần đăng.</li>
+  <li>Nếu cửa sổ đăng nhập hỏi “Choose an account”, chọn đúng tài khoản của bộ này — dùng profile trình duyệt riêng cho từng bộ là cách chắc nhất.</li>
 </ul>
 
 <div class="note">
-  <p><strong>Phạm vi trang này:</strong> phần tạo tài khoản đã đủ để làm theo. Phần <strong>kết nối kênh trong web UI của app.aipub.social</strong> sẽ có hướng dẫn từng màn hình riêng — ở đây chỉ tả thứ tự và điều kiện cần.</p>
+  <p><strong>Phần kết nối từng màn hình</strong> sẽ có hướng dẫn riêng ở bản cập nhật kế tiếp. Trang này chỉ bảo đảm bạn vào đúng thứ tự và đúng tài khoản.</p>
 </div>
 
-<div class="toc">
-  <h3>Trong trang này</h3>
-  <ol>
-    <li><a href="#ket-qua">Bạn sẽ có gì</a></li>
-    <li><a href="#buoc-1">Một hay hai bộ tài khoản?</a></li>
-    <li><a href="#buoc-2">Chuẩn bị trước (15 phút)</a></li>
-    <li><a href="#buoc-3">Tạo Gmail chủ</a></li>
-    <li><a href="#buoc-4">Tạo 10 tài khoản đúng thứ tự</a></li>
-    <li><a href="#buoc-5">Chuẩn hoá nhận diện</a></li>
-    <li><a href="#buoc-6">Bàn giao sang app.aipub.social</a></li>
-    <li><a href="#nghiem-thu">Nghiệm thu: khi nào là xong</a></li>
-    <li><a href="#phu-luc">Phụ lục: bảng theo dõi, tài khoản cũ</a></li>
-    <li><a href="#hoi-nhanh">Hỏi nhanh</a></li>
-  </ol>
-</div>
-
-<h2 id="ket-qua">Bạn sẽ có gì sau khi làm xong</h2>
-
-<p>Mỗi thương hiệu cần đúng ba lớp. Thiếu lớp nào thì vòng lặp đăng bài sẽ kẹt ở lớp đó.</p>
-
-<div class="grid">
-  <div class="card">
-    <h3>1 · Gmail chủ</h3>
-    <p>Đứng tên toàn bộ: tạo YouTube, nhận email xác minh của 9 kênh còn lại, đăng ký <strong>aipub</strong>, và sau này mời nhân sự cùng duyệt bài.</p>
-  </div>
-  <div class="card">
-    <h3>2 · Mười tài khoản</h3>
-    <p>Cùng một handle, cùng một logo, cùng một câu giới thiệu. Đây là bộ mặt công khai của thương hiệu.</p>
-  </div>
-  <div class="card">
-    <h3>3 · Một workspace</h3>
-    <p>Tài khoản tại <strong>app.aipub.social</strong> — nơi máy học giọng của quán, viết bài riêng từng kênh và chờ bạn bấm duyệt.</p>
-  </div>
-</div>
-
-<figure>
-  <div class="diagram">
-    <img class="narrow" src="aipub-account-setup-2026-11-23-1.svg" alt="Sơ đồ ba lớp: từ một Gmail chủ tạo ra 10 tài khoản cùng bộ nhận diện, qua bước kiểm tra nhận diện 8 điểm, rồi mới kết nối vào một workspace tại app.aipub.social.">
-  </div>
-  <figcaption>Ba lớp của một bộ tài khoản. Bước “kiểm tra nhận diện” là cửa chặn: chưa xong thì chưa kết nối.</figcaption>
-</figure>
-
-<div class="step" id="buoc-1">
-  <div class="step-num" aria-hidden="true">1</div>
-  <div class="step-body">
-    <h2>Một hay hai bộ tài khoản? <span class="sub">2 phút · quyết định trước khi tạo bất cứ thứ gì</span></h2>
-
-<p>Trả lời một câu: bạn có <strong>hai chủ thể cần giọng viết khác nhau</strong> không? Ví dụ: một bên là thương hiệu cá nhân của bạn, một bên là công ty.</p>
-
-<figure>
-  <div class="diagram">
-    <img class="mid" src="aipub-account-setup-2026-11-23-2.svg" alt="Sơ đồ quyết định: nếu chỉ có một thương hiệu thì dùng một Gmail và 10 tài khoản; nếu có hai tổ chức thì tách thành hai bộ, mỗi bộ một Gmail riêng, và mỗi bộ có workspace riêng tại app.aipub.social.">
-  </div>
-  <figcaption>Một chủ thể = một Gmail = một bộ 10 tài khoản = một workspace.</figcaption>
-</figure>
-
-<div class="tw">
-  <table>
-    <thead><tr><th>Tình huống của bạn</th><th>Số bộ</th><th>Vì sao</th></tr></thead>
-    <tbody>
-      <tr><td>Quán cà phê của bạn, bạn tự duyệt bài</td><td>1</td><td>Một giọng, một tệp khách</td></tr>
-      <tr><td>Vừa có thương hiệu cá nhân (coach, freelancer) vừa có công ty</td><td>2</td><td>Hai giọng, hai tệp khách khác nhau</td></tr>
-      <tr><td>Agency chạy 3 brand cho khách</td><td>3</td><td>Mỗi brand phải tách được để bàn giao hoặc khoá riêng</td></tr>
-      <tr><td>Hai dòng sản phẩm nhưng cùng một câu chuyện thương hiệu</td><td>1</td><td>Tách ra chỉ làm loãng giọng viết</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="stop">
-  <p class="stop-title">Ba điều tuyệt đối không làm</p>
-  <ol>
-    <li>Dùng chung một Gmail cho hai brand — lúc kết nối kênh, cửa sổ đăng nhập sẽ chọn nhầm tài khoản, và khi cần khoá hay bàn giao một brand thì dính cả hai.</li>
-    <li>Dùng Gmail cá nhân của bạn làm Gmail chủ — sau này muốn giao việc cho nhân sự sẽ rất khó.</li>
-    <li>Tạo hai bộ mà dùng chung một số điện thoại cho cả 20 tài khoản — dễ bị khoá hàng loạt.</li>
-  </ol>
-</div>
-
-  </div>
-</div>
-
-<div class="step" id="buoc-2">
-  <div class="step-num" aria-hidden="true">2</div>
-  <div class="step-body">
-    <h2>Chuẩn bị trước khi bấm đăng ký <span class="sub">15 phút · chuẩn bị một lần, dùng cho cả 10 nền tảng</span></h2>
-
-    <p>Vừa tạo tài khoản vừa nghĩ tên là nguyên nhân số một khiến bộ nhận diện lệch nhau. Chuẩn bị sẵn những thứ dưới đây rồi hãy bắt đầu.</p>
-
-    <div class="tw wide">
-      <table>
-        <thead><tr><th>Hạng mục</th><th>Quy ước</th><th>Ví dụ</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Handle</strong> (tên định danh)</td><td>Tối đa 20 ký tự, chỉ chữ thường không dấu, số và dấu gạch dưới</td><td><code>tiemcaphenang</code></td></tr>
-          <tr><td><strong>Tên hiển thị</strong></td><td>Có dấu tiếng Việt được, tối đa 30 ký tự, giống nhau ở mọi nơi</td><td><code>Tiệm Cà Phê Nắng</code></td></tr>
-          <tr><td><strong>Logo / avatar</strong></td><td>Vuông 1:1, tối thiểu 1024×1024 px</td><td><code>logo-tiem-nang-1024.png</code></td></tr>
-          <tr><td><strong>Ảnh bìa</strong></td><td>Hai tỉ lệ: ngang 16:9 và bản ngắn cho TikTok, X</td><td><code>cover-16x9.jpg</code></td></tr>
-          <tr><td><strong>Câu giới thiệu</strong></td><td>Tối đa 150 ký tự: một câu định vị, một câu mời liên hệ</td><td>Cà phê rang mộc Q.3. Mở 7:00–22:00. Đặt bàn: 09xx…</td></tr>
-          <tr><td><strong>Một link duy nhất</strong></td><td>Một URL công khai dán vào mọi hồ sơ</td><td><code>https://tiemnang.vn</code></td></tr>
-          <tr><td><strong>Số điện thoại</strong></td><td>Số thật, nhận được SMS; thêm một số phụ nếu có</td><td>—</td></tr>
-          <tr><td><strong>Email khôi phục</strong></td><td>Email khác Gmail chủ, loại bạn mở hằng ngày</td><td>—</td></tr>
-          <tr><td><strong>Mật khẩu</strong></td><td>Lưu trong ứng dụng quản lý mật khẩu, không ghi ra giấy hay file</td><td>1Password, Bitwarden</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="tip">
-      <p><strong>Kiểm tra handle trước khi bắt đầu:</strong> gõ handle dự kiến vào ô đăng ký của TikTok và Instagram trước — hai nơi có quy tắc chặt nhất. Trống ở hai nơi đó thì gần như chắc chắn trống ở tám nơi còn lại. Nếu đã có người dùng, chọn biến thể <em>ngay từ đầu</em> (thêm <code>.vn</code>, <code>_official</code>, tên quận) rồi dùng đúng biến thể đó cho cả 10 kênh.</p>
-    </div>
-  </div>
-</div>
-
-<div class="step" id="buoc-3">
-  <div class="step-num" aria-hidden="true">3</div>
-  <div class="step-body">
-    <h2>Tạo Gmail chủ <span class="sub">5 phút · tài sản duy nhất không làm lại được</span></h2>
-
-    <p>Mở <a href="https://accounts.google.com/signup" target="_blank" rel="noopener">accounts.google.com/signup</a> và làm theo thứ tự:</p>
-
-    <ol class="steps">
-      <li>Chọn <strong>“Vì công việc của tôi”</strong>. Google sẽ mời tạo tên miền doanh nghiệp — bỏ qua, chọn dùng Gmail miễn phí.</li>
-      <li>Đặt tên theo thương hiệu, không theo tên bạn: <code>tiemcaphenang@gmail.com</code>, <code>tiemcaphenang.vn@gmail.com</code>.</li>
-      <li>Điền số điện thoại thật và xác minh SMS.</li>
-      <li>Bật ngay <strong>xác thực hai lớp</strong> tại <a href="https://myaccount.google.com/security" target="_blank" rel="noopener">myaccount.google.com/security</a>.</li>
-      <li>Lưu <strong>mã khôi phục</strong> vào ứng dụng quản lý mật khẩu.</li>
-      <li>Đặt email khôi phục là email bạn mở hằng ngày.</li>
-    </ol>
-
-    <div class="warn">
-      <p><strong>Vì sao phải làm kỹ:</strong> mất Gmail chủ là mất YouTube, mất đường nhận lại 9 kênh còn lại và mất luôn workspace. Đây là tài sản duy nhất trong hướng dẫn này mà không thể “làm lại từ đầu”.</p>
-    </div>
-
-    <p><strong>Nếu tên đã bị chiếm:</strong> thêm hậu tố có nghĩa — <code>brand.vn</code>, <code>brand.hn</code>, <code>brand.team</code>. Đừng thêm số ngẫu nhiên (<code>brand1987</code>): sau này đọc qua điện thoại rất khó.</p>
-
-    <p><strong>Chưa cần email tên miền riêng.</strong> Giai đoạn này Gmail miễn phí là đủ; nâng cấp sau không ảnh hưởng gì đến 10 kênh đã tạo.</p>
-  </div>
-</div>
-
-<div class="step" id="buoc-4">
-  <div class="step-num" aria-hidden="true">4</div>
-  <div class="step-body">
-    <h2>Tạo 10 tài khoản, đúng thứ tự <span class="sub">45–60 phút · chia làm hai buổi</span></h2>
-
-    <p>Thứ tự dưới đây xếp theo <strong>phụ thuộc kỹ thuật</strong> (cái nào phải có trước) và <strong>mức rủi ro bị khoá</strong> (cái nào dễ bị chặn thì làm lúc bạn còn kiên nhẫn).</p>
-
-    <figure>
-      <div class="diagram">
-        <img src="aipub-account-setup-2026-11-23-3.svg" alt="Bản đồ 10 kênh: Gmail chủ tạo trực tiếp YouTube, Facebook cá nhân, Instagram, TikTok, LinkedIn và X. Từ Facebook cá nhân tạo ra Facebook Page rồi Facebook Group; từ Instagram tạo Threads; Lemon8 đăng nhập bằng TikTok.">
-      </div>
-      <figcaption>Mũi tên là bắt buộc: Page và Group cần hồ sơ Facebook trước; Threads cần Instagram. Lemon8 là tuỳ chọn nhưng nên đi theo TikTok.</figcaption>
-    </figure>
-
-    <div class="tw wide">
-      <table>
-        <thead><tr><th>#</th><th>Kênh</th><th>Trang đăng ký</th><th>Cần có trước</th></tr></thead>
-        <tbody>
-          <tr><td><span class="rank">1</span></td><td>YouTube</td><td><a href="https://www.youtube.com/create_channel" target="_blank" rel="noopener">youtube.com/create_channel</a></td><td>Gmail chủ</td></tr>
-          <tr><td><span class="rank">2</span></td><td>Facebook cá nhân</td><td><a href="https://www.facebook.com/reg/" target="_blank" rel="noopener">facebook.com/reg</a></td><td>Gmail chủ</td></tr>
-          <tr><td><span class="rank">3</span></td><td>Facebook Page</td><td><a href="https://www.facebook.com/pages/create" target="_blank" rel="noopener">facebook.com/pages/create</a></td><td>Hồ sơ Facebook</td></tr>
-          <tr><td><span class="rank">4</span></td><td>Facebook Group</td><td><a href="https://www.facebook.com/groups/create" target="_blank" rel="noopener">facebook.com/groups/create</a></td><td>Hồ sơ Facebook</td></tr>
-          <tr><td><span class="rank">5</span></td><td>Instagram</td><td><a href="https://www.instagram.com/accounts/emailsignup/" target="_blank" rel="noopener">instagram.com/accounts/emailsignup</a></td><td>Gmail chủ</td></tr>
-          <tr><td><span class="rank">6</span></td><td>Threads</td><td><a href="https://www.threads.net" target="_blank" rel="noopener">threads.net</a></td><td>Instagram</td></tr>
-          <tr><td><span class="rank">7</span></td><td>TikTok</td><td><a href="https://www.tiktok.com/signup" target="_blank" rel="noopener">tiktok.com/signup</a></td><td>Gmail chủ</td></tr>
-          <tr><td><span class="rank">8</span></td><td>Lemon8</td><td><a href="https://www.lemon8-app.com" target="_blank" rel="noopener">lemon8-app.com</a> (nên đăng nhập trong app)</td><td>Tài khoản TikTok</td></tr>
-          <tr><td><span class="rank">9</span></td><td>LinkedIn</td><td><a href="https://www.linkedin.com/signup" target="_blank" rel="noopener">linkedin.com/signup</a></td><td>Gmail chủ</td></tr>
-          <tr><td><span class="rank">10</span></td><td>X (Twitter)</td><td><a href="https://x.com/i/flow/signup" target="_blank" rel="noopener">x.com/i/flow/signup</a></td><td>Gmail chủ</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="note">
-      <p><strong>Về bộ 10 kênh:</strong> danh sách này dùng <strong>Threads</strong>, không gồm Zalo OA. Trên bài đăng, kênh Twitter hiển thị chữ “Twitter” với logo X.</p>
-    </div>
-
-    <h3>Làm từng kênh</h3>
-
-    <details open>
-      <summary>YouTube <span class="meta">— làm trước tiên, không cần đăng ký mới</span></summary>
-      <div class="details-body">
-        <ol class="steps">
-          <li>Đăng nhập YouTube bằng Gmail chủ, bấm <strong>Create a channel</strong>.</li>
-          <li>Đặt tên kênh đúng tên hiển thị, chọn handle đã chốt ở bước 2.</li>
-          <li>Thêm logo và ảnh bìa 16:9.</li>
-          <li>Chưa cần tải video, nhưng nên điền mô tả và link website để kênh không bị coi là rỗng.</li>
-        </ol>
-      </div>
-    </details>
-
-    <details>
-      <summary>Facebook: hồ sơ → Page → Group <span class="meta">— ba tài sản, ba bước</span></summary>
-      <div class="details-body">
-        <ol class="steps">
-          <li><strong>Hồ sơ cá nhân.</strong> Đăng ký bằng Gmail chủ và dùng <em>tên thật của người vận hành</em> — Facebook yêu cầu tên thật, đặt tên thương hiệu ở đây rất dễ bị khoá. Sau đó vào <strong>Cài đặt → Tên người dùng</strong> để đặt handle thương hiệu cho đường dẫn hồ sơ.</li>
-          <li><strong>Page.</strong> Vào <em>Pages → Create new Page</em>, đặt tên thương hiệu, chọn ngành, thêm logo và ảnh bìa. Page không cần tên thật — đây mới là bộ mặt thương hiệu.</li>
-          <li><strong>Group.</strong> Vào <em>Groups → Create Group</em>, đặt tên và mô tả, chọn chế độ công khai hoặc riêng tư. Mời một người thân vào làm thành viên đầu để Group không bị coi là rỗng.</li>
-        </ol>
-        <div class="warn"><p><strong>Thực tế cần biết:</strong> hồ sơ Facebook mới tạo thường bị hạn chế vài ngày (không vào được một số Group, không đăng bài ở Group lạ). Vì vậy hãy tạo hồ sơ này càng sớm càng tốt, đừng đợi đến ngày cần đăng bài.</p></div>
-      </div>
-    </details>
-
-    <details>
-      <summary>Instagram rồi Threads <span class="meta">— Threads dùng chung tài khoản Instagram</span></summary>
-      <div class="details-body">
-        <ol class="steps">
-          <li>Đăng ký Instagram bằng Gmail chủ, đặt handle thương hiệu.</li>
-          <li>Vào <strong>Cài đặt → Loại tài khoản</strong>, chuyển sang <strong>Professional (Business)</strong> — miễn phí, mở thêm số liệu.</li>
-          <li>Thêm logo, câu giới thiệu và link.</li>
-          <li>Mở Threads, chọn <strong>Continue with Instagram</strong>, dùng đúng tài khoản vừa tạo. Threads lấy luôn handle và avatar; chỉ cần sửa câu giới thiệu nếu muốn khác.</li>
-        </ol>
-      </div>
-    </details>
-
-    <details>
-      <summary>TikTok rồi Lemon8 <span class="meta">— Lemon8 đăng nhập bằng TikTok</span></summary>
-      <div class="details-body">
-        <ol class="steps">
-          <li>Đăng ký TikTok bằng Gmail chủ, đặt handle thương hiệu.</li>
-          <li>Nếu có bán hàng, chuyển sang <strong>tài khoản Doanh nghiệp</strong>.</li>
-          <li>Lemon8: đăng nhập bằng <strong>TikTok</strong> để giữ cùng handle và avatar — nhanh hơn và ít lệch nhận diện hơn là đăng ký bằng email riêng.</li>
-        </ol>
-      </div>
-    </details>
-
-    <details>
-      <summary>LinkedIn và Company Page <span class="meta">— hồ sơ cá nhân + trang công ty</span></summary>
-      <div class="details-body">
-        <ol class="steps">
-          <li>Đăng ký bằng Gmail chủ. LinkedIn <strong>bắt buộc tên người thật</strong> ở hồ sơ cá nhân, đừng đặt tên thương hiệu ở đây.</li>
-          <li>Tạo <strong>Company Page</strong> tại <a href="https://www.linkedin.com/company/setup/new" target="_blank" rel="noopener">linkedin.com/company/setup/new</a> — đây là nơi đặt logo, mô tả và website của thương hiệu.</li>
-          <li>Đặt đường dẫn công ty trùng handle nếu còn trống.</li>
-        </ol>
-      </div>
-    </details>
-
-    <details>
-      <summary>X (Twitter) <span class="meta">— handle tối đa 15 ký tự</span></summary>
-      <div class="details-body">
-        <ol class="steps">
-          <li>Đăng ký bằng Gmail chủ, đặt handle thương hiệu. X giới hạn 15 ký tự, nên nếu handle dài hơn thì phải rút gọn <em>ngay từ bước chuẩn bị</em>, đừng rút gọn tại đây rồi lệch các kênh khác.</li>
-          <li>Thêm logo, câu giới thiệu và link. X hay chặn đăng ký qua VPN hoặc mạng datacenter — dùng mạng thường.</li>
-        </ol>
-      </div>
-    </details>
-
-    <h3 id="nhip">Nhịp làm: chia hai buổi, tránh bị khoá hàng loạt</h3>
-    <p>Tạo 10 tài khoản liên tiếp trong 20 phút từ một thiết bị là cách nhanh nhất để bị xếp vào nhóm “tài khoản mới hàng loạt”. Chia làm hai buổi:</p>
-
-    <div class="tw">
-      <table>
-        <thead><tr><th>Buổi</th><th>Thời lượng</th><th>Cần xong</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Buổi 1</strong></td><td>45–60 phút</td><td>Gmail chủ → YouTube → Facebook cá nhân → Page → Group</td></tr>
-          <tr><td><strong>Buổi 2</strong></td><td>45–60 phút</td><td>Instagram → Threads → TikTok → Lemon8 → LinkedIn → X → chuẩn hoá nhận diện</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <ul class="plain">
-      <li><strong>Xong một tài khoản thì “làm ấm” nó ngay:</strong> xác minh email → thêm logo → đăng một bài chào → rồi mới sang tài khoản kế.</li>
-      <li><strong>Mỗi bộ tài khoản dùng một profile trình duyệt riêng.</strong> Bước kết nối kênh là đăng nhập uỷ quyền: trình duyệt đang đăng nhập tài khoản nào thì nó lấy tài khoản đó. Trộn hai bộ trong một profile là nguồn gốc của lỗi “kết nối nhầm kênh”.</li>
-      <li><strong>Đừng đăng nội dung y hệt lên 10 kênh trong ngày đầu.</strong> Một bài chào ở hai ba kênh chính là đủ; phần viết riêng từng kênh là việc của aipub.</li>
-      <li><strong>Số điện thoại:</strong> một số dùng được cho nhiều nền tảng, nhưng TikTok và Instagram có giới hạn số tài khoản trên một số. Bị từ chối thì dùng số thứ hai, đừng thử lại liên tục.</li>
-      <li><strong>Nếu bị yêu cầu xác minh danh tính:</strong> dừng lại, làm theo hướng dẫn của nền tảng. Đừng tạo tài khoản mới thay thế ngay — rất dễ bị khoá cả cụm.</li>
-    </ul>
-
-    <h3>Lỗi thường gặp</h3>
-    <div class="tw wide">
-      <table>
-        <thead><tr><th>Hiện tượng</th><th>Nguyên nhân thường gặp</th><th>Cách xử lý</th></tr></thead>
-        <tbody>
-          <tr><td>Handle đã có người dùng</td><td>Chưa kiểm tra trước</td><td>Dùng biến thể đã chọn ở bước 2, áp cho tất cả kênh</td></tr>
-          <tr><td>“Email đã được sử dụng”</td><td>Gmail chủ từng đăng ký nền tảng đó</td><td>Chọn “Quên mật khẩu” để nhận lại, đừng tạo tài khoản thứ hai</td></tr>
-          <tr><td>TikTok từ chối số điện thoại</td><td>Số đã dùng cho quá nhiều tài khoản</td><td>Dùng số thứ hai, hoặc đăng ký bằng email</td></tr>
-          <tr><td>Hồ sơ Facebook mới không đăng được vào Group</td><td>Giới hạn tài khoản mới</td><td>Chờ vài ngày, tương tác bình thường trước</td></tr>
-          <tr><td>Threads không tìm thấy tài khoản</td><td>Đang đăng nhập nhầm Instagram</td><td>Đăng xuất, đăng nhập đúng tài khoản của bộ này</td></tr>
-          <tr><td>Lemon8 không có nút đăng ký trên web</td><td>Web chỉ để xem</td><td>Cài app, đăng nhập bằng TikTok</td></tr>
-          <tr><td>YouTube không cho đặt handle</td><td>Handle quá ngắn hoặc quá dài</td><td>Dùng handle 3–30 ký tự</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<div class="step" id="buoc-5">
-  <div class="step-num" aria-hidden="true">5</div>
-  <div class="step-body">
-    <h2>Chuẩn hoá nhận diện trên cả 10 kênh <span class="sub">15 phút · bước quyết định độ tin cậy</span></h2>
-
-    <p>Tạo xong tài khoản <strong>chưa phải là xong</strong>. Đây là bước quyết định người đọc tin đây là một thương hiệu thật hay một loạt tài khoản rác — và cũng là bước quyết định máy học đúng giọng của bạn.</p>
-
-    <ul class="checklist">
-      <li><input type="checkbox" id="c1" aria-labelledby="c1l"><span id="c1l"><strong>Handle</strong> trùng khớp ở cả 10 kênh <span class="why">Khác biệt duy nhất được chấp nhận: X giới hạn 15 ký tự.</span></span></li>
-      <li><input type="checkbox" id="c2" aria-labelledby="c2l"><span id="c2l"><strong>Tên hiển thị</strong> giống nhau, kể cả dấu tiếng Việt.</span></li>
-      <li><input type="checkbox" id="c3" aria-labelledby="c3l"><span id="c3l"><strong>Logo</strong> dùng đúng một file, không bị cắt mất chữ.</span></li>
-      <li><input type="checkbox" id="c4" aria-labelledby="c4l"><span id="c4l"><strong>Ảnh bìa</strong> đúng tỉ lệ từng nền tảng.</span></li>
-      <li><input type="checkbox" id="c5" aria-labelledby="c5l"><span id="c5l"><strong>Câu giới thiệu</strong> cùng một thông điệp, cùng một lời mời liên hệ.</span></li>
-      <li><input type="checkbox" id="c6" aria-labelledby="c6l"><span id="c6l"><strong>Link</strong> trỏ về cùng một địa chỉ.</span></li>
-      <li><input type="checkbox" id="c7" aria-labelledby="c7l"><span id="c7l"><strong>Email xác minh</strong> đã bấm ở cả 10 kênh <span class="why">Kiểm tra hộp thư Gmail chủ, kể cả mục Spam.</span></span></li>
-      <li><input type="checkbox" id="c8" aria-labelledby="c8l"><span id="c8l"><strong>Một bài chào</strong> đã đăng trên mỗi kênh.</span></li>
-    </ul>
-
-    <div class="note">
-      <p><strong>Vì sao bắt buộc:</strong> aipub đọc những bài đang có trên kênh của bạn để dựng <strong>thẻ hồ sơ giọng thương hiệu</strong>. Kênh rỗng, kênh lệch tên, kênh chưa xác minh email thì máy học sai giọng — và bài nháp đầu tiên sẽ lệch ngay từ câu mở.</p>
-    </div>
-  </div>
-</div>
-
-<div class="step" id="buoc-6">
-  <div class="step-num" aria-hidden="true">6</div>
-  <div class="step-body">
-    <h2>Bàn giao sang app.aipub.social <span class="sub">10 phút · chỉ làm khi bước 5 đã tick đủ</span></h2>
-
-    <figure>
-      <div class="diagram">
-        <img class="mid" src="aipub-account-setup-2026-11-23-4.svg" alt="Chuỗi bàn giao: 10 kênh đã chuẩn hoá, mở app.aipub.social và đăng ký bằng đúng Gmail chủ, xác minh email, kết nối 10 kênh, học giọng từ bài cũ rồi duyệt 3 bài đầu tiên. Hướng dẫn từng màn hình sẽ có ở phiên sau.">
-      </div>
-      <figcaption>Thứ tự bàn giao. Không nhảy bước: kết nối kênh trước khi chuẩn hoá sẽ khiến máy học sai giọng.</figcaption>
-    </figure>
-
-    <ol class="steps">
-      <li>Mở <a href="https://app.aipub.social" target="_blank" rel="noopener">app.aipub.social</a>.</li>
-      <li><strong>Đăng ký bằng đúng Gmail chủ</strong> đã dùng cho 10 kênh — không dùng Gmail khác, không dùng email công ty.</li>
-      <li>Xác minh email trong hộp thư Gmail chủ.</li>
-      <li>Vào màn <strong>Kết nối kênh</strong>, kết nối 10 kênh vừa tạo.</li>
-      <li>Chọn gói phù hợp với số kênh bạn cần đăng.</li>
-    </ol>
-
-    <p><strong>Vì sao phải cùng Gmail:</strong> workspace gắn với email đăng ký; đổi về sau là thao tác thủ công và dễ mất lịch sử giọng đã học. Khi mời nhân sự cùng duyệt bài, quyền cũng cấp theo workspace, và Gmail chủ là tài khoản sở hữu. Email xác minh của 10 kênh cũng về đó, nên khi kênh bị cảnh báo bạn biết ngay.</p>
-
-    <p><strong>Chuẩn bị để dán khi kết nối:</strong> danh sách 10 đường dẫn hồ sơ (bảng ở phụ lục A). Dán từ file, đừng gõ lại — sai một ký tự là kết nối thất bại.</p>
-
-    <div class="warn">
-      <p><strong>Nếu cửa sổ đăng nhập hỏi “Choose an account”:</strong> chọn đúng tài khoản của bộ này. Nếu trình duyệt đang đăng nhập tài khoản cá nhân của bạn, hãy đăng xuất hoặc chuyển sang profile riêng trước khi bấm kết nối.</p>
-    </div>
-
-    <div class="note">
-      <p><strong>Phần này sẽ có hướng dẫn từng màn hình</strong> (nút nào, bấm ở đâu, thấy gì) trong bản cập nhật kế tiếp. Trang hiện tại chỉ bảo đảm bạn vào đúng thứ tự và đúng tài khoản.</p>
-    </div>
-  </div>
-</div>
-
-<h2 id="nghiem-thu">Nghiệm thu: khi nào là xong</h2>
-
-<div class="tw">
-  <table>
-    <thead><tr><th style="width:52px">#</th><th>Điều kiện</th><th style="width:70px">Đạt</th></tr></thead>
-    <tbody>
-      <tr><td>1</td><td>Có Gmail chủ, đã bật xác thực hai lớp, mã khôi phục đã lưu</td><td>☐</td></tr>
-      <tr><td>2</td><td>Đủ 10 tài khoản, email xác minh đã bấm ở cả 10</td><td>☐</td></tr>
-      <tr><td>3</td><td>Handle giống nhau 10/10 (trừ X nếu bị giới hạn ký tự)</td><td>☐</td></tr>
-      <tr><td>4</td><td>Cùng logo, cùng câu giới thiệu, cùng link trên 10/10</td><td>☐</td></tr>
-      <tr><td>5</td><td>Có ít nhất một bài chào ở ba kênh chính: Facebook Page, TikTok, Instagram</td><td>☐</td></tr>
-      <tr><td>6</td><td>Mỗi bộ tài khoản có profile trình duyệt riêng</td><td>☐</td></tr>
-      <tr><td>7</td><td>Đã đăng ký app.aipub.social bằng đúng Gmail chủ</td><td>☐</td></tr>
-      <tr><td>8</td><td>Đã kết nối đủ 10 kênh trong workspace</td><td>☐</td></tr>
-      <tr><td>9</td><td>Đã duyệt thành công 3 bài đầu tiên</td><td>☐</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<p>Làm hai bộ thì lặp lại toàn bộ bảng này lần hai, với Gmail thứ hai và profile trình duyệt thứ hai.</p>
-
-<h2 id="phu-luc">Phụ lục</h2>
-
-<h3>A · Bảng theo dõi 10 kênh</h3>
-<p>Điền khi làm, rồi dán vào aipub ở bước 6.</p>
+<h2 id="loi"><span class="n">6</span>Lỗi hay gặp</h2>
 
 <div class="tw wide">
   <table>
-    <thead><tr><th>#</th><th>Kênh</th><th>Handle</th><th>Đường dẫn hồ sơ</th><th>Xác minh</th><th>Logo</th><th>Giới thiệu</th><th>Bài chào</th><th>2 lớp</th></tr></thead>
+    <thead><tr><th>Hiện tượng</th><th>Cách xử lý</th></tr></thead>
     <tbody>
-      <tr><td>1</td><td>Facebook cá nhân</td><td></td><td></td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
-      <tr><td>2</td><td>Facebook Page</td><td></td><td></td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
-      <tr><td>3</td><td>Facebook Group</td><td></td><td></td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
-      <tr><td>4</td><td>Instagram</td><td></td><td></td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
-      <tr><td>5</td><td>Threads</td><td></td><td></td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
-      <tr><td>6</td><td>TikTok</td><td></td><td></td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
-      <tr><td>7</td><td>Lemon8</td><td></td><td></td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
-      <tr><td>8</td><td>YouTube</td><td></td><td></td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
-      <tr><td>9</td><td>LinkedIn</td><td></td><td></td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
-      <tr><td>10</td><td>X (Twitter)</td><td></td><td></td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+      <tr><td>Handle đã có người dùng</td><td>Dùng biến thể đã chọn sẵn ở bước 1, áp cho tất cả kênh</td></tr>
+      <tr><td>“Email đã được sử dụng”</td><td>Chọn “Quên mật khẩu” để nhận lại, đừng tạo tài khoản thứ hai</td></tr>
+      <tr><td>TikTok từ chối số điện thoại</td><td>Dùng số thứ hai, hoặc đăng ký bằng email</td></tr>
+      <tr><td>Threads không tìm thấy tài khoản</td><td>Đăng xuất Instagram, đăng nhập đúng tài khoản của bộ này</td></tr>
+      <tr><td>Lemon8 không có nút đăng ký trên web</td><td>Cài app, đăng nhập bằng TikTok</td></tr>
+      <tr><td>Telegram báo username không hợp lệ</td><td>Username 5–32 ký tự, chỉ chữ không dấu, số và gạch dưới</td></tr>
     </tbody>
   </table>
 </div>
 
-<h3>B · Nếu bạn đã có sẵn vài tài khoản</h3>
-<p>Không cần xoá và làm lại. Làm theo thứ tự:</p>
-<ol class="steps">
-  <li><strong>Kiểm kê:</strong> liệt kê tài khoản đang có và Gmail đang dùng cho từng cái.</li>
-  <li><strong>Giữ lại</strong> tài khoản có người theo dõi thật và handle gần với handle chuẩn.</li>
-  <li><strong>Đổi tên và đường dẫn</strong> các tài khoản giữ lại về đúng handle chuẩn.</li>
-  <li><strong>Chỉ tạo mới</strong> những kênh còn thiếu.</li>
-  <li>Nếu tài khoản cũ đăng ký bằng Gmail cá nhân: thêm Gmail chủ làm <strong>email phụ hoặc email khôi phục</strong>, thay vì tạo tài khoản mới từ đầu.</li>
-</ol>
+<h2>Xong khi</h2>
 
-<h2 id="hoi-nhanh">Hỏi nhanh</h2>
-
-<details>
-  <summary>Có nhất thiết phải đủ 10 kênh mới dùng được không?</summary>
-  <div class="details-body"><p>Không. Bạn có thể bắt đầu với 3 kênh chính rồi mở rộng. Nhưng nếu mục tiêu là chạy đủ 10 kênh, hãy làm trọn ngay từ đầu để bộ nhận diện không lệch về sau.</p></div>
-</details>
-
-<details>
-  <summary>Có được dùng cùng một logo cho cả 10 kênh không?</summary>
-  <div class="details-body"><p>Nên dùng đúng một logo. Chỉ thay đổi ảnh bìa theo tỉ lệ từng nền tảng.</p></div>
-</details>
-
-<details>
-  <summary>Tên thương hiệu có dấu tiếng Việt ở tên hiển thị có sao không?</summary>
-  <div class="details-body"><p>Không sao ở tên hiển thị. Nhưng <strong>handle</strong> phải không dấu.</p></div>
-</details>
-
-<details>
-  <summary>Làm hai bộ thì có phải dùng hai số điện thoại?</summary>
-  <div class="details-body"><p>Không bắt buộc, nhưng nên có số thứ hai nếu bạn tạo nhiều tài khoản trong thời gian ngắn.</p></div>
-</details>
-
-<details>
-  <summary>Một tài khoản bị khoá thì mất gì?</summary>
-  <div class="details-body"><p>Mất kênh đó, và aipub sẽ báo lỗi kết nối ở kênh tương ứng. Gmail chủ và các kênh còn lại không bị ảnh hưởng — đây chính là lý do phải tách bộ theo chủ thể.</p></div>
-</details>
-
-<details>
-  <summary>Có cần mua tên miền riêng trước không?</summary>
-  <div class="details-body"><p>Không. Một URL miễn phí (trang giới thiệu, link menu, hoặc trang aipub) là đủ cho bước này.</p></div>
-</details>
-
-<details>
-  <summary>Vì sao đăng nhập bằng TikTok cho Lemon8 mà không đăng ký riêng?</summary>
-  <div class="details-body"><p>Để giữ cùng handle và cùng logo, tránh phải sửa hai nơi. Nếu sau này Lemon8 tách rời tài khoản, bạn vẫn có email chủ để nhận lại.</p></div>
-</details>
+<ul class="plain">
+  <li>Có Gmail chủ đã bật xác thực hai lớp, mã khôi phục đã lưu.</li>
+  <li>Đủ 10 kênh, cùng handle, cùng logo, cùng câu giới thiệu, email đã xác minh.</li>
+  <li>Có ít nhất một bài chào trên Facebook Page, TikTok, Instagram.</li>
+  <li>Đã đăng ký app.aipub.social bằng đúng Gmail chủ và kết nối đủ 10 kênh.</li>
+</ul>
 
 <div class="src">
-  <h2>Nguồn &amp; cập nhật</h2>
-  <ul>
-    <li>Cập nhật lần cuối: <strong>2026-11-23</strong>. Đường dẫn đăng ký đã kiểm tra còn hoạt động trong ngày; đây không phải xác nhận từng ô trong biểu mẫu.</li>
-    <li>Bộ 10 kênh dùng Threads thay cho Zalo OA; luật “không đánh tráo kênh khác tệp người đọc” vẫn giữ: chữ “Twitter”, logo X.</li>
-    <li>Luồng sản phẩm liên quan: <a href="aipub-user-flow-2026-11-19.html">aipub.social — hành trình từ ý tưởng đến bài đã duyệt</a>.</li>
-    <li>Trang này là bản công khai dành cho người dùng; không chứa thông tin nội bộ, cấu hình hay chi phí vận hành.</li>
-  </ul>
+  <p>Cập nhật <strong>2026-11-23</strong>. Đường dẫn đăng ký đã kiểm tra còn hoạt động trong ngày; không phải xác nhận từng ô biểu mẫu.</p>
+  <p>Bộ 10 kênh gồm Telegram thay cho Facebook Group và Zalo OA. Trên bài đăng, kênh Twitter hiển thị chữ “Twitter” với logo X.</p>
+  <p>Luồng sản phẩm liên quan: <a href="aipub-user-flow-2026-11-19.html">aipub.social — từ ý tưởng đến bài đã duyệt</a>.</p>
 </div>
 
 </main>
