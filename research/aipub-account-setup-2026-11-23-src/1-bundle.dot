@@ -1,0 +1,14 @@
+digraph bundle {
+  graph [rankdir=TB, bgcolor="white", pad="0.22", nodesep=0.35, ranksep=0.45, fontname="DejaVu Sans"];
+  node  [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=14, penwidth=1.4, margin="0.26,0.16", color="#4a6fa5", fillcolor="#eef4ff", fontcolor="#1b2b44"];
+  edge  [color="#8a97a8", penwidth=1.4, arrowsize=0.8, fontname="DejaVu Sans", fontsize=12, fontcolor="#5b6675"];
+
+  A [label="1 Gmail chủ\nbrand@gmail.com"];
+  B [label="10 tài khoản\ncùng một bộ nhận diện"];
+  G [label="Đồng bộ 5 thứ\n(handle · tên · logo · câu giới thiệu · email xác minh)", style="rounded,filled,dashed", fillcolor="#fff8e6", color="#b07b00", fontcolor="#5c4300"];
+  C [label="1 workspace\napp.aipub.social", fillcolor="#e8f0e9", color="#4b7a55"];
+
+  A -> B [label=" tạo bằng đúng Gmail "];
+  B -> G [label=" bắt buộc "];
+  G -> C [label=" rồi mới kết nối "];
+}

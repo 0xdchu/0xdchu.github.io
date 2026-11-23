@@ -1,0 +1,29 @@
+digraph channels {
+  graph [rankdir=TB, bgcolor="white", pad="0.2", nodesep=0.24, ranksep=0.4, fontname="DejaVu Sans"];
+  node  [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=12, penwidth=1.3, margin="0.18,0.11", color="#4a6fa5", fillcolor="#eef4ff", fontcolor="#1b2b44"];
+  edge  [color="#8a97a8", penwidth=1.3, arrowsize=0.7, fontname="DejaVu Sans", fontsize=10, fontcolor="#5b6675"];
+
+  G  [label="Gmail", fillcolor="#dbe6f7", color="#3d5f8f", fontsize=13];
+  P  [label="Số điện thoại", fillcolor="#f6f7f9", color="#8a97a8", fontsize=12];
+
+  YT [label="YouTube"];
+  FB [label="Facebook\ncá nhân"];
+  IG [label="Instagram"];
+  TT [label="TikTok"];
+  LI [label="LinkedIn"];
+  X  [label="X (Twitter)"];
+
+  FBP [label="Facebook\nPage", fillcolor="#f6f7f9", color="#8a97a8"];
+  TH  [label="Threads", fillcolor="#f6f7f9", color="#8a97a8"];
+  L8  [label="Lemon8", fillcolor="#f6f7f9", color="#8a97a8"];
+  TG  [label="Telegram\nkênh", fillcolor="#f6f7f9", color="#8a97a8"];
+
+  G -> YT; G -> FB; G -> IG; G -> TT; G -> LI; G -> X;
+  P -> TG [style=dashed];
+  FB -> FBP;
+  IG -> TH;
+  TT -> L8 [style=dashed];
+
+  {rank=same; YT; FB; IG; TT; LI; X;}
+  {rank=same; FBP; TH; L8; TG;}
+}
