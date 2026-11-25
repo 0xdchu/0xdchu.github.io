@@ -171,7 +171,7 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
 <path class="arrow back" d="M715.0 193 L685.0 193 L685.0 89.0 L602.0 89.0" marker-end="url(#ahb)"/>
 <path class="arrow fail" d="M600.0 271.0 L713.0 271.0" marker-end="url(#ahf)"/>
 <text class="lab" x="658" y="264" text-anchor="middle">Tải lỗi</text>
-<g class="fnode"><rect x="715" y="250" width="330" height="58" rx="10"/><text class="s2" x="880" y="274" text-anchor="middle">Báo giới hạn tệp, chọn tệp khác</text><text class="s2" x="880" y="293" text-anchor="middle">hoặc thử tải lại</text></g>
+<g class="fnode"><rect x="715" y="250" width="330" height="58" rx="10"/><text class="s2" x="880" y="274" text-anchor="middle">Báo giới hạn tệp, chọn tệp khác;</text><text class="s2" x="880" y="293" text-anchor="middle">mất mạng thì tải lại từ đầu</text></g>
 <path class="arrow back" d="M715.0 289.0 L602.0 289.0" marker-end="url(#ahb)"/>
 <path class="arrow fail" d="M600.0 366.0 L713.0 366.0" marker-end="url(#ahf)"/>
 <text class="lab" x="658" y="359" text-anchor="middle">Quá số nền tảng</text>
@@ -179,7 +179,7 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
 <path class="arrow back" d="M715.0 384.0 L602.0 384.0" marker-end="url(#ahb)"/>
 <path class="arrow fail" d="M600.0 461.0 L713.0 461.0" marker-end="url(#ahf)"/>
 <text class="lab" x="658" y="454" text-anchor="middle">Viết lỗi</text>
-<g class="fnode"><rect x="715" y="440" width="330" height="58" rx="10"/><text class="s2" x="880" y="464" text-anchor="middle">Pro: thử viết lại hoặc tự viết;</text><text class="s2" x="880" y="483" text-anchor="middle">media và kênh vẫn giữ</text></g>
+<g class="fnode"><rect x="715" y="440" width="330" height="58" rx="10"/><text class="s2" x="880" y="464" text-anchor="middle">Pro: AI chưa sẵn sàng hoặc lỗi: thử lại</text><text class="s2" x="880" y="483" text-anchor="middle">hoặc tự viết; media và kênh vẫn giữ</text></g>
 <path class="arrow back" d="M715.0 479.0 L602.0 479.0" marker-end="url(#ahb)"/>
 <path class="arrow fail" d="M565 660 L713.0 660" marker-end="url(#ahf)"/>
 <text class="lab" x="640" y="653" text-anchor="middle">Có</text>
@@ -210,6 +210,9 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
 <g class="anode"><rect x="20" y="830" width="220" height="58" rx="10"/><text class="s2" x="130" y="854" text-anchor="middle">Lưu thành Nháp;</text><text class="s2" x="130" y="873" text-anchor="middle">mở lại từ danh sách</text></g>
 <path class="arrow" d="M130 830.0 L130 574.0 L298.0 574.0" marker-end="url(#ah)"/>
 <text class="lab" x="138" y="702">mở lại nháp</text>
+<path class="arrow" d="M300.0 1079.0 L130 1079.0 L130 890.0" marker-end="url(#ah)"/>
+<text class="lab" x="138" y="1071">Huỷ khi đang tải lên</text>
+<text class="lab" x="138" y="1097">về Nháp? [?]</text>
 <path class="arrow fail" d="M300.0 1289.0 L242.0 1289.0" marker-end="url(#ahf)"/>
 <text class="lab" x="270" y="1282" text-anchor="middle">Còn lỗi</text>
 <g class="fnode"><rect x="20" y="1260" width="220" height="58" rx="10"/><text class="s2" x="130" y="1284" text-anchor="middle">Mở Hỗ trợ từ danh sách</text><text class="s2" x="130" y="1303" text-anchor="middle">(kết thúc ở hỗ trợ)</text></g>
@@ -245,13 +248,13 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
         <thead><tr><th>#</th><th>Bước</th><th>Ai</th><th>Điều kiện trước</th><th>Kết quả</th><th>Lỗi và cách phục hồi</th><th>Đo bằng</th></tr></thead>
         <tbody>
           <tr><td class="n">1</td><td>Mở màn Đăng bài</td><td>KOL</td><td>Đã đăng nhập</td><td>Vùng thả media, hàng avatar các kênh đã nối, vài bài gần nhất kèm trạng thái</td><td>Chưa có kênh nào dùng được, hoặc kênh cần nối lại: hiện nút Nối kênh. Nối xong quay lại bước 1. Phiên hết hạn: đăng nhập lại, quay về đúng màn này</td><td><code>compose_opened</code>, <code>channel_unavailable_shown</code>, <code>session_resumed</code></td></tr>
-          <tr><td class="n">2</td><td>Tải clip hoặc bộ ảnh lên</td><td>KOL</td><td>Có ít nhất một kênh dùng được</td><td>Ảnh nhỏ của từng tệp. aipub nhận ra loại bài: ảnh đơn, bộ ảnh hay video dọc. Bộ ảnh kéo để đổi thứ tự (có nút lên, xuống)</td><td>Tệp quá lớn hoặc sai định dạng: báo đúng giới hạn và cách sửa <span class="tag q">[?] giới hạn</span>. Mất mạng giữa chừng: thử tải lại, tệp đã xong vẫn giữ</td><td><code>media_uploaded</code>, <code>media_upload_failed</code></td></tr>
-          <tr><td class="n">3</td><td>Chọn kênh</td><td>KOL</td><td>Media đã tải xong</td><td>Kênh của lần trước được chọn sẵn. Facebook Profile, Page và Group tách riêng. Mỗi kênh được chọn có một tab preview</td><td>Vượt số nền tảng của gói (Free 3, Pro 5, Business 13): bỏ bớt hoặc nâng gói, lựa chọn cũ vẫn giữ <span class="tag q wrap">[?] Facebook Profile và Group tính là một hay hai</span>. Nền tảng không hỗ trợ kiểu bài này: avatar mờ, ghi lý do</td><td><code>channels_selected</code>, <code>plan_limit_hit</code></td></tr>
-          <tr><td class="n">4</td><td>Caption</td><td>aipub (Pro), KOL (Free)</td><td>Có media và kênh</td><td>Pro: aipub viết caption chung và caption riêng từng kênh theo giọng người dùng. Free: người dùng tự viết caption và tuỳ biến được ở từng nền tảng; nút viết theo giọng hiện khoá, bấm vào thì được mời nâng gói. Sửa được ngay</td><td>Pro: viết lỗi hoặc quá lâu thì Thử lại hoặc tự viết, media và kênh vẫn giữ; không ưng thì bấm Viết lại</td><td><code>caption_generated</code>, <code>caption_generation_failed</code>, <code>caption_regenerated</code> (Pro); <code>caption_written</code> (Free)</td></tr>
+          <tr><td class="n">2</td><td>Tải clip hoặc bộ ảnh lên</td><td>KOL</td><td>Có ít nhất một kênh dùng được</td><td>Ảnh nhỏ của từng tệp. aipub nhận ra loại bài: ảnh đơn, bộ ảnh hay video dọc. Bộ ảnh kéo để đổi thứ tự (có nút lên, xuống)</td><td>Tệp quá lớn hoặc sai định dạng: báo đúng giới hạn và cách sửa <span class="tag q">[?] giới hạn</span>. Mất mạng giữa chừng: tệp đang dở phải tải lại từ đầu [O]; tệp khác đã tải xong vẫn giữ [ĐX]</td><td><code>media_uploaded</code>, <code>media_upload_failed</code></td></tr>
+          <tr><td class="n">3</td><td>Chọn kênh</td><td>KOL</td><td>Media đã tải xong</td><td>Kênh của lần trước được chọn sẵn. Facebook Profile, Page và Group là các nơi đăng riêng, không gộp; mỗi nơi được chọn có một tab preview</td><td>Vượt số nền tảng của gói (Free 3, Pro 5, Business 13): bỏ bớt hoặc nâng gói, lựa chọn cũ vẫn giữ. Facebook Profile và Group tính là một nền tảng, dù là hai nơi đăng [O] <span class="tag q wrap">[?] Page tính chung nền tảng Facebook không</span>. Nền tảng không hỗ trợ kiểu bài này: avatar mờ, ghi lý do</td><td><code>channels_selected</code>, <code>plan_limit_hit</code></td></tr>
+          <tr><td class="n">4</td><td>Caption</td><td>aipub (Pro), KOL (Free)</td><td>Có media và kênh</td><td>Pro: aipub viết caption chung và caption riêng từng kênh theo giọng người dùng. Free: người dùng tự viết caption và tuỳ biến được ở từng nền tảng; nút viết theo giọng hiện khoá, bấm vào thì được mời nâng gói. Sửa được ngay</td><td>Pro: AI chưa sẵn sàng, viết lỗi hoặc quá lâu thì Thử lại hoặc tự viết, media và kênh vẫn giữ; không ưng thì bấm Viết lại</td><td><code>caption_generated</code>, <code>caption_generation_failed</code>, <code>caption_regenerated</code> (Pro); <code>caption_written</code> (Free)</td></tr>
           <tr><td class="n">5</td><td>Xem preview từng nền tảng</td><td>KOL</td><td>Có caption</td><td>Khung giống thật theo kiểu bài: ảnh đơn trên feed, carousel lướt ngang, video dọc có lớp vùng an toàn. Caption cắt đúng chỗ "xem thêm". Cảnh báo nếu có</td><td>Có cảnh báo (caption bị cắt, ảnh sai tỉ lệ, vượt giới hạn nền tảng): sửa cắt khung, caption, ảnh bìa hoặc thứ tự ảnh, rồi xem lại. Free bấm vào tính năng Pro đang khoá trong preview: mời nâng gói</td><td><code>preview_viewed</code>, <code>preview_warning_shown</code>, <code>post_edited_after_preview</code></td></tr>
           <tr><td class="n">6</td><td>Thêm link affiliate (tuỳ chọn)</td><td>KOL</td><td>Gói Pro trở lên</td><td>Link hiện trong preview ở dạng bình luận đầu tiên, trên các kênh có bình luận. Gói Free thấy ô này ở dạng khoá, bấm vào thì được mời nâng gói</td><td>Link sai định dạng: báo ngay ở ô nhập, nói cách sửa</td><td><code>affiliate_comment_added</code>, <code>affiliate_link_rejected</code></td></tr>
           <tr><td class="n">7</td><td>Duyệt: Đăng ngay hoặc Hẹn giờ</td><td>KOL</td><td>Đã xem preview ít nhất một kênh <span class="tag q">[?] có bắt buộc không</span></td><td>Bài chuyển sang Đã duyệt. Đăng ngay: sang bước 8. Hẹn giờ: bài hiện "Sắp đăng" trong danh sách, đến giờ thì sang bước 8. Chưa duyệt thì không đăng</td><td>Free chọn giờ ngoài 24 giờ tới: chọn giờ sớm hơn hoặc nâng gói. Bấm Huỷ: bài lưu thành Nháp; mở lại nháp từ danh sách thì vào lại bước 5</td><td><code>post_approved</code>, <code>upgrade_clicked</code>, <code>post_saved_as_draft</code>, <code>draft_reopened</code></td></tr>
-          <tr><td class="n">8</td><td>Đăng qua aipub lên từng kênh</td><td>aipub, mạng xã hội</td><td>Đã duyệt và đến giờ</td><td>Mỗi kênh có trạng thái riêng và link tới bài đã đăng</td><td>Một kênh lỗi: hiện lý do bằng lời thường, với ba lựa chọn. Thử lại hoặc Sửa rồi thử lại: quay lại bước 8. Bỏ qua kênh: kênh ghi "Đã bỏ qua", sang bước 9. Kênh khác không bị ảnh hưởng</td><td><code>post_published</code>, <code>post_publish_failed</code>, <code>post_retry_requested</code>, <code>post_channel_skipped</code></td></tr>
+          <tr><td class="n">8</td><td>Đăng qua aipub lên từng kênh</td><td>aipub, mạng xã hội</td><td>Đã duyệt và đến giờ</td><td>Mỗi kênh có trạng thái riêng và link tới bài đã đăng</td><td>Bấm Huỷ khi bài còn đang tải lên, chưa lên nền tảng: các nơi chưa đăng dừng lại, bài về Nháp <span class="tag q wrap">[?] về Nháp hay trạng thái khác</span>; nơi đã lên thì không hoàn tác được [O]. Một kênh lỗi: hiện lý do bằng lời thường, với ba lựa chọn. Thử lại hoặc Sửa rồi thử lại: quay lại bước 8. Bỏ qua kênh: kênh ghi "Đã bỏ qua", sang bước 9. Kênh khác không bị ảnh hưởng</td><td><code>post_published</code>, <code>post_publish_failed</code>, <code>post_retry_requested</code>, <code>post_channel_skipped</code>, <code>post_publish_cancelled</code></td></tr>
           <tr><td class="n">9</td><td>Danh sách trạng thái</td><td>KOL</td><td>Có bài đã duyệt</td><td>Mỗi bài một dòng, mỗi kênh một trạng thái: Đã đăng, Sắp đăng, Lỗi, Đã bỏ qua; bài chưa duyệt ghi Nháp. Có thông báo khi xong</td><td>Không thấy thông báo: mở danh sách trạng thái; còn lỗi thì vào Hỗ trợ</td><td><code>status_viewed</code>, <code>support_opened</code></td></tr>
         </tbody>
       </table>
@@ -368,13 +371,14 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
       <tbody>
         <tr><td>Phiên đăng nhập hết hạn</td><td>Hệ thống từ chối phiên</td><td>Đăng nhập lại</td><td>Bước 1, đúng màn đang dở</td></tr>
         <tr><td>Chưa có kênh dùng được, hoặc kênh cần nối lại</td><td>Màn Đăng bài kiểm danh sách kênh</td><td>Nối kênh (luồng riêng)</td><td>Bước 1</td></tr>
-        <tr><td>Tệp quá lớn, sai định dạng, đứt mạng</td><td>Lúc tải lên</td><td>Chọn tệp khác hoặc thử tải lại</td><td>Bước 2</td></tr>
+        <tr><td>Tệp quá lớn, sai định dạng, đứt mạng</td><td>Lúc tải lên</td><td>Chọn tệp khác; mất mạng thì tải lại tệp đó từ đầu</td><td>Bước 2</td></tr>
         <tr><td>Quá số nền tảng của gói</td><td>Lúc chọn kênh</td><td>Bỏ bớt hoặc nâng gói</td><td>Bước 3</td></tr>
-        <tr><td>Viết caption lỗi hoặc quá lâu</td><td>Lúc tạo caption</td><td>Thử lại hoặc tự viết</td><td>Bước 4</td></tr>
+        <tr><td>Pro: AI chưa sẵn sàng, viết caption lỗi hoặc quá lâu</td><td>Lúc tạo caption</td><td>Thử lại hoặc tự viết</td><td>Bước 4</td></tr>
         <tr><td>Bài sẽ hiện sai trên một nền tảng</td><td>Cảnh báo trong preview</td><td>Sửa media hoặc caption</td><td>Bước 5</td></tr>
         <tr><td>Link affiliate sai định dạng</td><td>Kiểm ô nhập</td><td>Sửa link</td><td>Bước 6</td></tr>
         <tr><td>Free hẹn ngoài 24 giờ tới</td><td>Lúc chọn giờ</td><td>Chọn giờ sớm hơn hoặc nâng gói</td><td>Bước 7</td></tr>
         <tr><td>Người dùng đổi ý</td><td>Bấm Huỷ</td><td>Lưu thành Nháp, mở lại sau</td><td>Bước 5</td></tr>
+        <tr><td>Đổi ý khi bài còn đang tải lên</td><td>Bấm Huỷ ở bước 8</td><td>Nơi chưa đăng dừng; nơi đã lên không hoàn tác</td><td>Bước 5, qua Nháp <span class="tag q wrap">[?] chưa chốt</span></td></tr>
         <tr><td>Một kênh đăng lỗi</td><td>Kênh đó được ghi "Lỗi"</td><td>Thử lại, Sửa rồi thử lại, hoặc Bỏ qua kênh</td><td>Bước 8, hoặc bước 9 nếu bỏ qua</td></tr>
         <tr><td>Còn lỗi sau khi thử</td><td>Danh sách trạng thái</td><td>Hỗ trợ</td><td>Kết thúc ở hỗ trợ</td></tr>
       </tbody>
@@ -419,7 +423,7 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
         <tr><td>Đăng lỗi</td><td><code>post_publish_failed</code> ÷ (<code>post_published</code> + <code>post_publish_failed</code>)</td><td>chưa có</td><td>đặt sau beta</td></tr>
         <tr><td>Lên gói từ luồng này</td><td><code>upgrade_clicked</code> theo <code>trigger</code> (số kênh, caption theo giọng, link affiliate, giờ hẹn)</td><td>chưa có</td><td>đặt sau beta</td></tr>
         <tr><td>Sửa nặng caption</td><td>Chỉ tính bài có <code>caption_source</code> = ai_voice: tỉ lệ bài có <code>caption_edit_ratio</code> > 40% trên <code>post_approved</code>, hoặc có ít nhất một <code>caption_regenerated</code></td><td>chưa có</td><td>≤ 25% từ tuần thứ 2 (kế hoạch 10/11)</td></tr>
-        <tr><td>Chi phí AI</td><td>Cộng <code>ai_cost_usd</code> của <code>caption_generated</code> theo workspace và <code>plan</code>, mỗi tháng</td><td>chưa có</td><td>Kế hoạch 10/11 đặt mức báo $0,60 cho mỗi workspace Free. Nay Free không có caption AI, nên mức báo cần đặt lại theo gói Pro <span class="tag q wrap">[?] owner</span></td></tr>
+        <tr><td>Chi phí AI</td><td>Bỏ thước đo này (owner, 25/11)</td><td>–</td><td>–</td></tr>
       </tbody>
     </table></div>
     <div class="card tbl" tabindex="0" role="region" aria-label="Bảng sự kiện, cuộn ngang"><table>
@@ -432,10 +436,10 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
         <tr><td><code>media_upload_failed</code></td><td>2 (lỗi)</td><td>một tệp bị từ chối hoặc đứt</td><td><code>reason_code</code></td><td>server</td></tr>
         <tr><td><code>channels_selected</code></td><td>3</td><td>aipub nhận danh sách kênh để viết caption</td><td><code>post_id</code>, <code>channel_count</code>, <code>platforms</code></td><td>server</td></tr>
         <tr><td><code>plan_limit_hit</code></td><td>3, 7 (lỗi)</td><td>người dùng chạm giới hạn gói</td><td><code>limit_type</code></td><td>client</td></tr>
-        <tr><td><code>caption_generated</code></td><td>4 (Pro)</td><td>caption aipub viết đã lưu</td><td><code>post_id</code>, <code>channel_count</code>, <code>plan</code>, <code>ai_cost_usd</code></td><td>server</td></tr>
+        <tr><td><code>caption_generated</code></td><td>4 (Pro)</td><td>caption aipub viết đã lưu</td><td><code>post_id</code>, <code>channel_count</code>, <code>plan</code></td><td>server</td></tr>
         <tr><td><code>caption_written</code></td><td>4 (Free)</td><td>caption người dùng tự viết đã lưu</td><td><code>post_id</code>, <code>channel_count</code>, <code>customized_channels</code></td><td>server</td></tr>
         <tr><td><code>caption_regenerated</code></td><td>4 (viết lại)</td><td>bản caption mới đã lưu sau khi người dùng bấm Viết lại</td><td><code>post_id</code>, <code>platform</code></td><td>server</td></tr>
-        <tr><td><code>caption_generation_failed</code></td><td>4 (lỗi)</td><td>viết lỗi hoặc quá thời gian</td><td><code>reason_code</code></td><td>server</td></tr>
+        <tr><td><code>caption_generation_failed</code></td><td>4 (lỗi, Pro)</td><td>viết lỗi hoặc quá thời gian</td><td><code>reason_code</code> (ai_unavailable, ai_error, timeout)</td><td>server</td></tr>
         <tr><td><code>preview_viewed</code></td><td>5</td><td>một khung preview hiện đủ</td><td><code>post_id</code>, <code>platform</code>, <code>format</code></td><td>client</td></tr>
         <tr><td><code>preview_warning_shown</code></td><td>5</td><td>một cảnh báo hiện</td><td><code>post_id</code>, <code>platform</code>, <code>warning_type</code></td><td>client</td></tr>
         <tr><td><code>post_edited_after_preview</code></td><td>5 (sửa)</td><td>chỉnh sửa đã lưu sau khi đã có <code>preview_viewed</code></td><td><code>post_id</code>, <code>edit_type</code></td><td>client</td></tr>
@@ -448,6 +452,7 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
         <tr><td><code>post_published</code></td><td>8</td><td>kênh đó được ghi "Đã đăng"</td><td><code>post_id</code>, <code>platform</code>, <code>format</code></td><td>server</td></tr>
         <tr><td><code>post_publish_failed</code></td><td>8 (lỗi)</td><td>kênh đó được ghi "Lỗi"</td><td><code>post_id</code>, <code>platform</code>, <code>reason_code</code></td><td>server</td></tr>
         <tr><td><code>post_retry_requested</code></td><td>8 (phục hồi)</td><td>lệnh thử lại đã lưu</td><td><code>post_id</code>, <code>platform</code>, <code>after_edit</code></td><td>server</td></tr>
+        <tr><td><code>post_publish_cancelled</code></td><td>8 (huỷ)</td><td>các nơi chưa đăng đã dừng</td><td><code>post_id</code>, <code>cancelled_count</code>, <code>published_count</code></td><td>server</td></tr>
         <tr><td><code>post_channel_skipped</code></td><td>8 (bỏ qua)</td><td>kênh đó được ghi "Đã bỏ qua"</td><td><code>post_id</code>, <code>platform</code></td><td>server</td></tr>
         <tr><td><code>status_viewed</code></td><td>9</td><td>danh sách trạng thái hiện xong</td><td><code>has_failed</code></td><td>client</td></tr>
         <tr><td><code>support_opened</code></td><td>9 (kết thúc ở hỗ trợ)</td><td>trang Hỗ trợ mở từ danh sách trạng thái</td><td><code>post_id</code>, <code>has_failed</code></td><td>client</td></tr>
@@ -464,14 +469,10 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
         <li><b>Tự giải thích:</b> preview cho thấy bài sẽ trông thế nào; cảnh báo ghi nền tảng và việc cần làm. Đạt.</li>
         <li><b>Đúng kỳ vọng:</b> khung giống feed thật; nút ghi đúng việc sẽ xảy ra ("Duyệt và đăng ngay", "Duyệt và hẹn 20:00"). Đạt.</li>
         <li><b>Dễ học:</b> màn trống (W1) chỉ ra việc đầu tiên. Lần đầu dùng có cần hướng dẫn thêm không thì chưa biết. <span class="tag q">[?]</span></li>
-        <li><b>Kiểm soát được:</b> chưa duyệt thì không đăng; Huỷ giữ nháp; kênh lỗi có thể bỏ qua.
-          <ul>
-            <li><b>Nên sửa:</b> sau "Đăng ngay" chưa có cách hoàn tác. Đề xuất vài giây để huỷ. <span class="tag q">[?] owner</span></li>
-          </ul>
-        </li>
+        <li><b>Kiểm soát được:</b> chưa duyệt thì không đăng; Huỷ giữ nháp; kênh lỗi có thể bỏ qua. Sau "Đăng ngay", bài còn đang tải lên thì huỷ được; đã lên nền tảng thì không hoàn tác (owner, 25/11). Nút Huỷ chỉ hiện khi còn huỷ được.</li>
         <li><b>Chịu lỗi:</b> mọi nhánh lỗi đều có đường quay lại, và giữ những gì người dùng đã làm.
           <ul>
-            <li><b>Nên sửa:</b> trên điện thoại, mất mạng lúc tải clip dài cần tải tiếp từ chỗ đứt. Chưa rõ có làm được không. <span class="tag q">[?]</span></li>
+            <li><b>Ghi chú:</b> mất mạng thì tải lại từ đầu (owner, 25/11). Clip dài trên mạng điện thoại yếu sẽ mất thời gian; theo dõi <code>media_upload_failed</code> theo <code>reason_code</code> để biết có cần tải tiếp từ chỗ đứt không.</li>
           </ul>
         </li>
         <li><b>Gắn bó:</b> đây là đặt cược của owner về trải nghiệm thị giác. Chưa đo được; sẽ thử ở bước 4.</li>
@@ -482,9 +483,9 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
       <ul>
         <li>Giới hạn dung lượng và độ dài tệp là bao nhiêu?</li>
         <li>Có bắt buộc xem preview trước khi duyệt không?</li>
-        <li>Có cho hoàn tác sau "Đăng ngay" không?</li>
-        <li>Có tải tiếp được khi mất mạng không?</li>
-        <li>Owner đã chốt các điểm gói Free ngày 25/11: preview đầy đủ, tự viết caption và tuỳ biến từng nơi, có cảnh báo.</li>
+        <li>Facebook Page tính chung nền tảng Facebook với Profile và Group không?</li>
+        <li>Huỷ khi đang tải lên thì bài về Nháp hay trạng thái khác?</li>
+        <li>Owner đã chốt ngày 25/11: gói Free có preview đầy đủ, tự viết caption và tuỳ biến từng nơi, có cảnh báo; huỷ được khi bài còn đang tải lên, đã lên thì không hoàn tác; mất mạng thì tải lại từ đầu; Facebook Profile và Group là một nền tảng, hai nơi đăng; bỏ thước đo chi phí AI.</li>
       </ul>
     </div>
   </section>
