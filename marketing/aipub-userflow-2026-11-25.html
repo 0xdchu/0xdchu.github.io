@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>aipub: luồng đăng một bài</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one reading column; diagram and wireframes sit in their own cards and scroll inside them on phones */
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --fg:#16202C; --muted:#5A6676; --line:#C8D0DB;
+  --accent:#2E59D9; --accent-bg:#E3EAFE; --fail:#A33A2B; --fail-bg:#FCEBE8; --wire:#E9EDF2; --wire-2:#D5DCE5; --warn:#8F5200; --warn-bg:#FFF1DC; --hatch:rgba(163,58,43,.30);
+  --f-body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E131A; --surface:#161D27; --fg:#E5EAF1; --muted:#97A3B4; --line:#2F3A49;
+  --accent:#86A2FF; --accent-bg:#1E2A4D; --fail:#FF9A8A; --fail-bg:#3A1E1A; --wire:#1F2834; --wire-2:#2B3644; --warn:#F2A945; --warn-bg:#3A2A12; --hatch:rgba(255,154,138,.45); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E131A; --surface:#161D27; --fg:#E5EAF1; --muted:#97A3B4; --line:#2F3A49;
+  --accent:#86A2FF; --accent-bg:#1E2A4D; --fail:#FF9A8A; --fail-bg:#3A1E1A; --wire:#1F2834; --wire-2:#2B3644; --warn:#F2A945; --warn-bg:#3A2A12; --hatch:rgba(255,154,138,.45); color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.55}
+.wrap{max-width:1040px;margin:0 auto;padding-block:32px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:28px}
+header{display:grid;gap:6px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.eyebrow a{color:inherit}
+a{color:var(--accent)}
+h1{font-size:30px;line-height:1.2;margin:0;font-weight:700;text-wrap:balance}
+h2{font-size:20px;margin:0;font-weight:600}
+h3{font-size:16px;margin:0;font-weight:600}
+p{margin:0;max-width:72ch}
+.lede{color:var(--muted)}
+section{display:grid;gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.pad{padding:18px 20px;display:grid;gap:10px}
+.scroll{overflow-x:auto}
+ul{margin:0;padding-left:20px;display:grid;gap:4px}
+table{border-collapse:collapse;width:100%}
+.tbl{overflow-x:auto}
+.tbl table{min-width:760px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:14px}
+th{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+tr:last-child td{border-bottom:none}
+td.n{font-family:var(--f-mono);color:var(--muted)}
+code{font-family:var(--f-mono);font-size:13px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:0 8px;border-radius:99px;background:var(--wire);color:var(--muted);white-space:nowrap}
+.tag.q{background:var(--warn-bg);color:var(--warn)}
+.tag.wrap{white-space:normal}
+/* flow svg */
+.flow svg{display:block;width:100%;min-width:960px;height:auto}
+.node rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+.node.exit rect{fill:var(--accent-bg);stroke:var(--accent);stroke-width:2}
+.dec path{fill:var(--wire);stroke:var(--muted);stroke-width:1.5}
+.fnode rect{fill:var(--fail-bg);stroke:var(--fail);stroke-width:1.5}
+.anode rect{fill:var(--wire);stroke:var(--muted);stroke-width:1.5}
+svg .t{font:600 14px var(--f-body);fill:var(--fg)}
+svg .s{font:400 12.5px var(--f-body);fill:var(--muted)}
+svg .s2{font:400 12.5px var(--f-body);fill:var(--fg)}
+svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
+.arrow{fill:none;stroke:var(--muted);stroke-width:1.8}
+.arrow.fail{stroke:var(--fail)}
+.arrow.back{stroke:var(--fail);stroke-dasharray:5 5}
+#ah path{fill:var(--muted)} #ahf path,#ahb path{fill:var(--fail)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:18px;height:12px;border-radius:3px;border:1.5px solid var(--line);background:var(--surface)}
+.sw.e{background:var(--accent-bg);border-color:var(--accent)} .sw.d{background:var(--wire);border-color:var(--muted);transform:rotate(45deg);width:11px;height:11px;border-radius:1px}
+.sw.f{background:var(--fail-bg);border-color:var(--fail)} .sw.a{background:var(--wire);border-color:var(--muted)} .sw.b{border:none;border-top:2px dashed var(--fail);height:0;border-radius:0}
+/* wireframes */
+.wf{display:grid;gap:10px;padding:16px}
+.wf h3 small{font-weight:400;color:var(--muted);font-size:13px}
+.wire{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.wbox{border:1.5px solid var(--wire-2);border-radius:10px;background:var(--wire);padding:10px;display:grid;gap:8px;min-width:0;align-content:start}
+.wbox.plain{background:transparent}
+.lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{border:1.5px solid var(--wire-2);border-radius:99px;padding:2px 10px;font-size:12px;background:var(--surface);color:var(--fg)}
+.chip.on{border-color:var(--accent);color:var(--accent);font-weight:600}
+.chip.off{opacity:.55;text-decoration:line-through}
+.av{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--wire-2);background:var(--surface);display:grid;place-items:center;font-size:10px;font-family:var(--f-mono);color:var(--muted)}
+.av.on{border-color:var(--accent);color:var(--accent);box-shadow:0 0 0 2px var(--accent-bg)}
+.thumb{width:44px;height:56px;border-radius:6px;background:var(--wire-2);display:grid;place-items:center;font-size:11px;font-family:var(--f-mono);color:var(--fg)}
+.lines{display:grid;gap:5px}
+.lines i{display:block;height:7px;border-radius:4px;background:var(--wire-2)}
+.btn{border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600;border:1.5px solid var(--wire-2);background:var(--surface);color:var(--fg)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn.dis{opacity:.45}
+.warnbox{border-left:3px solid var(--warn);background:var(--warn-bg);color:var(--fg);padding:6px 10px;border-radius:6px;font-size:12.5px}
+.drop{border:2px dashed var(--wire-2);border-radius:12px;padding:34px 12px;text-align:center;color:var(--muted);font-size:14px;background:var(--surface)}
+.two{display:grid;grid-template-columns:1.1fr 1fr;gap:12px;min-width:720px}
+.phone{width:200px;aspect-ratio:9/16;border-radius:22px;border:2px solid var(--wire-2);background:var(--wire-2);position:relative;overflow:hidden;margin-inline:auto;max-width:100%}
+.phone .safe{position:absolute;right:0;bottom:0;left:0;height:30%;background:repeating-linear-gradient(135deg,transparent 0 6px,var(--hatch) 6px 9px);border-top:1.5px dashed var(--fail)}
+.phone .safe span{position:absolute;right:6px;top:4px;font-family:var(--f-mono);font-size:9.5px;color:var(--fg);background:var(--surface);border-radius:3px;padding:0 4px}
+.phone .rail{position:absolute;right:8px;bottom:34%;display:grid;gap:8px}
+.phone .rail b{width:22px;height:22px;border-radius:50%;background:var(--surface);opacity:.8}
+.phone .cap{position:absolute;left:10px;right:44px;bottom:12px;font-size:11px;color:var(--fg);background:var(--surface);border-radius:6px;padding:4px 6px;opacity:.92}
+.phone .tagl{position:absolute;left:8px;top:8px;font-family:var(--f-mono);font-size:10px;background:var(--surface);border-radius:4px;padding:1px 5px;color:var(--muted)}
+.feed{width:200px;border:2px solid var(--wire-2);border-radius:14px;background:var(--surface);padding:8px;display:grid;gap:6px;margin-inline:auto;max-width:100%}
+.feed .img{aspect-ratio:4/5;background:var(--wire-2);border-radius:6px;position:relative}
+.feed .dots{display:flex;gap:4px;justify-content:center}
+.feed .dots i{width:6px;height:6px;border-radius:50%;background:var(--wire-2)} .feed .dots i.on{background:var(--accent)}
+.feed .arr{position:absolute;right:6px;top:45%;width:20px;height:20px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-size:12px;color:var(--muted)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;min-width:680px}
+.trio > div{display:grid;gap:6px;justify-items:center;text-align:center}
+.cap2{font-size:12px;color:var(--muted)}
+.status td{font-size:13px}
+.st{font-size:11.5px;font-weight:600;border-radius:99px;padding:1px 8px;white-space:nowrap}
+.st.ok{background:var(--accent-bg);color:var(--accent)} .st.wait{background:var(--wire);color:var(--muted)} .st.err{background:var(--fail-bg);color:var(--fail)} .st.draft{background:var(--warn-bg);color:var(--warn)}
+.mob{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;min-width:680px}
+.mframe{border:2px solid var(--wire-2);border-radius:22px;padding:10px;display:grid;gap:8px;align-content:start;background:var(--surface);min-height:360px}
+.notes{font-size:13.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <div class="eyebrow"><a href="../index.html">what-to-build</a> · aipub · bước 3 · 25/11/2026</div>
+    <h1>aipub: luồng đăng một bài</h1>
+    <p class="lede">KOL có sẵn một clip hoặc một bộ ảnh, muốn đăng lên nhiều kênh. Trang này gồm luồng đi từ lúc mở app tới lúc thấy "Đã đăng", các nhánh lỗi kèm cách phục hồi, và wireframe các màn chính: một cột soạn, một cột preview theo từng nền tảng. Đây là bước 3 trong <a href="aipub-product-loop-2026-11-25.html">vòng lặp sản phẩm</a>; thước đo và tính năng lấy từ <a href="aipub-metrics-core-features-2026-11-25.html">bước 2</a>.</p>
+  </header>
+
+  <section>
+    <h2>Phạm vi</h2>
+    <div class="card pad">
+      <ul>
+        <li><b>Người dùng chính:</b> KOL hoặc KOC tự đăng, gói Free hoặc Pro. Đây là người duy nhất ra quyết định trong luồng.</li>
+        <li><b>Mục tiêu:</b> một clip hoặc bộ ảnh lên được các kênh đã chọn, đúng hình dạng của từng nền tảng.</li>
+        <li><b>Vào:</b> đã đăng nhập và đã nối ít nhất một kênh. Đăng ký và nối kênh là luồng riêng (xem <a href="../research/aipub-user-flow-2026-11-19.html">luồng 19/11</a>).</li>
+        <li><b>Ra:</b> danh sách trạng thái ghi "Đã đăng" hoặc "Sắp đăng" cho từng kênh.</li>
+        <li><b>Các bên:</b> KOL (quyết định), aipub (viết caption, đăng), các mạng xã hội (nhận bài). Bài đăng qua aipub; trang này không mô tả cách làm việc đó.</li>
+        <li><b>Ngoài phạm vi:</b> người trong team duyệt hộ qua Telegram hoặc Discord (gói Business). Đó là luồng của một người quyết định khác, sẽ viết riêng.</li>
+        <li><b>Giả định từ bước 2, chưa được owner chốt:</b> gói Free xem preview đầy đủ; tự bình luận affiliate nằm trong bản đầu. <span class="tag q">[?] chờ owner</span></li>
+        <li><b>Cách vẽ:</b> flowchart cho một người dùng, không dùng BPMN hay UML.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>1. Sơ đồ luồng</h2>
+    <p class="notes">Câu hỏi sơ đồ trả lời: từ lúc mở app tới lúc bài lên kênh, KOL đi qua những bước nào, và khi một bước hỏng thì quay về đâu.</p>
+    <div class="card scroll flow" tabindex="0" role="img" aria-label="Sơ đồ 9 bước từ mở màn Đăng bài tới danh sách trạng thái, bốn điểm quyết định, các nhánh lỗi có đường quay lại, nhánh hẹn giờ và nhánh huỷ thành nháp.">
+      <svg viewBox="0 0 1060 1340" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 Z"/></marker>
+          <marker id="ahf" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 Z"/></marker>
+          <marker id="ahb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 Z"/></marker>
+        </defs>
+<path class="arrow" d="M450 108 L450 148" marker-end="url(#ah)"/>
+<path class="arrow" d="M450 216 L450 248" marker-end="url(#ah)"/>
+<text class="lab" x="460" y="238">Có</text>
+<path class="arrow" d="M450 308 L450 343" marker-end="url(#ah)"/>
+<path class="arrow" d="M450 403 L450 438" marker-end="url(#ah)"/>
+<path class="arrow" d="M450 498 L450 533" marker-end="url(#ah)"/>
+<path class="arrow" d="M450 593 L450 633" marker-end="url(#ah)"/>
+<path class="arrow" d="M450 701 L450 733" marker-end="url(#ah)"/>
+<text class="lab" x="460" y="723">Không</text>
+<path class="arrow" d="M450 793 L450 828" marker-end="url(#ah)"/>
+<path class="arrow" d="M450 888 L450 928" marker-end="url(#ah)"/>
+<path class="arrow" d="M450 996 L450 1048" marker-end="url(#ah)"/>
+<text class="lab" x="460" y="1028">Có</text>
+<path class="arrow" d="M450 1108 L450 1148" marker-end="url(#ah)"/>
+<path class="arrow" d="M450 1216 L450 1258" marker-end="url(#ah)"/>
+<text class="lab" x="460" y="1243">Có</text>
+<path class="arrow fail" d="M600.0 71.0 L713.0 71.0" marker-end="url(#ahf)"/>
+<text class="lab" x="658" y="64" text-anchor="middle">Phiên hết hạn</text>
+<g class="fnode"><rect x="715" y="50" width="330" height="58" rx="10"/><text class="s2" x="880" y="74" text-anchor="middle">Đăng nhập lại,</text><text class="s2" x="880" y="93" text-anchor="middle">quay về đúng màn này</text></g>
+<path class="arrow back" d="M715.0 89.0 L602.0 89.0" marker-end="url(#ahb)"/>
+<path class="arrow fail" d="M565 175 L713.0 175" marker-end="url(#ahf)"/>
+<text class="lab" x="640" y="168" text-anchor="middle">Không</text>
+<g class="fnode"><rect x="715" y="154" width="330" height="58" rx="10"/><text class="s2" x="880" y="178" text-anchor="middle">Chưa có kênh dùng được: nối kênh</text><text class="s2" x="880" y="197" text-anchor="middle">hoặc nối lại (luồng riêng)</text></g>
+<path class="arrow back" d="M715.0 193 L685.0 193 L685.0 89.0 L602.0 89.0" marker-end="url(#ahb)"/>
+<path class="arrow fail" d="M600.0 271.0 L713.0 271.0" marker-end="url(#ahf)"/>
+<text class="lab" x="658" y="264" text-anchor="middle">Tải lỗi</text>
+<g class="fnode"><rect x="715" y="250" width="330" height="58" rx="10"/><text class="s2" x="880" y="274" text-anchor="middle">Báo giới hạn tệp, chọn tệp khác</text><text class="s2" x="880" y="293" text-anchor="middle">hoặc thử tải lại</text></g>
+<path class="arrow back" d="M715.0 289.0 L602.0 289.0" marker-end="url(#ahb)"/>
+<path class="arrow fail" d="M600.0 366.0 L713.0 366.0" marker-end="url(#ahf)"/>
+<text class="lab" x="658" y="359" text-anchor="middle">Quá số nền tảng</text>
+<g class="fnode"><rect x="715" y="345" width="330" height="58" rx="10"/><text class="s2" x="880" y="369" text-anchor="middle">Bỏ bớt hoặc nâng gói; nền tảng</text><text class="s2" x="880" y="388" text-anchor="middle">không hợp kiểu bài thì hiện mờ</text></g>
+<path class="arrow back" d="M715.0 384.0 L602.0 384.0" marker-end="url(#ahb)"/>
+<path class="arrow fail" d="M600.0 461.0 L713.0 461.0" marker-end="url(#ahf)"/>
+<text class="lab" x="658" y="454" text-anchor="middle">Viết lỗi</text>
+<g class="fnode"><rect x="715" y="440" width="330" height="58" rx="10"/><text class="s2" x="880" y="464" text-anchor="middle">Thử viết lại hoặc tự viết;</text><text class="s2" x="880" y="483" text-anchor="middle">media và kênh vẫn giữ</text></g>
+<path class="arrow back" d="M715.0 479.0 L602.0 479.0" marker-end="url(#ahb)"/>
+<path class="arrow fail" d="M565 660 L713.0 660" marker-end="url(#ahf)"/>
+<text class="lab" x="640" y="653" text-anchor="middle">Có</text>
+<g class="fnode"><rect x="715" y="639" width="330" height="58" rx="10"/><text class="s2" x="880" y="663" text-anchor="middle">Sửa: cắt khung, caption, ảnh bìa,</text><text class="s2" x="880" y="682" text-anchor="middle">thứ tự ảnh; Free: rút gọn hoặc lên Pro</text></g>
+<path class="arrow back" d="M715.0 678 L685.0 678 L685.0 574.0 L602.0 574.0" marker-end="url(#ahb)"/>
+<path class="arrow fail" d="M600.0 756.0 L713.0 756.0" marker-end="url(#ahf)"/>
+<text class="lab" x="658" y="749" text-anchor="middle">Link sai</text>
+<g class="fnode"><rect x="715" y="735" width="330" height="58" rx="10"/><text class="s2" x="880" y="759" text-anchor="middle">Báo ngay ở ô nhập,</text><text class="s2" x="880" y="778" text-anchor="middle">nói cách sửa</text></g>
+<path class="arrow back" d="M715.0 774.0 L602.0 774.0" marker-end="url(#ahb)"/>
+<path class="arrow fail" d="M600.0 851.0 L713.0 851.0" marker-end="url(#ahf)"/>
+<text class="lab" x="658" y="844" text-anchor="middle">Ngoài 24 giờ</text>
+<g class="fnode"><rect x="715" y="830" width="330" height="58" rx="10"/><text class="s2" x="880" y="854" text-anchor="middle">Free chỉ hẹn trong 24 giờ tới:</text><text class="s2" x="880" y="873" text-anchor="middle">chọn giờ sớm hơn hoặc nâng gói</text></g>
+<path class="arrow back" d="M715.0 869.0 L602.0 869.0" marker-end="url(#ahb)"/>
+<path class="arrow" d="M565 955 L713.0 955" marker-end="url(#ah)"/>
+<text class="lab" x="640" y="948" text-anchor="middle">Không, hẹn giờ</text>
+<g class="anode"><rect x="715" y="934" width="330" height="58" rx="10"/><text class="s2" x="880" y="958" text-anchor="middle">Bài hiện "Sắp đăng" trong danh sách;</text><text class="s2" x="880" y="977" text-anchor="middle">đến giờ thì sang bước 8</text></g>
+<path class="arrow" d="M880 992.0 L880 1069.0 L602.0 1069.0" marker-end="url(#ah)"/>
+<text class="lab" x="888" y="1034">đến giờ</text>
+<path class="arrow fail" d="M565 1175 L713.0 1175" marker-end="url(#ahf)"/>
+<text class="lab" x="640" y="1168" text-anchor="middle">Không</text>
+<g class="fnode"><rect x="715" y="1154" width="330" height="58" rx="10"/><text class="s2" x="880" y="1178" text-anchor="middle">Kênh lỗi hiện lý do và lựa chọn:</text><text class="s2" x="880" y="1197" text-anchor="middle">Thử lại, Sửa rồi thử lại, Bỏ qua</text></g>
+<path class="arrow back" d="M715.0 1193 L685.0 1193 L685.0 1089.0 L602.0 1089.0" marker-end="url(#ahb)"/>
+<text class="lab" x="691.0" y="1083">thử lại</text>
+<path class="arrow back" d="M880 1212.0 L880 1279.0 L602.0 1279.0" marker-end="url(#ahb)"/>
+<text class="lab" x="888" y="1250">bỏ qua kênh</text>
+<path class="arrow" d="M300.0 851.0 L242.0 851.0" marker-end="url(#ah)"/>
+<text class="lab" x="270" y="844" text-anchor="middle">Huỷ</text>
+<g class="anode"><rect x="20" y="830" width="220" height="58" rx="10"/><text class="s2" x="130" y="854" text-anchor="middle">Lưu thành Nháp;</text><text class="s2" x="130" y="873" text-anchor="middle">mở lại từ danh sách</text></g>
+<path class="arrow" d="M130 830.0 L130 574.0 L298.0 574.0" marker-end="url(#ah)"/>
+<text class="lab" x="138" y="702">mở lại nháp</text>
+<path class="arrow fail" d="M300.0 1289.0 L242.0 1289.0" marker-end="url(#ahf)"/>
+<text class="lab" x="270" y="1282" text-anchor="middle">Còn lỗi</text>
+<g class="fnode"><rect x="20" y="1260" width="220" height="58" rx="10"/><text class="s2" x="130" y="1284" text-anchor="middle">Mở Hỗ trợ từ danh sách</text><text class="s2" x="130" y="1303" text-anchor="middle">(kết thúc ở hỗ trợ)</text></g>
+<g class="node step"><rect x="300.0" y="50" width="300" height="58" rx="10"/><text class="t" x="450" y="75" text-anchor="middle">1 · Mở màn Đăng bài</text><text class="s" x="450" y="95" text-anchor="middle">KOL</text></g>
+<g class="dec"><path d="M450 150 L565.0 183.0 L450 216 L335.0 183.0 Z"/><text class="t" x="450" y="188" text-anchor="middle">Có kênh dùng được?</text></g>
+<g class="node step"><rect x="300.0" y="250" width="300" height="58" rx="10"/><text class="t" x="450" y="275" text-anchor="middle">2 · Tải clip hoặc bộ ảnh lên</text><text class="s" x="450" y="295" text-anchor="middle">KOL</text></g>
+<g class="node step"><rect x="300.0" y="345" width="300" height="58" rx="10"/><text class="t" x="450" y="370" text-anchor="middle">3 · Chọn kênh</text><text class="s" x="450" y="390" text-anchor="middle">KOL</text></g>
+<g class="node step"><rect x="300.0" y="440" width="300" height="58" rx="10"/><text class="t" x="450" y="465" text-anchor="middle">4 · aipub viết caption</text><text class="s" x="450" y="485" text-anchor="middle">aipub</text></g>
+<g class="node step"><rect x="300.0" y="535" width="300" height="58" rx="10"/><text class="t" x="450" y="560" text-anchor="middle">5 · Xem preview từng nền tảng</text><text class="s" x="450" y="580" text-anchor="middle">KOL</text></g>
+<g class="dec"><path d="M450 635 L565.0 668.0 L450 701 L335.0 668.0 Z"/><text class="t" x="450" y="673" text-anchor="middle">Có cảnh báo?</text></g>
+<g class="node step"><rect x="300.0" y="735" width="300" height="58" rx="10"/><text class="t" x="450" y="760" text-anchor="middle">6 · Thêm link affiliate (tuỳ chọn)</text><text class="s" x="450" y="780" text-anchor="middle">KOL · gói Pro trở lên</text></g>
+<g class="node step"><rect x="300.0" y="830" width="300" height="58" rx="10"/><text class="t" x="450" y="855" text-anchor="middle">7 · Duyệt bài</text><text class="s" x="450" y="875" text-anchor="middle">KOL</text></g>
+<g class="dec"><path d="M450 930 L565.0 963.0 L450 996 L335.0 963.0 Z"/><text class="t" x="450" y="968" text-anchor="middle">Đăng ngay?</text></g>
+<g class="node step"><rect x="300.0" y="1050" width="300" height="58" rx="10"/><text class="t" x="450" y="1075" text-anchor="middle">8 · Đăng qua aipub lên từng kênh</text><text class="s" x="450" y="1095" text-anchor="middle">aipub → mạng xã hội</text></g>
+<g class="dec"><path d="M450 1150 L565.0 1183.0 L450 1216 L335.0 1183.0 Z"/><text class="t" x="450" y="1188" text-anchor="middle">Mọi kênh thành công?</text></g>
+<g class="node exit"><rect x="300.0" y="1260" width="300" height="58" rx="10"/><text class="t" x="450" y="1285" text-anchor="middle">9 · Danh sách trạng thái</text><text class="s" x="450" y="1305" text-anchor="middle">KOL</text></g>
+      </svg>
+    </div>
+    <div class="legend">
+      <span><i class="sw"></i>bước người dùng thấy</span>
+      <span><i class="sw d"></i>quyết định</span>
+      <span><i class="sw f"></i>lỗi và cách phục hồi</span>
+      <span><i class="sw a"></i>nhánh khác (hẹn giờ, nháp)</span>
+      <span><i class="sw b"></i>đường quay lại</span>
+      <span><i class="sw e"></i>kết thúc</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Bảng luồng</h2>
+    <div class="card tbl" tabindex="0" role="region" aria-label="Bảng luồng, cuộn ngang">
+      <table>
+        <thead><tr><th>#</th><th>Bước</th><th>Ai</th><th>Điều kiện trước</th><th>Kết quả</th><th>Lỗi và cách phục hồi</th><th>Đo bằng</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1</td><td>Mở màn Đăng bài</td><td>KOL</td><td>Đã đăng nhập</td><td>Vùng thả media, hàng avatar các kênh đã nối, vài bài gần nhất kèm trạng thái</td><td>Chưa có kênh nào dùng được, hoặc kênh cần nối lại: hiện nút Nối kênh. Nối xong quay lại bước 1. Phiên hết hạn: đăng nhập lại, quay về đúng màn này</td><td><code>compose_opened</code>, <code>channel_unavailable_shown</code>, <code>session_resumed</code></td></tr>
+          <tr><td class="n">2</td><td>Tải clip hoặc bộ ảnh lên</td><td>KOL</td><td>Có ít nhất một kênh dùng được</td><td>Ảnh nhỏ của từng tệp. aipub nhận ra loại bài: ảnh đơn, bộ ảnh hay video dọc. Bộ ảnh kéo để đổi thứ tự (có nút lên, xuống)</td><td>Tệp quá lớn hoặc sai định dạng: báo đúng giới hạn và cách sửa <span class="tag q">[?] giới hạn</span>. Mất mạng giữa chừng: thử tải lại, tệp đã xong vẫn giữ</td><td><code>media_uploaded</code>, <code>media_upload_failed</code></td></tr>
+          <tr><td class="n">3</td><td>Chọn kênh</td><td>KOL</td><td>Media đã tải xong</td><td>Kênh của lần trước được chọn sẵn. Facebook Profile, Page và Group tách riêng. Mỗi kênh được chọn có một tab preview</td><td>Vượt số nền tảng của gói (Free 3, Pro 5, Business 13): bỏ bớt hoặc nâng gói, lựa chọn cũ vẫn giữ <span class="tag q wrap">[?] Facebook Profile và Group tính là một hay hai</span>. Nền tảng không hỗ trợ kiểu bài này: avatar mờ, ghi lý do</td><td><code>channels_selected</code>, <code>plan_limit_hit</code></td></tr>
+          <tr><td class="n">4</td><td>aipub viết caption</td><td>aipub</td><td>Có media và kênh</td><td>Free: một caption chung. Pro: caption riêng từng kênh theo giọng người dùng. Sửa được ngay</td><td>Viết lỗi hoặc quá lâu: Thử lại hoặc tự viết, media và kênh vẫn giữ. Không ưng: bấm Viết lại</td><td><code>caption_generated</code>, <code>caption_generation_failed</code>, <code>caption_regenerated</code></td></tr>
+          <tr><td class="n">5</td><td>Xem preview từng nền tảng</td><td>KOL</td><td>Có caption</td><td>Khung giống thật theo kiểu bài: ảnh đơn trên feed, carousel lướt ngang, video dọc có lớp vùng an toàn. Caption cắt đúng chỗ "xem thêm". Cảnh báo nếu có</td><td>Có cảnh báo (caption bị cắt, ảnh sai tỉ lệ, vượt giới hạn nền tảng): sửa cắt khung, caption, ảnh bìa hoặc thứ tự ảnh, rồi xem lại. Free bị cắt caption: rút gọn caption chung hoặc lên Pro</td><td><code>preview_viewed</code>, <code>preview_warning_shown</code>, <code>post_edited_after_preview</code></td></tr>
+          <tr><td class="n">6</td><td>Thêm link affiliate (tuỳ chọn)</td><td>KOL</td><td>Gói Pro trở lên</td><td>Link hiện trong preview ở dạng bình luận đầu tiên, trên các kênh có bình luận</td><td>Link sai định dạng: báo ngay ở ô nhập, nói cách sửa</td><td><code>affiliate_comment_added</code>, <code>affiliate_link_rejected</code></td></tr>
+          <tr><td class="n">7</td><td>Duyệt: Đăng ngay hoặc Hẹn giờ</td><td>KOL</td><td>Đã xem preview ít nhất một kênh <span class="tag q">[?] có bắt buộc không</span></td><td>Bài chuyển sang Đã duyệt. Đăng ngay: sang bước 8. Hẹn giờ: bài hiện "Sắp đăng" trong danh sách, đến giờ thì sang bước 8. Chưa duyệt thì không đăng</td><td>Free chọn giờ ngoài 24 giờ tới: chọn giờ sớm hơn hoặc nâng gói. Bấm Huỷ: bài lưu thành Nháp; mở lại nháp từ danh sách thì vào lại bước 5</td><td><code>post_approved</code>, <code>upgrade_clicked</code>, <code>post_saved_as_draft</code>, <code>draft_reopened</code></td></tr>
+          <tr><td class="n">8</td><td>Đăng qua aipub lên từng kênh</td><td>aipub, mạng xã hội</td><td>Đã duyệt và đến giờ</td><td>Mỗi kênh có trạng thái riêng và link tới bài đã đăng</td><td>Một kênh lỗi: hiện lý do bằng lời thường, với ba lựa chọn. Thử lại hoặc Sửa rồi thử lại: quay lại bước 8. Bỏ qua kênh: kênh ghi "Đã bỏ qua", sang bước 9. Kênh khác không bị ảnh hưởng</td><td><code>post_published</code>, <code>post_publish_failed</code>, <code>post_retry_requested</code>, <code>post_channel_skipped</code></td></tr>
+          <tr><td class="n">9</td><td>Danh sách trạng thái</td><td>KOL</td><td>Có bài đã duyệt</td><td>Mỗi bài một dòng, mỗi kênh một trạng thái: Đã đăng, Sắp đăng, Lỗi, Đã bỏ qua; bài chưa duyệt ghi Nháp. Có thông báo khi xong</td><td>Không thấy thông báo: mở danh sách trạng thái; còn lỗi thì vào Hỗ trợ</td><td><code>status_viewed</code>, <code>support_opened</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Wireframe</h2>
+    <p class="notes">Khung xám, chưa phải giao diện. Tên nền tảng ghi bằng chữ, không dùng logo. Bước 4 sẽ làm bản bấm được với độ chi tiết cao để thử với KOL.</p>
+
+    <div class="card wf">
+      <h3>W1 · Màn Đăng bài khi chưa có media <small>(bước 1, gói Free: chọn tối đa 3 nền tảng)</small></h3>
+      <div class="scroll" tabindex="0" role="region" aria-label="Wireframe W1, cuộn ngang"><div class="two">
+        <div class="wbox">
+          <div class="lbl">Cột soạn</div>
+          <div class="drop">Thả clip hoặc bộ ảnh vào đây<br><span class="wire">hoặc bấm để chọn từ máy</span></div>
+          <div class="lbl">Kênh đã nối</div>
+          <div class="row"><span class="av on">FBp</span><span class="av">FBg</span><span class="av on">IG</span><span class="av on">TT</span><span class="av">YT</span><span class="av">TH</span><span class="chip">+ Nối kênh</span></div>
+          <span class="wire">3 / 3 nền tảng của gói Free</span>
+        </div>
+        <div class="wbox plain">
+          <div class="lbl">Cột preview</div>
+          <div class="phone"><span class="tagl">chưa có media</span></div>
+          <div class="lbl">Bài gần đây</div>
+          <div class="row"><span class="thumb">clip</span><span class="st ok">Đã đăng 3/3</span><span class="thumb">ảnh</span><span class="st wait">Sắp đăng 20:00</span></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="card wf">
+      <h3>W2 · Soạn và preview một clip dọc <small>(bước 3 đến 7, gói Pro)</small></h3>
+      <div class="scroll" tabindex="0" role="region" aria-label="Wireframe W2, cuộn ngang"><div class="two">
+        <div class="wbox">
+          <div class="lbl">Media</div>
+          <div class="row"><span class="thumb">0:42</span><span class="wire">clip-review-serum.mp4 · video dọc 9:16</span></div>
+          <div class="lbl">Kênh</div>
+          <div class="row"><span class="av on">FBp</span><span class="av on">FBg</span><span class="av on">IG</span><span class="av on">TT</span><span class="av on">YT</span></div>
+          <div class="lbl">Caption</div>
+          <div class="row"><span class="chip">Chung</span><span class="chip">FB Profile</span><span class="chip">FB Group</span><span class="chip on">Instagram</span><span class="chip">TikTok</span><span class="chip">YT Shorts</span></div>
+          <div class="wbox plain"><div class="lines"><i style="width:96%"></i><i style="width:88%"></i><i style="width:60%"></i></div><span class="wire">132 / 2.200 ký tự</span></div>
+          <div class="lbl">Bình luận đầu tiên (affiliate)</div>
+          <div class="wbox plain"><span class="wire">Link mua đây nè 👉 [link affiliate]</span></div>
+          <div class="row"><span class="btn">Lưu nháp</span><span class="btn">Hẹn giờ</span><span class="btn pri">Duyệt và đăng ngay</span></div>
+        </div>
+        <div class="wbox plain">
+          <div class="lbl">Preview</div>
+          <div class="row"><span class="chip">FB Profile</span><span class="chip">FB Group</span><span class="chip on">IG Reels</span><span class="chip">TikTok</span><span class="chip">Shorts</span></div>
+          <div class="phone"><span class="tagl">Instagram · Reels</span><div class="rail"><b></b><b></b><b></b></div><div class="safe"><span>vùng an toàn</span></div><div class="cap">2 tuần dùng thử, đây là thật lòng mình thấy… <b>xem thêm</b></div></div>
+          <div class="row"><span class="chip on">☑ Vùng an toàn</span><span class="chip">Ảnh bìa</span><span class="chip">Cắt khung</span></div>
+          <div class="warnbox">YouTube Shorts: tiêu đề vượt giới hạn ký tự của nền tảng; rút gọn trước khi duyệt.</div>
+          <div class="warnbox">TikTok: caption bị cắt sau dòng 1; ý "link ở bình luận" sẽ bị ẩn.</div>
+        </div>
+      </div></div>
+      <p class="notes">Bấm vào caption trên preview thì con trỏ nhảy về đúng ô ở cột soạn. Ở gói Free, hàng tab caption chỉ có "Chung"; các tab kênh hiện khoá, kèm một dòng nói Pro viết riêng từng kênh.</p>
+    </div>
+
+    <div class="card wf">
+      <h3>W3 · Ba kiểu preview <small>(bước 5)</small></h3>
+      <div class="scroll" tabindex="0" role="region" aria-label="Wireframe W3, cuộn ngang"><div class="trio">
+        <div><div class="feed"><div class="row"><span class="av">@</span><span class="wire">tenban · Facebook Profile</span></div><div class="lines"><i style="width:90%"></i><i style="width:50%"></i></div><div class="img"></div></div><span class="cap2">Ảnh đơn trên feed, khung 4:5</span></div>
+        <div><div class="feed"><div class="row"><span class="av">@</span><span class="wire">tenban · Instagram</span></div><div class="img"><span class="arr">›</span></div><div class="dots"><i class="on"></i><i></i><i></i><i></i></div><div class="lines"><i style="width:80%"></i></div></div><span class="cap2">Carousel: lướt ngang, có nút trước và sau, chấm trang</span></div>
+        <div><div class="phone"><span class="tagl">TikTok</span><div class="rail"><b></b><b></b><b></b></div><div class="safe"><span>vùng an toàn</span></div><div class="cap">Trước và sau 14 ngày… <b>thêm</b></div></div><span class="cap2">Video dọc 9:16, vùng an toàn có vạch chéo và nhãn, không chỉ đổi màu</span></div>
+      </div></div>
+    </div>
+
+    <div class="card wf">
+      <h3>W4 · Duyệt và hẹn giờ <small>(bước 7, gói Free chọn giờ ngoài 24 giờ tới)</small></h3>
+      <div class="wbox" style="max-width:420px">
+        <div class="row"><span class="chip">○ Đăng ngay</span><span class="chip on">● Hẹn giờ</span></div>
+        <div class="row"><span class="chip">Thứ Sáu 27/11</span><span class="chip">20:00</span></div>
+        <div class="warnbox">Gói Free chỉ hẹn trong 24 giờ tới. Chọn giờ sớm hơn, hoặc lên Pro để xếp lịch xa hơn.</div>
+        <div class="row"><span class="btn">Huỷ</span><span class="btn pri dis">Duyệt và hẹn 20:00</span></div>
+        <span class="notes">Nút duyệt tắt cho tới khi chọn giờ trong 24 giờ tới. Ở gói Pro, cùng màn này không có cảnh báo.</span>
+      </div>
+    </div>
+
+    <div class="card wf">
+      <h3>W5 · Danh sách trạng thái <small>(bước 8 và 9)</small></h3>
+      <div class="scroll" tabindex="0" role="region" aria-label="Wireframe W5, cuộn ngang"><table class="status" style="min-width:640px">
+        <thead><tr><th>Bài</th><th>FB Profile</th><th>FB Group</th><th>Instagram</th><th>TikTok</th><th>Shorts</th></tr></thead>
+        <tbody>
+          <tr><td>Review serum · clip</td><td><span class="st ok">Đã đăng</span></td><td><span class="st ok">Đã đăng</span></td><td><span class="st ok">Đã đăng</span></td><td><span class="st err">Lỗi · Thử lại</span></td><td><span class="st ok">Đã đăng</span></td></tr>
+          <tr><td>Ảnh hậu trường · 1 ảnh</td><td><span class="st ok">Đã đăng</span></td><td><span class="st wait">Đã bỏ qua</span></td><td><span class="st ok">Đã đăng</span></td><td>–</td><td>–</td></tr>
+          <tr><td>Unbox son mới · clip</td><td colspan="5"><span class="st draft">Nháp · chưa duyệt</span></td></tr>
+          <tr><td>Outfit tuần này · 6 ảnh</td><td><span class="st wait">Sắp đăng 20:00</span></td><td>–</td><td><span class="st wait">Sắp đăng 20:00</span></td><td><span class="st wait">Sắp đăng 20:00</span></td><td>–</td></tr>
+        </tbody>
+      </table></div>
+      <p class="notes">Bấm vào "Lỗi" để xem lý do bằng lời thường và ba lựa chọn: Thử lại, Sửa rồi thử lại, Bỏ qua kênh. Trạng thái có cả chữ, không chỉ có màu.</p>
+    </div>
+
+    <div class="card wf">
+      <h3>W6 · Trên điện thoại <small>(một cột, gói Pro)</small></h3>
+      <div class="scroll" tabindex="0" role="region" aria-label="Wireframe W6, cuộn ngang"><div class="mob">
+        <div class="mframe"><div class="lbl">1 · Chọn media</div><div class="drop" style="padding:24px 8px">Chọn clip hoặc ảnh từ thư viện máy</div><div class="row"><span class="av on">FBp</span><span class="av on">IG</span><span class="av on">TT</span><span class="av">YT</span></div></div>
+        <div class="mframe"><div class="lbl">2 · Caption</div><div class="row"><span class="chip">Chung</span><span class="chip on">IG</span><span class="chip">TT</span></div><div class="wbox plain"><div class="lines"><i></i><i style="width:85%"></i><i style="width:55%"></i></div></div><div class="wbox plain"><span class="wire">Bình luận affiliate</span></div><span class="btn pri" style="text-align:center">Xem preview</span></div>
+        <div class="mframe"><div class="lbl">3 · Preview, vuốt ngang</div><div class="phone" style="width:150px"><span class="tagl">IG Reels · 2/4</span><div class="safe"><span>vùng an toàn</span></div></div><div class="row" style="justify-content:center"><span class="btn">‹</span><span class="btn">›</span></div><span class="btn pri" style="text-align:center">Duyệt</span></div>
+      </div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>4. Quyết định và đường lỗi</h2>
+    <div class="card tbl" tabindex="0" role="region" aria-label="Bảng quyết định, cuộn ngang"><table>
+      <thead><tr><th>ID</th><th>Câu hỏi</th><th>Có</th><th>Không</th></tr></thead>
+      <tbody>
+        <tr><td class="n">D1</td><td>Có kênh dùng được không?</td><td>Sang bước 2</td><td>Nối kênh hoặc nối lại kênh (luồng riêng), rồi quay lại bước 1</td></tr>
+        <tr><td class="n">D2</td><td>Preview có cảnh báo không?</td><td>Sửa media hoặc caption, rồi xem lại bước 5</td><td>Sang bước 6</td></tr>
+        <tr><td class="n">D3</td><td>Đăng ngay?</td><td>Sang bước 8</td><td>Hẹn giờ: bài hiện "Sắp đăng", đến giờ thì sang bước 8</td></tr>
+        <tr><td class="n">D4</td><td>Mọi kênh đăng thành công?</td><td>Sang bước 9</td><td>Thử lại hoặc Sửa rồi thử lại: bước 8. Bỏ qua kênh: bước 9, kênh ghi "Đã bỏ qua"</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card tbl" tabindex="0" role="region" aria-label="Bảng đường lỗi, cuộn ngang"><table>
+      <thead><tr><th>Rủi ro</th><th>Nhận ra bằng</th><th>Phục hồi</th><th>Quay về</th></tr></thead>
+      <tbody>
+        <tr><td>Phiên đăng nhập hết hạn</td><td>Hệ thống từ chối phiên</td><td>Đăng nhập lại</td><td>Bước 1, đúng màn đang dở</td></tr>
+        <tr><td>Chưa có kênh dùng được, hoặc kênh cần nối lại</td><td>Màn Đăng bài kiểm danh sách kênh</td><td>Nối kênh (luồng riêng)</td><td>Bước 1</td></tr>
+        <tr><td>Tệp quá lớn, sai định dạng, đứt mạng</td><td>Lúc tải lên</td><td>Chọn tệp khác hoặc thử tải lại</td><td>Bước 2</td></tr>
+        <tr><td>Quá số nền tảng của gói</td><td>Lúc chọn kênh</td><td>Bỏ bớt hoặc nâng gói</td><td>Bước 3</td></tr>
+        <tr><td>Viết caption lỗi hoặc quá lâu</td><td>Lúc tạo caption</td><td>Thử lại hoặc tự viết</td><td>Bước 4</td></tr>
+        <tr><td>Bài sẽ hiện sai trên một nền tảng</td><td>Cảnh báo trong preview</td><td>Sửa media hoặc caption</td><td>Bước 5</td></tr>
+        <tr><td>Link affiliate sai định dạng</td><td>Kiểm ô nhập</td><td>Sửa link</td><td>Bước 6</td></tr>
+        <tr><td>Free hẹn ngoài 24 giờ tới</td><td>Lúc chọn giờ</td><td>Chọn giờ sớm hơn hoặc nâng gói</td><td>Bước 7</td></tr>
+        <tr><td>Người dùng đổi ý</td><td>Bấm Huỷ</td><td>Lưu thành Nháp, mở lại sau</td><td>Bước 5</td></tr>
+        <tr><td>Một kênh đăng lỗi</td><td>Kênh đó được ghi "Lỗi"</td><td>Thử lại, Sửa rồi thử lại, hoặc Bỏ qua kênh</td><td>Bước 8, hoặc bước 9 nếu bỏ qua</td></tr>
+        <tr><td>Còn lỗi sau khi thử</td><td>Danh sách trạng thái</td><td>Hỗ trợ</td><td>Kết thúc ở hỗ trợ</td></tr>
+      </tbody>
+    </table></div>
+
+    <p class="notes">Không bước nào dừng ở ngõ cụt. Lỗi ở bước nào thì những gì người dùng đã làm (media, kênh, caption) vẫn được giữ.</p>
+  </section>
+
+  <section>
+    <h2>5. Truy cập được (WCAG 2.2)</h2>
+    <div class="card pad"><ul>
+      <li><b>Bàn phím:</b> mọi thao tác kéo đều có cách khác (WCAG 2.5.7).
+        <ul>
+          <li>Đổi thứ tự ảnh bằng nút lên và xuống.</li>
+          <li>Cắt khung bằng phím mũi tên hoặc ô số.</li>
+          <li>Carousel có nút trước và sau.</li>
+          <li>Thả tệp luôn có nút "chọn từ máy".</li>
+        </ul>
+      </li>
+      <li><b>Thứ tự focus:</b> media, kênh, caption, bình luận affiliate, rồi các nút Duyệt. Tab preview đi sau cột soạn. Focus luôn nhìn thấy.</li>
+      <li><b>Nhãn và lỗi:</b> mỗi ô có nhãn. Lỗi nói đúng ô nào sai và cách sửa. Cảnh báo preview ghi tên nền tảng và việc cần làm.</li>
+      <li><b>Thông báo trạng thái:</b> "Đã đăng" và "Lỗi" được đọc lên mà không làm focus nhảy chỗ (status message).</li>
+      <li><b>Không dùng màu làm tín hiệu duy nhất:</b> vùng an toàn có vạch chéo và nhãn; trạng thái có chữ.</li>
+      <li><b>Kích thước và độ tương phản:</b> nút tối thiểu 24×24 px, tương phản đạt AA ở cả nền sáng và nền tối.</li>
+      <li><b>Chuyển động:</b> video trong preview tự phát không tiếng và có nút dừng. Chỉ khung đang xem được phát.</li>
+      <li><b>Màn hẹp:</b> ở 320 px nội dung vẫn đủ, nhờ bố cục một cột (W6).</li>
+    </ul></div>
+  </section>
+
+  <section>
+    <h2>6. Thước đo và sự kiện</h2>
+    <p class="notes">Chưa có số đo gốc, nên chưa đặt mục tiêu mới. Ngưỡng có nguồn lấy từ bước 2.</p>
+    <div class="card tbl" tabindex="0" role="region" aria-label="Bảng thước đo, cuộn ngang"><table>
+      <thead><tr><th>Thước đo</th><th>Tính từ sự kiện</th><th>Số gốc</th><th>Mục tiêu</th></tr></thead>
+      <tbody>
+        <tr><td>North Star: bài đăng nhiều kênh mỗi tuần</td><td>Số <code>post_id</code> có ≥ 2 <code>post_published</code> trong tuần</td><td>chưa có</td><td>đặt sau beta</td></tr>
+        <tr><td>Kích hoạt</td><td>≥ 3 <code>post_approved</code> trong 7 ngày đầu của một tài khoản mới</td><td>chưa có</td><td>≥ 35% (kế hoạch 10/11)</td></tr>
+        <tr><td>Đăng bài thứ hai trong 7 ngày</td><td><code>post_approved</code> thứ hai trong 7 ngày sau <code>post_published</code> đầu tiên</td><td>chưa có</td><td>đặt sau beta</td></tr>
+        <tr><td>Hoàn thành từng bước</td><td><code>media_uploaded</code> ÷ <code>compose_opened</code>, … , <code>post_approved</code> ÷ <code>caption_generated</code></td><td>chưa có</td><td>đặt sau beta</td></tr>
+        <tr><td>Preview có tác dụng</td><td>Số <code>post_id</code> có <code>post_edited_after_preview</code> ÷ số <code>post_id</code> có <code>preview_viewed</code></td><td>chưa có</td><td>đặt sau beta</td></tr>
+        <tr><td>Tốc độ</td><td>Trung vị thời gian từ <code>media_uploaded</code> tới <code>post_approved</code> của cùng <code>post_id</code></td><td>chưa có</td><td>đặt sau beta</td></tr>
+        <tr><td>Đăng lỗi</td><td><code>post_publish_failed</code> ÷ (<code>post_published</code> + <code>post_publish_failed</code>)</td><td>chưa có</td><td>đặt sau beta</td></tr>
+        <tr><td>Lên gói từ luồng này</td><td><code>upgrade_clicked</code> theo <code>trigger</code> (số kênh, caption riêng, giờ hẹn)</td><td>chưa có</td><td>đặt sau beta</td></tr>
+        <tr><td>Sửa nặng caption</td><td>Tỉ lệ bài có <code>caption_edit_ratio</code> > 40% trên <code>post_approved</code>, hoặc có ít nhất một <code>caption_regenerated</code></td><td>chưa có</td><td>≤ 25% từ tuần thứ 2 (kế hoạch 10/11)</td></tr>
+        <tr><td>Chi phí AI</td><td>Cộng <code>ai_cost_usd</code> của <code>caption_generated</code> theo workspace, lọc <code>plan</code> = free, mỗi tháng</td><td>chưa có</td><td>báo khi vượt $0,60 mỗi workspace Free (kế hoạch 10/11)</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card tbl" tabindex="0" role="region" aria-label="Bảng sự kiện, cuộn ngang"><table>
+      <thead><tr><th>Sự kiện</th><th>Bước</th><th>Bắn khi</th><th>Thuộc tính (không có email, tên hay chữ tự do)</th><th>Gửi từ</th></tr></thead>
+      <tbody>
+        <tr><td><code>compose_opened</code></td><td>1</td><td>màn Đăng bài hiện xong</td><td><code>channels_connected</code>, <code>plan</code></td><td>client</td></tr>
+        <tr><td><code>session_resumed</code></td><td>1 (phục hồi)</td><td>đăng nhập lại xong và về đúng màn</td><td><code>screen</code></td><td>client</td></tr>
+        <tr><td><code>channel_unavailable_shown</code></td><td>1, D1 (lỗi)</td><td>màn báo chưa có kênh dùng được</td><td><code>reason_code</code> (none_connected, needs_reconnect)</td><td>client</td></tr>
+        <tr><td><code>media_uploaded</code></td><td>2</td><td>tệp cuối cùng đã lưu</td><td><code>post_id</code>, <code>media_type</code>, <code>item_count</code>, <code>duration_bucket</code></td><td>server</td></tr>
+        <tr><td><code>media_upload_failed</code></td><td>2 (lỗi)</td><td>một tệp bị từ chối hoặc đứt</td><td><code>reason_code</code></td><td>server</td></tr>
+        <tr><td><code>channels_selected</code></td><td>3</td><td>aipub nhận danh sách kênh để viết caption</td><td><code>post_id</code>, <code>channel_count</code>, <code>platforms</code></td><td>server</td></tr>
+        <tr><td><code>plan_limit_hit</code></td><td>3, 7 (lỗi)</td><td>người dùng chạm giới hạn gói</td><td><code>limit_type</code></td><td>client</td></tr>
+        <tr><td><code>caption_generated</code></td><td>4</td><td>caption đã lưu</td><td><code>post_id</code>, <code>channel_count</code>, <code>plan</code>, <code>ai_cost_usd</code></td><td>server</td></tr>
+        <tr><td><code>caption_regenerated</code></td><td>4 (viết lại)</td><td>bản caption mới đã lưu sau khi người dùng bấm Viết lại</td><td><code>post_id</code>, <code>platform</code></td><td>server</td></tr>
+        <tr><td><code>caption_generation_failed</code></td><td>4 (lỗi)</td><td>viết lỗi hoặc quá thời gian</td><td><code>reason_code</code></td><td>server</td></tr>
+        <tr><td><code>preview_viewed</code></td><td>5</td><td>một khung preview hiện đủ</td><td><code>post_id</code>, <code>platform</code>, <code>format</code></td><td>client</td></tr>
+        <tr><td><code>preview_warning_shown</code></td><td>5</td><td>một cảnh báo hiện</td><td><code>post_id</code>, <code>platform</code>, <code>warning_type</code></td><td>client</td></tr>
+        <tr><td><code>post_edited_after_preview</code></td><td>5 (sửa)</td><td>chỉnh sửa đã lưu sau khi đã có <code>preview_viewed</code></td><td><code>post_id</code>, <code>edit_type</code></td><td>client</td></tr>
+        <tr><td><code>affiliate_comment_added</code></td><td>6</td><td>link hợp lệ đã lưu</td><td><code>post_id</code>, <code>channel_count</code></td><td>client</td></tr>
+        <tr><td><code>affiliate_link_rejected</code></td><td>6 (lỗi)</td><td>ô nhập báo link sai</td><td><code>reason_code</code></td><td>client</td></tr>
+        <tr><td><code>post_approved</code></td><td>7</td><td>lệnh duyệt đã lưu</td><td><code>post_id</code>, <code>mode</code> (now, scheduled), <code>channel_count</code>, <code>plan</code>, <code>caption_edit_ratio</code></td><td>server</td></tr>
+        <tr><td><code>post_saved_as_draft</code></td><td>7 (huỷ)</td><td>nháp đã lưu</td><td><code>post_id</code></td><td>server</td></tr>
+        <tr><td><code>draft_reopened</code></td><td>7 (phục hồi)</td><td>nháp mở lại ở bước 5</td><td><code>post_id</code></td><td>client</td></tr>
+        <tr><td><code>upgrade_clicked</code></td><td>3, 5, 7</td><td>mở trang nâng gói từ luồng này</td><td><code>trigger</code></td><td>client</td></tr>
+        <tr><td><code>post_published</code></td><td>8</td><td>kênh đó được ghi "Đã đăng"</td><td><code>post_id</code>, <code>platform</code>, <code>format</code></td><td>server</td></tr>
+        <tr><td><code>post_publish_failed</code></td><td>8 (lỗi)</td><td>kênh đó được ghi "Lỗi"</td><td><code>post_id</code>, <code>platform</code>, <code>reason_code</code></td><td>server</td></tr>
+        <tr><td><code>post_retry_requested</code></td><td>8 (phục hồi)</td><td>lệnh thử lại đã lưu</td><td><code>post_id</code>, <code>platform</code>, <code>after_edit</code></td><td>server</td></tr>
+        <tr><td><code>post_channel_skipped</code></td><td>8 (bỏ qua)</td><td>kênh đó được ghi "Đã bỏ qua"</td><td><code>post_id</code>, <code>platform</code></td><td>server</td></tr>
+        <tr><td><code>status_viewed</code></td><td>9</td><td>danh sách trạng thái hiện xong</td><td><code>has_failed</code></td><td>client</td></tr>
+        <tr><td><code>support_opened</code></td><td>9 (kết thúc ở hỗ trợ)</td><td>trang Hỗ trợ mở từ danh sách trạng thái</td><td><code>post_id</code>, <code>has_failed</code></td><td>client</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>7. Rà soát</h2>
+    <div class="card pad">
+      <p><b>Kiểm theo ISO 9241-110 và WCAG, 25/11/2026, trên bảng luồng và wireframe (chưa có người dùng thật):</b></p>
+      <ul>
+        <li><b>Hợp việc:</b> từ tải lên tới duyệt nằm trên một màn, không cần mở lịch. Đạt.</li>
+        <li><b>Tự giải thích:</b> preview cho thấy bài sẽ trông thế nào; cảnh báo ghi nền tảng và việc cần làm. Đạt.</li>
+        <li><b>Đúng kỳ vọng:</b> khung giống feed thật; nút ghi đúng việc sẽ xảy ra ("Duyệt và đăng ngay", "Duyệt và hẹn 20:00"). Đạt.</li>
+        <li><b>Dễ học:</b> màn trống (W1) chỉ ra việc đầu tiên. Lần đầu dùng có cần hướng dẫn thêm không thì chưa biết. <span class="tag q">[?]</span></li>
+        <li><b>Kiểm soát được:</b> chưa duyệt thì không đăng; Huỷ giữ nháp; kênh lỗi có thể bỏ qua.
+          <ul>
+            <li><b>Nên sửa:</b> sau "Đăng ngay" chưa có cách hoàn tác. Đề xuất vài giây để huỷ. <span class="tag q">[?] owner</span></li>
+          </ul>
+        </li>
+        <li><b>Chịu lỗi:</b> mọi nhánh lỗi đều có đường quay lại, và giữ những gì người dùng đã làm.
+          <ul>
+            <li><b>Nên sửa:</b> trên điện thoại, mất mạng lúc tải clip dài cần tải tiếp từ chỗ đứt. Chưa rõ có làm được không. <span class="tag q">[?]</span></li>
+          </ul>
+        </li>
+        <li><b>Gắn bó:</b> đây là đặt cược của owner về trải nghiệm thị giác. Chưa đo được; sẽ thử ở bước 4.</li>
+        <li><b>WCAG:</b> các thao tác kéo đã có cách khác; vùng an toàn không chỉ dùng màu; trạng thái có chữ.</li>
+      </ul>
+      <p><b>Thử với người dùng:</b> chưa làm. Bước 4 dựng bản bấm được và giao 3–5 KOL việc "đăng clip này lên 4 kênh".</p>
+      <p><b>Câu hỏi mở:</b></p>
+      <ul>
+        <li>Giới hạn dung lượng và độ dài tệp là bao nhiêu?</li>
+        <li>Có bắt buộc xem preview trước khi duyệt không?</li>
+        <li>Có cho hoàn tác sau "Đăng ngay" không?</li>
+        <li>Có tải tiếp được khi mất mạng không?</li>
+        <li>Hai điểm của bước 2 vẫn chờ owner chốt: gói Free có preview đầy đủ không, và tự bình luận affiliate có nằm trong bản đầu không.</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="notes">Bản công khai: không mô tả hạ tầng hay cách aipub đăng bài; trang sản phẩm chỉ nói "đăng qua aipub". Nội dung mẫu ("Review serum", "@tenban") là giả. Cập nhật 25/11/2026 · <a href="../index.html">về mục lục báo cáo</a></p>
+</main>
+</body>
+</html>
