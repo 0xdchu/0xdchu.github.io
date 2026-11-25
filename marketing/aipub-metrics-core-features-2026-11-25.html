@@ -1,0 +1,511 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>aipub web app: thước đo thành công và Core Features (bước 2, 2026-11-25)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--fg:#1a1a1a;--muted:#666;--line:#e5e5e5;--bg:#fff;--accent:#1d4ed8;--soft:#f6f7f9;--col-odd:#faf8f5;--col-even:#ffffff;--th-odd:#f1ede6;--th-even:#e8edf5}
+@media (prefers-color-scheme:dark){:root{--fg:#e8e8e8;--muted:#9a9a9a;--line:#333;--bg:#121212;--accent:#7aa2ff;--soft:#1c1c1c;--col-odd:#1a1917;--col-even:#121212;--th-odd:#24221f;--th-even:#1c2026}}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.65 "Be Vietnam Pro",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--fg);background:var(--bg)}
+main{max-width:980px;margin:0 auto;padding:24px 18px 80px}
+a{color:var(--accent)}
+h1{font-size:1.7rem;line-height:1.3;margin:.2em 0 .6em}
+h2{font-size:1.3rem;margin:1.8em 0 .6em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.4em 0 .4em}
+p,li{max-width:75ch}
+code{font:.88em "JetBrains Mono",ui-monospace,monospace;background:var(--soft);padding:.1em .35em;border-radius:4px}
+pre{background:var(--soft);padding:12px;border-radius:8px;overflow:auto}
+pre code{background:none;padding:0}
+img{max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block;margin:1em 0;background:#fff}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:.92rem;line-height:1.55}
+th,td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:anywhere;word-break:normal}
+th:last-child,td:last-child{border-right:none}
+td:nth-child(odd){background:var(--col-odd)}
+td:nth-child(even){background:var(--col-even)}
+th{position:sticky;top:0;font-weight:600}
+th:nth-child(odd){background:var(--th-odd)}
+th:nth-child(even){background:var(--th-even)}
+tr:last-child td{border-bottom:none}
+blockquote{margin:1em 0;padding:.4em 1em;border-left:3px solid var(--accent);background:var(--soft)}
+.top{font-size:.9rem;color:var(--muted);margin-bottom:12px}
+.src{font-size:.85rem;color:var(--muted);margin-top:40px;border-top:1px solid var(--line);padding-top:12px}
+.list li{margin:.35em 0}
+.date{color:var(--muted);font-size:.85rem;margin-left:.4em}
+.group{margin-top:1.6em}
+</style></head><body><main><div class="top"><a href="../index.html">← Tất cả báo cáo</a></div><h1>aipub web app: thước đo thành công và Core Features (bước 2, 2026-11-25)</h1>
+<p>Đây là bước 2 trong <a href="https://0xdchu.github.io/marketing/aipub-product-loop-2026-11-25.html">vòng lặp sản phẩm aipub</a>. Bước 1 (ICP) nằm ở <a href="aipub-homepage-icp-changes-2026-11-25.html">ICP và thay đổi chữ trên trang chủ</a>.</p>
+<h2>Nguồn</h2>
+<ul>
+<li><strong>Owner, ngày 25/11/2026:</strong><ul>
+<li>KOL, KOC, influencer đã có sẵn clip hoặc bộ ảnh; việc khó là đăng lên từng nơi;</li>
+<li>màn hình chính gồm một cột soạn và một cột preview theo từng nền tảng (ảnh đơn, carousel, Reels);</li>
+<li>trải nghiệm thị giác là thứ giữ chân nhà sáng tạo;</li>
+<li>thương hiệu và agency ở Việt Nam cũng dùng link affiliate.</li>
+</ul>
+</li>
+<li><strong>Trang chủ</strong> <a href="https://www.aipub.social/vn/">aipub.social/vn</a> và <a href="https://www.aipub.social/">aipub.social</a>, mục bảng giá, đọc lại ngày 25/11/2026.</li>
+<li><strong>Kế hoạch PM ngày 10/11:</strong> <a href="https://0xdchu.github.io/pm/aipub-social-2026-11-10.html">aipub-social-2026-11-10</a>, có North Star, ngưỡng kích hoạt và các giả thuyết rủi ro.</li>
+<li><strong>Luồng người dùng ngày 19/11:</strong> <a href="https://0xdchu.github.io/research/aipub-user-flow-2026-11-19.html">aipub-user-flow-2026-11-19</a>.</li>
+<li><strong>Giao diện Publer và Postiz:</strong> xem tận nơi ngày 25/11.<ul>
+<li>Publer: tài khoản gói Free, chưa nối kênh nào.</li>
+<li>Postiz: bản mã nguồn mở chạy trên máy, với kênh giả.</li>
+<li>Ảnh chụp để riêng, không đăng.</li>
+</ul>
+</li>
+</ul>
+<p>Nhãn:</p>
+<ul>
+<li><strong>[O]</strong> owner nói;</li>
+<li><strong>[V]</strong> có nguồn ghi kèm;</li>
+<li><strong>[ĐX]</strong> đề xuất, chờ owner chốt;</li>
+<li><strong>[?]</strong> chưa biết.</li>
+</ul>
+<p>Bài không nói gì về cách aipub đăng bài, chỉ ghi "đăng qua aipub".</p>
+<h2>0. Trả lời ngắn</h2>
+<div class="tw"><table style="table-layout:fixed;min-width:484px"><colgroup><col style="width:158px"><col style="width:326px"></colgroup>
+<thead>
+<tr>
+<th>Câu hỏi</th>
+<th>Trả lời</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Đo thành công bằng gì?</td>
+<td><strong>North Star [ĐX]:</strong> số bài đăng nhiều kênh thành công mỗi tuần. Một bài được tính khi một clip hoặc bộ ảnh đã duyệt và lên ít nhất 2 kênh. <br>Đi kèm ba thước đo: <br>• tỉ lệ kích hoạt; <br>• tỉ lệ đăng bài thứ hai trong 7 ngày, để kiểm giả thuyết của owner về trải nghiệm thị giác; <br>• tỉ lệ người dùng sửa bài sau khi xem preview.</td>
+</tr>
+<tr>
+<td>Bản này phải có gì?</td>
+<td><strong>9 tính năng P0:</strong> <br>• tải clip hoặc bộ ảnh lên; <br>• chọn kênh; <br>• caption; <br>• preview giống thật cho ảnh đơn, carousel và video dọc, kèm cảnh báo; <br>• duyệt rồi đăng ngay hoặc hẹn giờ; <br>• danh sách trạng thái bài; <br>• tự bình luận kèm link affiliate; <br>• dùng tốt trên điện thoại; <br>• đo sự kiện. <br>Thư viện media, sửa thẻ giọng, team và analytics để sau (mục 3).</td>
+</tr>
+<tr>
+<td>Gắn với gói thế nào?</td>
+<td><strong>Theo bảng giá đang có trên trang chủ [V]</strong>, chỉ thêm một đề xuất: <strong>preview đầy đủ có ở mọi gói, kể cả Free [ĐX].</strong> <br>Preview là thứ đang đặt cược để giữ chân người dùng; khoá nó lại thì không đo được giả thuyết. <br>Ở gói Free, preview còn cho người dùng thấy một caption chung bị cắt ở đâu trên từng mạng. Đó là lý do tự nhiên để nâng lên Pro, gói có caption riêng cho từng kênh (mục 4).</td>
+</tr>
+<tr>
+<td>Owner cần chốt gì?</td>
+<td>4 điểm ở mục 6. Điểm lớn nhất: đổi North Star, và cho gói Free xem preview đầy đủ.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>1. Thay đổi so với kế hoạch PM ngày 10/11</h2>
+<div class="tw"><table style="table-layout:fixed;min-width:693px"><colgroup><col style="width:90px"><col style="width:175px"><col style="width:220px"><col style="width:208px"></colgroup>
+<thead>
+<tr>
+<th></th>
+<th>Kế hoạch 10/11 [V]</th>
+<th>Bây giờ</th>
+<th>Hệ quả</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Khách chính</td>
+<td>Chủ shop, SME nhỏ</td>
+<td>KOL, KOC, influencer và đội của họ [O]. Nhãn gói trên trang chủ đã đổi theo [V]</td>
+<td>Đơn vị giá trị là một clip hoặc bộ ảnh đăng lên nhiều nơi</td>
+</tr>
+<tr>
+<td>Đầu vào</td>
+<td>Một ý tưởng thô</td>
+<td>Clip hoặc bộ ảnh đã làm xong [O]</td>
+<td>Thời gian từ lúc tải lên tới lúc duyệt quan trọng hơn chất lượng bản nháp đầu</td>
+</tr>
+<tr>
+<td>Đặt cược</td>
+<td>Đọc đúng giọng, bấm duyệt rồi mới đăng</td>
+<td>Vẫn viết theo giọng người dùng và duyệt mới đăng; thêm preview giống thật trên từng nền tảng [O]</td>
+<td>Phải đo việc xem preview và việc sửa sau khi xem</td>
+</tr>
+<tr>
+<td>Giá</td>
+<td>Free $0, Pro $8, Business $40, thêm brand $10</td>
+<td>Trang chủ ngày 25/11 [V]: Free 0đ, Pro 399.000đ ($16), Business 1.990.000đ ($80), thêm brand 299.000đ ($10)</td>
+<td>Mục 4 lấy theo trang chủ</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Đổi ưu tiên so với kế hoạch 10/11 [ĐX]:</strong></p>
+<ul>
+<li><strong>Tự bình luận kèm link affiliate:</strong> từ LATER (L1) lên P0. Trang chủ đang bán tính năng này ở gói Pro [V]. Thương hiệu và agency ở Việt Nam cũng dùng link affiliate [O]. File ICP cho rằng đây là thu nhập hằng ngày của KOL [ĐX].</li>
+<li><strong>Sửa thẻ giọng trên màn soạn:</strong> từ P0 (spec 2, P0-1) xuống P1. Caption vẫn viết theo thẻ giọng nháp; với KOL đã có clip, việc gấp hơn là đăng đúng trên từng mạng.</li>
+</ul>
+<p><strong>Vẫn giữ [V]:</strong></p>
+<ul>
+<li>bài chưa duyệt thì không đăng;</li>
+<li>không đếm credit, không giới hạn số bài;</li>
+<li>không làm hộp thư chat, trình quản lý quảng cáo hay dashboard BI trong bản đầu.</li>
+</ul>
+<h2>2. Thước đo thành công</h2>
+<p>Chưa có số đo gốc (baseline), nên chỉ ghi ngưỡng khi đã có nguồn. Ô ghi "đặt sau beta" sẽ được điền sau 30 ngày beta.</p>
+<div class="tw"><table style="table-layout:fixed;min-width:703px"><colgroup><col style="width:153px"><col style="width:220px"><col style="width:165px"><col style="width:165px"></colgroup>
+<thead>
+<tr>
+<th>Thước đo</th>
+<th>Định nghĩa</th>
+<th>Ngưỡng</th>
+<th>Nguồn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>North Star:</strong> bài đăng nhiều kênh mỗi tuần</td>
+<td>Số clip hoặc bộ ảnh đã duyệt và lên ≥ 2 kênh thành công trong tuần</td>
+<td>Đặt sau beta</td>
+<td>[ĐX], thay cho WAPP ngày 10/11 (bài đúng giọng được duyệt và lên sóng)</td>
+</tr>
+<tr>
+<td>Kích hoạt</td>
+<td>% tài khoản mới có ≥ 3 bài được duyệt trong 7 ngày đầu</td>
+<td>≥ 35%. Trong 100 đăng ký đầu, dưới 20% là bác bỏ giả thuyết giá trị</td>
+<td>[V] kế hoạch 10/11, mục 1.2 và giả thuyết H-V1</td>
+</tr>
+<tr>
+<td>Quay lại đăng bài thứ hai</td>
+<td>% tài khoản đã đăng bài đầu tiên và đăng bài thứ hai trong 7 ngày</td>
+<td>Đặt sau beta</td>
+<td>[ĐX], kiểm giả thuyết của owner</td>
+</tr>
+<tr>
+<td>Giữ chân tuần 4</td>
+<td>% tài khoản kích hoạt còn đăng bài ở tuần thứ 4</td>
+<td>Đặt sau beta</td>
+<td>[ĐX]</td>
+</tr>
+<tr>
+<td>Preview có tác dụng</td>
+<td>% bài có ít nhất một lần sửa (cắt khung, caption, ảnh bìa, thứ tự ảnh) <strong>sau khi</strong> xem preview</td>
+<td>Đặt sau beta</td>
+<td>[ĐX]; cho biết preview có bắt được lỗi thật không</td>
+</tr>
+<tr>
+<td>Tốc độ</td>
+<td>Thời gian trung vị từ lúc tải media lên tới lúc bấm duyệt</td>
+<td>Đặt sau beta</td>
+<td>[ĐX]</td>
+</tr>
+<tr>
+<td>Lên gói trả tiền</td>
+<td>% trong 100 đăng ký đầu lên gói trả tiền sau 30 ngày</td>
+<td>Dưới 3% là bác bỏ</td>
+<td>[V] kế hoạch 10/11, H-V1</td>
+</tr>
+<tr>
+<td><strong>Giới hạn: đăng lỗi</strong></td>
+<td>% lượt đăng lên một kênh bị lỗi</td>
+<td>Đặt sau beta</td>
+<td>[ĐX]</td>
+</tr>
+<tr>
+<td><strong>Giới hạn: sửa nặng</strong></td>
+<td>% bản caption đầu bị sửa &gt; 40% ký tự hoặc phải tạo lại</td>
+<td>≤ 25% từ tuần thứ 2</td>
+<td>[V] kế hoạch 10/11, mục 7.1</td>
+</tr>
+<tr>
+<td><strong>Giới hạn: chi phí AI</strong></td>
+<td>Chi phí AI trung bình mỗi workspace Free đang hoạt động mỗi tháng</td>
+<td>Báo cho owner khi vượt $0,60</td>
+<td>[V] kế hoạch 10/11, mục 7.1</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Sự kiện cần ghi để tính các số trên</strong> (đưa vào Data Map ở bước 5):</p>
+<ul>
+<li>tải lên bắt đầu và xong, kèm loại media (ảnh đơn, bộ ảnh, video dọc);</li>
+<li>chọn kênh;</li>
+<li>caption đã tạo;</li>
+<li>mở preview, kèm nền tảng và kiểu bài;</li>
+<li>cảnh báo đã hiện;</li>
+<li>chỉnh cắt khung, sửa caption, đổi ảnh bìa, đổi thứ tự ảnh;</li>
+<li>duyệt, kèm đăng ngay hay hẹn giờ;</li>
+<li>đăng thành công hoặc lỗi trên từng kênh;</li>
+<li>bấm nâng gói, đổi gói;</li>
+<li>chi phí AI mỗi lần tạo caption.</li>
+</ul>
+<h2>3. Core Features chia mức ưu tiên</h2>
+<p>Cách chia:</p>
+<ul>
+<li><strong>P0</strong> là thứ phải có để KOL làm trọn việc "đăng clip này lên các kênh của tôi" và để đo được mục 2.</li>
+<li><strong>P1</strong> làm ngay sau khi P0 chạy.</li>
+<li><strong>P2</strong> để sau.</li>
+</ul>
+<h3>P0: bản này</h3>
+<div class="tw"><table style="table-layout:fixed;min-width:658px"><colgroup><col style="width:52px"><col style="width:231px"><col style="width:210px"><col style="width:165px"></colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Tính năng</th>
+<th>Vì sao P0</th>
+<th>Nguồn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Tải clip hoặc bộ ảnh lên (kéo thả, chọn từ điện thoại), xếp lại thứ tự ảnh</td>
+<td>Đầu vào của ICP là media đã làm xong</td>
+<td>[O]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Chọn kênh bằng hàng avatar, nhớ lần chọn trước. Facebook Profile, Page và Group hiện tách riêng</td>
+<td>Trang chủ ghi Facebook có Profile. ICP đề xuất coi đủ ba loại là điểm khác biệt chính</td>
+<td>[V] trang chủ; [ĐX] ICP 25/11</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Caption theo giọng người dùng: một caption chung, và caption riêng từng kênh ở gói Pro trở lên</td>
+<td>Tính năng lõi; caption riêng là quyền lợi của Pro trên bảng giá</td>
+<td>[V] trang chủ</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Preview giống thật</strong> từng nền tảng: <br>• ảnh đơn trên feed; <br>• carousel lướt ngang có chấm trang; <br>• video dọc (Reels, TikTok, Shorts, Facebook Reels) có lớp vùng an toàn; <br>• caption cắt ở chỗ "xem thêm"; <br>• cắt khung theo tỉ lệ, kéo để chỉnh; <br>• chọn ảnh bìa video. <br>Kèm <strong>cảnh báo</strong>: caption bị cắt ở dòng nào, ảnh sai tỉ lệ, vượt giới hạn ký tự hoặc số ảnh của nền tảng</td>
+<td>Đặt cược giữ chân của owner (xem ghi chú dưới bảng)</td>
+<td>[O]</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Duyệt rồi Đăng ngay hoặc Hẹn giờ. Gói Free hẹn trong 24 giờ tới</td>
+<td>Bài chưa duyệt thì không đăng</td>
+<td>[V] kế hoạch 10/11; trang chủ</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Danh sách trạng thái: Sắp đăng, Đã đăng, Lỗi. Mỗi bài một dòng kèm icon từng kênh, bấm để thử lại</td>
+<td>Sau khi đăng, KOL cần kiểm cái này, không cần lịch</td>
+<td>[ĐX]</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Tự bình luận kèm link affiliate (gói Pro trở lên)</td>
+<td>Trang chủ đang bán ở Pro. Theo file ICP, thu nhập affiliate là việc hằng ngày của KOL</td>
+<td>[V] trang chủ; [ĐX] ICP 25/11; [O] thương hiệu và agency cũng dùng</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Dùng tốt trên điện thoại: một cột, preview là thẻ toàn màn hình vuốt ngang</td>
+<td>Clip của KOL nằm sẵn trên điện thoại</td>
+<td>[ĐX]</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Ghi sự kiện ở mục 2 và chi phí AI theo từng workspace</td>
+<td>Không có thì không biết vòng sau sửa gì</td>
+<td>[V] kế hoạch 10/11 (N3)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Ghi chú về preview của đối thủ</strong> (theo ảnh chụp ngày 25/11):</p>
+<ul>
+<li><strong>Postiz</strong> đã có preview theo từng mạng trong tab của mỗi kênh, ví dụ thẻ Instagram có mũi tên carousel và khung dọc của TikTok. Tab chung "Global Edit" chỉ hiện một thẻ chữ và lưới ảnh. Postiz có đếm ký tự theo kênh, ví dụ "72/2000". Trong các ảnh đã chụp, chưa thấy lớp vùng an toàn, chỗ cắt "xem thêm" hay cảnh báo sai tỉ lệ ảnh.</li>
+<li><strong>Publer:</strong> chưa xem được preview theo từng mạng vì tài khoản chưa nối kênh.</li>
+</ul>
+<p>Vậy preview theo từng mạng không phải điểm khác biệt. Đếm ký tự cũng không phải, vì Postiz đã có. Khác biệt aipub cần đạt là <strong>độ giống thật</strong> (vùng an toàn, chỗ cắt "xem thêm", cắt khung) <strong>và cảnh báo vượt ra ngoài đếm ký tự</strong> [ĐX]. Bước 4 (thử với KOL) sẽ kiểm điều này.</p>
+<h3>P1: ngay sau P0</h3>
+<div class="tw"><table style="table-layout:fixed;min-width:395px"><colgroup><col style="width:175px"><col style="width:220px"></colgroup>
+<thead>
+<tr>
+<th>Tính năng</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lịch: xem theo tuần và tháng, kéo để dời giờ</td>
+<td>Trang chủ ghi "Lịch đăng, sửa lịch bất cứ lúc nào" ở gói Pro [V]. Đội của celeb và agency (ICP nhóm 2) cần. Publer và Postiz đều lấy lịch làm trung tâm</td>
+</tr>
+<tr>
+<td>Thư viện media</td>
+<td>Dùng lại clip cũ. Postiz cho chọn nhiều tệp và đánh số thứ tự; Publer khoá Media ở gói Free</td>
+</tr>
+<tr>
+<td>Sửa thẻ giọng ngay trên màn soạn</td>
+<td>Spec 2 (P0-1) của kế hoạch 10/11, dời xuống P1 (mục 1)</td>
+</tr>
+<tr>
+<td>Team, duyệt qua Telegram hoặc Discord</td>
+<td>Gói Business trên trang chủ [V]</td>
+</tr>
+<tr>
+<td>Nhiều brand</td>
+<td>Thêm brand 299.000đ/tháng ở gói Business [V]</td>
+</tr>
+<tr>
+<td>Chấm điểm trước khi đăng (pre-flight)</td>
+<td>Trang chủ tiếng Anh đã hứa: "Scores each post and checks it per network". Cảnh báo ở P0 #4 là phần đầu; P1 thêm điểm số</td>
+</tr>
+<tr>
+<td>Giờ khán giả online</td>
+<td>Trang chủ đã hứa: "When your audience is online". Cần dữ liệu từ kênh của người dùng</td>
+</tr>
+</tbody>
+</table></div>
+<p>Hai tính năng cuối đã có trên trang chủ. Nếu bản ra mắt chưa có, nên đánh dấu "sắp có" trên trang chủ cho khớp [ĐX].</p>
+<h3>P2: để sau</h3>
+<div class="tw"><table style="table-layout:fixed;min-width:330px"><colgroup><col style="width:165px"><col style="width:165px"></colgroup>
+<thead>
+<tr>
+<th>Tính năng</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Analytics theo bài</td>
+<td>Gói Business trên trang chủ [V]</td>
+</tr>
+<tr>
+<td>Bài lặp lại, đăng lại bài cũ, nhập CSV hàng loạt</td>
+<td>Publer có. KOL ít cần hơn shop</td>
+</tr>
+<tr>
+<td>Chat với AI để lên lịch</td>
+<td>Postiz có</td>
+</tr>
+<tr>
+<td>Báo cáo chiến dịch gửi nhãn hàng</td>
+<td>Có thể hợp với KOL nhận booking [?]; cần hỏi KOL thật trước</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Không làm trong bản này</h3>
+<p>Theo kế hoạch 10/11 [V]:</p>
+<ul>
+<li>hộp thư chat đa kênh, trình quản lý quảng cáo, dashboard BI (mục 1.4);</li>
+<li>đồng hồ đếm credit (mục 1.4);</li>
+<li>tạo video bằng AI (ranh giới của spec 2).</li>
+</ul>
+<p>Phần hệ thống phía sau (reel tự động, ads, SEO) là sản phẩm khác [O].</p>
+<h2>4. Gắn tính năng với gói</h2>
+<p>Bảng dưới lấy theo bảng giá trên trang chủ ngày 25/11 [V]. Ô có [ĐX] là phần thêm vào.</p>
+<div class="tw"><table style="table-layout:fixed;min-width:661px"><colgroup><col style="width:165px"><col style="width:91px"><col style="width:135px"><col style="width:135px"><col style="width:135px"></colgroup>
+<thead>
+<tr>
+<th>Tính năng</th>
+<th>Free (0đ)</th>
+<th>Pro (399.000đ/tháng)</th>
+<th>Business (1.990.000đ/tháng)</th>
+<th>DF Partner (báo giá)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Số nền tảng (chọn từ 13 kênh)</td>
+<td>3</td>
+<td>5</td>
+<td>13</td>
+<td>Tất cả</td>
+</tr>
+<tr>
+<td>Tải lên, chọn kênh, caption chung, duyệt, trạng thái bài, dùng trên điện thoại</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>Đội DF làm hộ</td>
+</tr>
+<tr>
+<td><strong>Preview đầy đủ kèm cảnh báo</strong></td>
+<td>✓ [ĐX]</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Hẹn giờ</td>
+<td>Trong 24 giờ tới</td>
+<td>Lịch đăng, sửa bất cứ lúc nào</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Caption riêng cho từng kênh</td>
+<td>–</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Tự bình luận link affiliate</td>
+<td>–</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Thư viện media (P1)</td>
+<td>[?]</td>
+<td>[?]</td>
+<td>[?]</td>
+<td>[?]</td>
+</tr>
+<tr>
+<td>Team, duyệt qua Telegram hoặc Discord</td>
+<td>–</td>
+<td>–</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Thêm brand 299.000đ/tháng</td>
+<td>–</td>
+<td>–</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Analytics</td>
+<td>–</td>
+<td>–</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Hỗ trợ 1-1</td>
+<td>–</td>
+<td>–</td>
+<td>–</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table></div>
+<p>Nguyên tắc [ĐX]: gói trả tiền mở thêm <strong>độ phủ</strong> (số kênh, caption riêng từng kênh, nhiều brand) và <strong>quy mô</strong> (team, analytics). Gói trả tiền không khoá thứ làm người dùng quay lại, tức là preview. Nguyên tắc này khớp với cách thu tiền ghi trong kế hoạch 10/11: thu theo độ rộng kênh và quy mô vận hành, không đếm bài [V].</p>
+<h2>5. Kiểm chứng</h2>
+<div class="tw"><table style="table-layout:fixed;min-width:571px"><colgroup><col style="width:207px"><col style="width:222px"><col style="width:142px"></colgroup>
+<thead>
+<tr>
+<th>Câu hỏi</th>
+<th>Cách rẻ nhất</th>
+<th>Khi nào</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Preview giống thật và cảnh báo có làm KOL đăng nhanh hơn và sửa đúng chỗ không</td>
+<td>Bản bấm được cho màn soạn và preview. Giao 3–5 KOL việc "đăng clip này lên 4 kênh", đo thời gian và đếm chỗ họ bị kẹt</td>
+<td>Bước 4 của vòng lặp</td>
+</tr>
+<tr>
+<td>Preview có giữ chân không</td>
+<td>So tỉ lệ đăng bài thứ hai trong 7 ngày giữa người có mở preview và người không mở, trong 30 ngày beta</td>
+<td>Sau khi deploy beta</td>
+</tr>
+<tr>
+<td>Preview ở gói Free có đẩy người dùng lên Pro không</td>
+<td>Đếm lượt bấm nâng gói ngay sau khi người dùng thấy cảnh báo caption bị cắt</td>
+<td>Trong beta</td>
+</tr>
+</tbody>
+</table></div>
+<p>Độ tin cậy: <strong>trung bình.</strong> Thước đo và mức ưu tiên dựa trên định hướng của owner, trang chủ, kế hoạch trước đó và giao diện đối thủ. Chưa có dữ liệu người dùng aipub.</p>
+<h2>6. Owner cần chốt</h2>
+<ol>
+<li><strong>North Star mới:</strong> đổi từ "bài đúng giọng được duyệt" sang "bài đăng nhiều kênh mỗi tuần"?</li>
+<li><strong>Gói Free:</strong> cho xem preview đầy đủ kèm cảnh báo như đề xuất ở đây?</li>
+<li><strong>Đổi ưu tiên:</strong> đưa tự bình luận affiliate lên P0, dời sửa thẻ giọng xuống P1?</li>
+<li><strong>"+9" trên bảng giá nghĩa là gì?</strong> Trang chủ ghi "Chọn từ 13 kênh +9" ở mọi gói; người đọc không hiểu số này (cũng là điểm 5 trong file ICP). Ngoài ra, thư viện media thuộc gói nào?</li>
+</ol><div class="src">Nguồn: <code>marketing/aipub-metrics-core-features-2026-11-25.md</code> (bản .md cho agent đọc)</div></main></body></html>
