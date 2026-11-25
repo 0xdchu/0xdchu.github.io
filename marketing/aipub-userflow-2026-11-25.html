@@ -129,7 +129,7 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
         <li><b>Ra:</b> danh sách trạng thái ghi "Đã đăng" hoặc "Sắp đăng" cho từng kênh.</li>
         <li><b>Các bên:</b> KOL (quyết định), aipub (viết caption, đăng), các mạng xã hội (nhận bài). Bài đăng qua aipub; trang này không mô tả cách làm việc đó.</li>
         <li><b>Ngoài phạm vi:</b> người trong team duyệt hộ qua Telegram hoặc Discord (gói Business). Đó là luồng của một người quyết định khác, sẽ viết riêng.</li>
-        <li><b>Giả định từ bước 2, chưa được owner chốt:</b> gói Free xem preview đầy đủ; tự bình luận affiliate nằm trong bản đầu. <span class="tag q">[?] chờ owner</span></li>
+        <li><b>Owner chốt ngày 25/11:</b> caption theo giọng người dùng và tự bình luận kèm link affiliate chỉ có ở gói Pro trở lên. Gói Free xem được preview các tính năng, nhưng phải nâng gói mới mở khoá.</li>
         <li><b>Cách vẽ:</b> flowchart cho một người dùng, không dùng BPMN hay UML.</li>
       </ul>
     </div>
@@ -183,7 +183,7 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
 <path class="arrow back" d="M715.0 479.0 L602.0 479.0" marker-end="url(#ahb)"/>
 <path class="arrow fail" d="M565 660 L713.0 660" marker-end="url(#ahf)"/>
 <text class="lab" x="640" y="653" text-anchor="middle">Có</text>
-<g class="fnode"><rect x="715" y="639" width="330" height="58" rx="10"/><text class="s2" x="880" y="663" text-anchor="middle">Sửa: cắt khung, caption, ảnh bìa,</text><text class="s2" x="880" y="682" text-anchor="middle">thứ tự ảnh; Free: rút gọn hoặc lên Pro</text></g>
+<g class="fnode"><rect x="715" y="639" width="330" height="58" rx="10"/><text class="s2" x="880" y="663" text-anchor="middle">Sửa: cắt khung, caption, ảnh bìa,</text><text class="s2" x="880" y="682" text-anchor="middle">thứ tự ảnh; tính năng Pro khoá: nâng gói</text></g>
 <path class="arrow back" d="M715.0 678 L685.0 678 L685.0 574.0 L602.0 574.0" marker-end="url(#ahb)"/>
 <path class="arrow fail" d="M600.0 756.0 L713.0 756.0" marker-end="url(#ahf)"/>
 <text class="lab" x="658" y="749" text-anchor="middle">Link sai</text>
@@ -247,9 +247,9 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
           <tr><td class="n">1</td><td>Mở màn Đăng bài</td><td>KOL</td><td>Đã đăng nhập</td><td>Vùng thả media, hàng avatar các kênh đã nối, vài bài gần nhất kèm trạng thái</td><td>Chưa có kênh nào dùng được, hoặc kênh cần nối lại: hiện nút Nối kênh. Nối xong quay lại bước 1. Phiên hết hạn: đăng nhập lại, quay về đúng màn này</td><td><code>compose_opened</code>, <code>channel_unavailable_shown</code>, <code>session_resumed</code></td></tr>
           <tr><td class="n">2</td><td>Tải clip hoặc bộ ảnh lên</td><td>KOL</td><td>Có ít nhất một kênh dùng được</td><td>Ảnh nhỏ của từng tệp. aipub nhận ra loại bài: ảnh đơn, bộ ảnh hay video dọc. Bộ ảnh kéo để đổi thứ tự (có nút lên, xuống)</td><td>Tệp quá lớn hoặc sai định dạng: báo đúng giới hạn và cách sửa <span class="tag q">[?] giới hạn</span>. Mất mạng giữa chừng: thử tải lại, tệp đã xong vẫn giữ</td><td><code>media_uploaded</code>, <code>media_upload_failed</code></td></tr>
           <tr><td class="n">3</td><td>Chọn kênh</td><td>KOL</td><td>Media đã tải xong</td><td>Kênh của lần trước được chọn sẵn. Facebook Profile, Page và Group tách riêng. Mỗi kênh được chọn có một tab preview</td><td>Vượt số nền tảng của gói (Free 3, Pro 5, Business 13): bỏ bớt hoặc nâng gói, lựa chọn cũ vẫn giữ <span class="tag q wrap">[?] Facebook Profile và Group tính là một hay hai</span>. Nền tảng không hỗ trợ kiểu bài này: avatar mờ, ghi lý do</td><td><code>channels_selected</code>, <code>plan_limit_hit</code></td></tr>
-          <tr><td class="n">4</td><td>aipub viết caption</td><td>aipub</td><td>Có media và kênh</td><td>Free: một caption chung. Pro: caption riêng từng kênh theo giọng người dùng. Sửa được ngay</td><td>Viết lỗi hoặc quá lâu: Thử lại hoặc tự viết, media và kênh vẫn giữ. Không ưng: bấm Viết lại</td><td><code>caption_generated</code>, <code>caption_generation_failed</code>, <code>caption_regenerated</code></td></tr>
-          <tr><td class="n">5</td><td>Xem preview từng nền tảng</td><td>KOL</td><td>Có caption</td><td>Khung giống thật theo kiểu bài: ảnh đơn trên feed, carousel lướt ngang, video dọc có lớp vùng an toàn. Caption cắt đúng chỗ "xem thêm". Cảnh báo nếu có</td><td>Có cảnh báo (caption bị cắt, ảnh sai tỉ lệ, vượt giới hạn nền tảng): sửa cắt khung, caption, ảnh bìa hoặc thứ tự ảnh, rồi xem lại. Free bị cắt caption: rút gọn caption chung hoặc lên Pro</td><td><code>preview_viewed</code>, <code>preview_warning_shown</code>, <code>post_edited_after_preview</code></td></tr>
-          <tr><td class="n">6</td><td>Thêm link affiliate (tuỳ chọn)</td><td>KOL</td><td>Gói Pro trở lên</td><td>Link hiện trong preview ở dạng bình luận đầu tiên, trên các kênh có bình luận</td><td>Link sai định dạng: báo ngay ở ô nhập, nói cách sửa</td><td><code>affiliate_comment_added</code>, <code>affiliate_link_rejected</code></td></tr>
+          <tr><td class="n">4</td><td>aipub viết caption</td><td>aipub</td><td>Có media và kênh</td><td>Pro: caption chung và caption riêng từng kênh, viết theo giọng người dùng. Free: thấy caption theo giọng và các tab kênh ở dạng khoá, bấm vào thì được mời nâng gói <span class="tag q wrap">[?] caption của Free: caption chung chưa theo giọng, hay tự viết</span>. Sửa được ngay</td><td>Viết lỗi hoặc quá lâu: Thử lại hoặc tự viết, media và kênh vẫn giữ. Không ưng: bấm Viết lại</td><td><code>caption_generated</code>, <code>caption_generation_failed</code>, <code>caption_regenerated</code></td></tr>
+          <tr><td class="n">5</td><td>Xem preview từng nền tảng</td><td>KOL</td><td>Có caption</td><td>Khung giống thật theo kiểu bài: ảnh đơn trên feed, carousel lướt ngang, video dọc có lớp vùng an toàn. Caption cắt đúng chỗ "xem thêm". Cảnh báo nếu có</td><td>Có cảnh báo (caption bị cắt, ảnh sai tỉ lệ, vượt giới hạn nền tảng): sửa cắt khung, caption, ảnh bìa hoặc thứ tự ảnh, rồi xem lại. Free bấm vào tính năng Pro đang khoá trong preview: mời nâng gói</td><td><code>preview_viewed</code>, <code>preview_warning_shown</code>, <code>post_edited_after_preview</code></td></tr>
+          <tr><td class="n">6</td><td>Thêm link affiliate (tuỳ chọn)</td><td>KOL</td><td>Gói Pro trở lên</td><td>Link hiện trong preview ở dạng bình luận đầu tiên, trên các kênh có bình luận. Gói Free thấy ô này ở dạng khoá, bấm vào thì được mời nâng gói</td><td>Link sai định dạng: báo ngay ở ô nhập, nói cách sửa</td><td><code>affiliate_comment_added</code>, <code>affiliate_link_rejected</code></td></tr>
           <tr><td class="n">7</td><td>Duyệt: Đăng ngay hoặc Hẹn giờ</td><td>KOL</td><td>Đã xem preview ít nhất một kênh <span class="tag q">[?] có bắt buộc không</span></td><td>Bài chuyển sang Đã duyệt. Đăng ngay: sang bước 8. Hẹn giờ: bài hiện "Sắp đăng" trong danh sách, đến giờ thì sang bước 8. Chưa duyệt thì không đăng</td><td>Free chọn giờ ngoài 24 giờ tới: chọn giờ sớm hơn hoặc nâng gói. Bấm Huỷ: bài lưu thành Nháp; mở lại nháp từ danh sách thì vào lại bước 5</td><td><code>post_approved</code>, <code>upgrade_clicked</code>, <code>post_saved_as_draft</code>, <code>draft_reopened</code></td></tr>
           <tr><td class="n">8</td><td>Đăng qua aipub lên từng kênh</td><td>aipub, mạng xã hội</td><td>Đã duyệt và đến giờ</td><td>Mỗi kênh có trạng thái riêng và link tới bài đã đăng</td><td>Một kênh lỗi: hiện lý do bằng lời thường, với ba lựa chọn. Thử lại hoặc Sửa rồi thử lại: quay lại bước 8. Bỏ qua kênh: kênh ghi "Đã bỏ qua", sang bước 9. Kênh khác không bị ảnh hưởng</td><td><code>post_published</code>, <code>post_publish_failed</code>, <code>post_retry_requested</code>, <code>post_channel_skipped</code></td></tr>
           <tr><td class="n">9</td><td>Danh sách trạng thái</td><td>KOL</td><td>Có bài đã duyệt</td><td>Mỗi bài một dòng, mỗi kênh một trạng thái: Đã đăng, Sắp đăng, Lỗi, Đã bỏ qua; bài chưa duyệt ghi Nháp. Có thông báo khi xong</td><td>Không thấy thông báo: mở danh sách trạng thái; còn lỗi thì vào Hỗ trợ</td><td><code>status_viewed</code>, <code>support_opened</code></td></tr>
@@ -305,7 +305,7 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
           <div class="warnbox">TikTok: caption bị cắt sau dòng 1; ý "link ở bình luận" sẽ bị ẩn.</div>
         </div>
       </div></div>
-      <p class="notes">Bấm vào caption trên preview thì con trỏ nhảy về đúng ô ở cột soạn. Ở gói Free, hàng tab caption chỉ có "Chung"; các tab kênh hiện khoá, kèm một dòng nói Pro viết riêng từng kênh.</p>
+      <p class="notes">Bấm vào caption trên preview thì con trỏ nhảy về đúng ô ở cột soạn. Ở gói Free, caption theo giọng, các tab kênh và ô bình luận affiliate hiện khoá, kèm một dòng nói Pro viết theo giọng người dùng, riêng từng kênh, và tự bình luận kèm link. Gói Free có caption gì thì chưa chốt <span class="tag q wrap">[?]</span>.</p>
     </div>
 
     <div class="card wf">
@@ -417,7 +417,7 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
         <tr><td>Preview có tác dụng</td><td>Số <code>post_id</code> có <code>post_edited_after_preview</code> ÷ số <code>post_id</code> có <code>preview_viewed</code></td><td>chưa có</td><td>đặt sau beta</td></tr>
         <tr><td>Tốc độ</td><td>Trung vị thời gian từ <code>media_uploaded</code> tới <code>post_approved</code> của cùng <code>post_id</code></td><td>chưa có</td><td>đặt sau beta</td></tr>
         <tr><td>Đăng lỗi</td><td><code>post_publish_failed</code> ÷ (<code>post_published</code> + <code>post_publish_failed</code>)</td><td>chưa có</td><td>đặt sau beta</td></tr>
-        <tr><td>Lên gói từ luồng này</td><td><code>upgrade_clicked</code> theo <code>trigger</code> (số kênh, caption riêng, giờ hẹn)</td><td>chưa có</td><td>đặt sau beta</td></tr>
+        <tr><td>Lên gói từ luồng này</td><td><code>upgrade_clicked</code> theo <code>trigger</code> (số kênh, caption theo giọng, caption riêng, link affiliate, giờ hẹn)</td><td>chưa có</td><td>đặt sau beta</td></tr>
         <tr><td>Sửa nặng caption</td><td>Tỉ lệ bài có <code>caption_edit_ratio</code> > 40% trên <code>post_approved</code>, hoặc có ít nhất một <code>caption_regenerated</code></td><td>chưa có</td><td>≤ 25% từ tuần thứ 2 (kế hoạch 10/11)</td></tr>
         <tr><td>Chi phí AI</td><td>Cộng <code>ai_cost_usd</code> của <code>caption_generated</code> theo workspace, lọc <code>plan</code> = free, mỗi tháng</td><td>chưa có</td><td>báo khi vượt $0,60 mỗi workspace Free (kế hoạch 10/11)</td></tr>
       </tbody>
@@ -443,7 +443,7 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
         <tr><td><code>post_approved</code></td><td>7</td><td>lệnh duyệt đã lưu</td><td><code>post_id</code>, <code>mode</code> (now, scheduled), <code>channel_count</code>, <code>plan</code>, <code>caption_edit_ratio</code></td><td>server</td></tr>
         <tr><td><code>post_saved_as_draft</code></td><td>7 (huỷ)</td><td>nháp đã lưu</td><td><code>post_id</code></td><td>server</td></tr>
         <tr><td><code>draft_reopened</code></td><td>7 (phục hồi)</td><td>nháp mở lại ở bước 5</td><td><code>post_id</code></td><td>client</td></tr>
-        <tr><td><code>upgrade_clicked</code></td><td>3, 5, 7</td><td>mở trang nâng gói từ luồng này</td><td><code>trigger</code></td><td>client</td></tr>
+        <tr><td><code>upgrade_clicked</code></td><td>3, 4, 5, 6, 7</td><td>mở trang nâng gói từ luồng này</td><td><code>trigger</code></td><td>client</td></tr>
         <tr><td><code>post_published</code></td><td>8</td><td>kênh đó được ghi "Đã đăng"</td><td><code>post_id</code>, <code>platform</code>, <code>format</code></td><td>server</td></tr>
         <tr><td><code>post_publish_failed</code></td><td>8 (lỗi)</td><td>kênh đó được ghi "Lỗi"</td><td><code>post_id</code>, <code>platform</code>, <code>reason_code</code></td><td>server</td></tr>
         <tr><td><code>post_retry_requested</code></td><td>8 (phục hồi)</td><td>lệnh thử lại đã lưu</td><td><code>post_id</code>, <code>platform</code>, <code>after_edit</code></td><td>server</td></tr>
@@ -483,7 +483,7 @@ svg .lab{font:500 12.5px var(--f-body);fill:var(--muted)}
         <li>Có bắt buộc xem preview trước khi duyệt không?</li>
         <li>Có cho hoàn tác sau "Đăng ngay" không?</li>
         <li>Có tải tiếp được khi mất mạng không?</li>
-        <li>Hai điểm của bước 2 vẫn chờ owner chốt: gói Free có preview đầy đủ không, và tự bình luận affiliate có nằm trong bản đầu không.</li>
+        <li>Còn mở sau quyết định 25/11: preview bài theo từng nền tảng có đủ ở gói Free không (bảng luồng đang giả định là có), caption của gói Free là gì, và cảnh báo trong preview (caption bị cắt, sai khung) có hiện ở gói Free không.</li>
       </ul>
     </div>
   </section>
