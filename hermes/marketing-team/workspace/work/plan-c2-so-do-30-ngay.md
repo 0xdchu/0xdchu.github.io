@@ -2,7 +2,7 @@
 
 - **Chủ campaign:** Shikamaru (Lead). Người làm: Quintaro, Ronin, Usop, Wiz, Xaiyan, Yugi (mục 8).
 - **Trạng thái:** Ông Chủ duyệt hướng đi ngày 2026-11-08. Bản này là plan để giao việc, chưa phải bài đăng.
-- **Nguồn:** plan marketing aipub (https://0xdonniechu.github.io/marketing/aipub-marketing-plan-2026-11-07.html), C2 ở Phần 3, pillar ở Phần 4, KPI ở Phần 7, lộ trình ở Phần 8. Mẫu tham khảo: clip của Structure Webworks (@restructureai, TikTok, 2026-08-27), một sơ đồ 7 node sáng dần, không tiếng.
+- **Nguồn:** plan marketing aipub (https://0xdchu.github.io/marketing/aipub-marketing-plan-2026-11-07.html), C2 ở Phần 3, pillar ở Phần 4, KPI ở Phần 7, lộ trình ở Phần 8. Mẫu tham khảo: clip của Structure Webworks (@restructureai, TikTok, 2026-08-27), một sơ đồ 7 node sáng dần, không tiếng.
 - **Tinh thần (Ông Chủ, 2026-11-08):** cái họ sai thì ta làm đúng, cái họ nói quá thì ta nói thật, cái họ yếu thì ta làm mạnh.
 
 ## 1. Mục tiêu

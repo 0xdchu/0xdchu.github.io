@@ -2,7 +2,7 @@
 
 Hermes ơi, đây là hướng dẫn dựng **Marketing Team** của Distraction Foundry: 13 role (7 role của Team Social, 2 role của Team SEO là Lelouch và Edward, Zoro là Designer, Vail là Trinh sát đối thủ, Tsunade là Account lead giữ phạm vi, hạn, nghiệm thu khi làm dự án khách và Kakashi là Brain keeper giữ brain, chấm bài đã duyệt, viết learnings, bốn role dùng chung cho mọi team; Quintaro viết cho cả Team Social và Team SEO), mỗi role là một **profile** Hermes riêng (SOUL.md, skill, toolset riêng), mỗi role nói chuyện trong **một topic** của một nhóm Telegram. Đọc hết file này, làm theo từng bước, dừng lại hỏi Ông Chủ ở các bước có ghi **[Ông Chủ]**.
 
-Mọi file nằm dưới `BASE = https://0xdonniechu.github.io/hermes/marketing-team/`. Danh sách đầy đủ: `BASE/manifest.txt` (mỗi dòng một đường dẫn tương đối).
+Mọi file nằm dưới `BASE = https://0xdchu.github.io/hermes/marketing-team/`. Danh sách đầy đủ: `BASE/manifest.txt` (mỗi dòng một đường dẫn tương đối).
 
 Tham chiếu tài liệu Hermes: Profiles, Running Many Gateways (multiplexing, `profile_routes`), Telegram (Group Chat Usage), Skills (`hermes skills install <url>`), Context Files (`AGENTS.md`), Toolsets Reference.
 
@@ -13,7 +13,7 @@ Tham chiếu tài liệu Hermes: Profiles, Running Many Gateways (multiplexing, 
 ## 1. Tải workspace của team
 Workspace là thư mục làm việc chung của 13 role: `~/work/0xdonniechu/marketing-team/social/` (thư mục của Team Social; Zoro, Vail và Team SEO làm việc ở đây, Zoro vì cần `formats/` và `voice.md`, Vail vì ghi vào `work/intel/`, Team SEO vì ghi vào `work/seo/` và đọc `voice.md`, `work/intel/`; Kakashi vì ghi vào `brain/` và `work/learnings/`).
 ```bash
-BASE=https://0xdonniechu.github.io/hermes/marketing-team
+BASE=https://0xdchu.github.io/hermes/marketing-team
 mkdir -p ~/work/0xdonniechu/marketing-team/social && cd ~/work/0xdonniechu/marketing-team/social
 curl -fsSL $BASE/manifest.txt | grep '^workspace/' | while read p; do
   mkdir -p "$(dirname "${p#workspace/}")"; curl -fsSL "$BASE/$p" -o "${p#workspace/}"; done
@@ -170,12 +170,12 @@ Rồi nhắn Shikamaru tên file mới để giao việc.
 1. Tải lại workspace (bước 1, trừ `voice.md` và `work/`) để có `AGENTS.md` mới, rồi `mkdir -p work/seo/briefs work/seo/drafts work/seo/pages work/seo/audits work/seo/data`.
 2. Tải lại `SOUL.md` của `quintaro` và `usop` (Quintaro thêm việc viết bài SEO/GEO, Usop kiểm cả bài website).
 3. Tạo 2 profile `lelouch` và `edward` như bước 2 (dừng nếu đã có tên đó), cấu hình model như bước 2.
-4. Đặt `BASE=https://0xdonniechu.github.io/hermes/marketing-team` và `S=$BASE/skills` trong shell, rồi cài skill Team SEO như bước 3 (đoạn `seo_install`, cả phần cho Quintaro), cấu hình như bước 4 (`terminal.cwd` và dòng `lelouch`, `edward` trong bảng).
+4. Đặt `BASE=https://0xdchu.github.io/hermes/marketing-team` và `S=$BASE/skills` trong shell, rồi cài skill Team SEO như bước 3 (đoạn `seo_install`, cả phần cho Quintaro), cấu hình như bước 4 (`terminal.cwd` và dòng `lelouch`, `edward` trong bảng).
 5. **[Ông Chủ]** tạo 2 topic `Lelouch`, `Edward`; thêm 2 route như bước 5; `hermes gateway restart`.
 6. Kiểm như bước 6 cho Quintaro, Usop, Lelouch và Edward.
 
 ## Thêm Kakashi (máy đã cài 12 role trước 2026-11-23)
-1. Đặt `BASE=https://0xdonniechu.github.io/hermes/marketing-team` và `S=$BASE/skills` trong shell. Tải `AGENTS.md`, brain mẫu và hai file mẫu trong `work/`, không đụng `voice.md` hay file khác trong `work/`. File brain hay mẫu nào đã có trên máy thì **không tải đè** (lệnh dưới bỏ qua file đã có); muốn lấy bản mới của file đã điền thì sao lưu trước và hỏi Ông Chủ:
+1. Đặt `BASE=https://0xdchu.github.io/hermes/marketing-team` và `S=$BASE/skills` trong shell. Tải `AGENTS.md`, brain mẫu và hai file mẫu trong `work/`, không đụng `voice.md` hay file khác trong `work/`. File brain hay mẫu nào đã có trên máy thì **không tải đè** (lệnh dưới bỏ qua file đã có); muốn lấy bản mới của file đã điền thì sao lưu trước và hỏi Ông Chủ:
 ```bash
 cd ~/work/0xdonniechu/marketing-team/social
 curl -fsSL $BASE/manifest.txt | grep -E '^workspace/(AGENTS.md|brain/|work/brief-template.md|work/learnings/README.md)' | while read p; do
@@ -202,7 +202,7 @@ for r in shikamaru yugi ronin quintaro usop wiz xaiyan zoro vail lelouch edward 
 3. Trong `~/.hermes/config.yaml` của profile mặc định: đổi route `marketing-teppi` thành `marketing-quintaro`, `profile: quintaro`; giữ `thread_id`.
 4. Tải lại SOUL của mọi role và riêng `AGENTS.md` (không chạy lại vòng tải của bước 1, vòng đó ghi đè `brain/` và `voice.md`):
 ```bash
-BASE=https://0xdonniechu.github.io/hermes/marketing-team
+BASE=https://0xdchu.github.io/hermes/marketing-team
 for r in shikamaru yugi ronin quintaro usop wiz xaiyan zoro vail lelouch edward tsunade kakashi; do
   [ -d ~/.hermes/profiles/$r ] && curl -fsSL $BASE/roles/$r/SOUL.md -o ~/.hermes/profiles/$r/SOUL.md; done
 curl -fsSL $BASE/workspace/AGENTS.md -o ~/work/0xdonniechu/marketing-team/social/AGENTS.md

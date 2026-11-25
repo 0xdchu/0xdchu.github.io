@@ -1,6 +1,6 @@
 # Tactics: Việt Nam
 
-Format từng nền tảng ở `../formats/`; file này chỉ ghi cách đánh ở VN. Nguồn chính: plan marketing aipub (https://0xdonniechu.github.io/marketing/aipub-marketing-plan-2026-11-07.html) (mục 0.3, Phần 3, Phần 4). Số Facebook là số ước tính tiếp cận quảng cáo của DataReportal Digital 2026 (tháng 10/2025) qua Seotal và Elite Asia; Instagram, LinkedIn, X là số DataReportal qua Elite Asia, chưa đối chiếu bản gốc; YouTube 62,1 triệu từ Digital in Asia; TikTok 76–80 triệu từ Affect Group, còn 78% từ khảo sát Q&Me (200 người, HN và HCM). Độ tin B; link nguồn nằm trong plan, mục 0.3.
+Format từng nền tảng ở `../formats/`; file này chỉ ghi cách đánh ở VN. Nguồn chính: plan marketing aipub (https://0xdchu.github.io/marketing/aipub-marketing-plan-2026-11-07.html) (mục 0.3, Phần 3, Phần 4). Số Facebook là số ước tính tiếp cận quảng cáo của DataReportal Digital 2026 (tháng 10/2025) qua Seotal và Elite Asia; Instagram, LinkedIn, X là số DataReportal qua Elite Asia, chưa đối chiếu bản gốc; YouTube 62,1 triệu từ Digital in Asia; TikTok 76–80 triệu từ Affect Group, còn 78% từ khảo sát Q&Me (200 người, HN và HCM). Độ tin B; link nguồn nằm trong plan, mục 0.3.
 
 | Nền tảng | Quy mô VN | Vai trò ở VN | Cách đánh |
 |---|---|---|---|
