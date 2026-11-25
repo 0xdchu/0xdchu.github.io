@@ -1,8 +1,8 @@
-# 0xdonniechu.github.io: static research and planning pages published with GitHub Pages
+# 0xdchu.github.io (repo renamed from 0xdonniechu.github.io, 2026-11-25): static research and planning pages published with GitHub Pages
 
 ## What it does
 69 static HTML pages (plus about 47 markdown files and 16 images: png, jpg, svg), no build step, no JavaScript (no `<script>` tags), Google Fonts via CSS links on 68 of 69 pages. Folders: `research`, `pm`, `marketing`, `hermes`, `intro-video`; top-level `index.html`, `thesis.html`, `synthesis.html`, `debrief-2026-10-31.html`. `.nojekyll` is present; `vercel.json` only sets `cleanUrls=false`.
-GitHub Pages serves branch `main` from `/` (legacy build) at https://0xdonniechu.github.io/. A push or merge to `main` publishes every changed page publicly.
+GitHub Pages serves branch `main` from `/` (legacy build) at https://0xdchu.github.io/. A push or merge to `main` publishes every changed page publicly.
 A bug costs: a wrong or private claim, a leaked token or private name goes live. No data is lost.
 
 ## Verify
@@ -26,7 +26,7 @@ There is no test suite, and none is invented here. Verify is currently manual:
 - Typos, wording, adding a source link.
 
 ## Rules
-- The repo's default git identity is `0xdonniechu`. Before any GitHub write, check `gh api user --jq .login` is `0xdonniechu`. Never `gh auth switch`.
+- The repo's default git identity is `0xdchu` (renamed from 0xdonniechu, 2026-11-25). Before any GitHub write, check `gh api user --jq .login` is `0xdchu`. Never `gh auth switch`.
 - No Ambysto workflow, accounts or memory apply in this repo.
 - Branches are named by slug. A push or merge to `main` publishes, so the main session does it only with the owner's approval.
 - This file is published at /CLAUDE.md because Pages serves every tracked file; keep private names and paths out of it.
