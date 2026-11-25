@@ -1,0 +1,257 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>aipub: nên dùng repo UI nào để dựng mockup và app (2026-11-25)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--fg:#1a1a1a;--muted:#666;--line:#e5e5e5;--bg:#fff;--accent:#1d4ed8;--soft:#f6f7f9;--col-odd:#faf8f5;--col-even:#ffffff;--th-odd:#f1ede6;--th-even:#e8edf5}
+@media (prefers-color-scheme:dark){:root{--fg:#e8e8e8;--muted:#9a9a9a;--line:#333;--bg:#121212;--accent:#7aa2ff;--soft:#1c1c1c;--col-odd:#1a1917;--col-even:#121212;--th-odd:#24221f;--th-even:#1c2026}}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.65 "Be Vietnam Pro",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--fg);background:var(--bg)}
+main{max-width:980px;margin:0 auto;padding:24px 18px 80px}
+a{color:var(--accent)}
+h1{font-size:1.7rem;line-height:1.3;margin:.2em 0 .6em}
+h2{font-size:1.3rem;margin:1.8em 0 .6em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:1.1rem;margin:1.4em 0 .4em}
+p,li{max-width:75ch}
+code{font:.88em "JetBrains Mono",ui-monospace,monospace;background:var(--soft);padding:.1em .35em;border-radius:4px}
+pre{background:var(--soft);padding:12px;border-radius:8px;overflow:auto}
+pre code{background:none;padding:0}
+img{max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block;margin:1em 0;background:#fff}
+.tw{overflow-x:auto;margin:1em 0;border:1px solid var(--line);border-radius:8px;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:.92rem;line-height:1.55}
+th,td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;overflow-wrap:anywhere;word-break:normal}
+th:last-child,td:last-child{border-right:none}
+td:nth-child(odd){background:var(--col-odd)}
+td:nth-child(even){background:var(--col-even)}
+th{position:sticky;top:0;font-weight:600}
+th:nth-child(odd){background:var(--th-odd)}
+th:nth-child(even){background:var(--th-even)}
+tr:last-child td{border-bottom:none}
+blockquote{margin:1em 0;padding:.4em 1em;border-left:3px solid var(--accent);background:var(--soft)}
+.top{font-size:.9rem;color:var(--muted);margin-bottom:12px}
+.src{font-size:.85rem;color:var(--muted);margin-top:40px;border-top:1px solid var(--line);padding-top:12px}
+.list li{margin:.35em 0}
+.date{color:var(--muted);font-size:.85rem;margin-left:.4em}
+.group{margin-top:1.6em}
+</style></head><body><main><div class="top"><a href="../index.html">← Tất cả báo cáo</a></div><h1>aipub: nên dùng repo UI nào để dựng mockup và app (2026-11-25)</h1>
+<p>Câu hỏi của owner: trước khi dựng mockup cho luồng "Chọn clip hoặc ảnh → xem bản từng kênh → Duyệt", xem kỹ các repo được gợi ý: Vercel AI SDK và các template Generative UI, Dyad, bolt.diy, Tremor, Refine, Origin UI / Magic UI, Ant Design / MUI, Penpot.</p>
+<p>Tiêu chí lấy từ ICP đã chốt (owner, 2026-11-25): KOL, KOC đa phần không rành công nghệ; đầu vào là clip hoặc bộ ảnh đã có sẵn; dùng chủ yếu trên điện thoại; luồng chính chỉ có một nút mỗi màn hình. Đội ngũ celeb và agency là nhóm thứ hai, cần lịch, team và báo cáo.</p>
+<p>Số liệu đọc ngày 25/11/2026 từ GitHub API và npm registry. Sao GitHub chỉ cho biết độ phổ biến, không cho biết repo có hợp với aipub hay không.</p>
+<h2>1. Kết luận</h2>
+<ol>
+<li><strong>Mockup để thử với KOL: không cần repo nào trong danh sách.</strong> Dùng skill <code>mockup</code> sẵn có (HTML bấm được, chạy offline, có sáng/tối và web/điện thoại, có kiểm bằng Playwright). Luồng cần thử chỉ có 3–4 màn hình; cái cần kiểm là KOL có tự đi hết luồng không, chứ không phải code.</li>
+<li><strong>App thật, phía người dùng:</strong> bộ component Tailwind kiểu shadcn, cụ thể là <strong>coss ui (trước là Origin UI)</strong>, cộng <strong>AI SDK</strong> và <strong>AI Elements</strong> cho phần AI. Ba thứ đều đang được cập nhật, license MIT hoặc Apache-2.0.</li>
+<li><strong>Dùng có chỗ, không dùng cho luồng chính:</strong><ul>
+<li>Magic UI: hiệu ứng cho landing aipub.social.</li>
+<li>Tremor: biểu đồ cho báo cáo ở gói Business, nhưng nhịp cập nhật đã chậm.</li>
+<li>Refine: trang quản trị nội bộ của team aipub (hỗ trợ khách, vận hành).</li>
+<li>Penpot: nếu có designer vẽ trước khi code.</li>
+</ul>
+</li>
+<li><strong>Không nên dùng cho app KOL:</strong><ul>
+<li>Ant Design và MUI: giao diện kiểu phần mềm doanh nghiệp, nặng form, ngược với "một nút mỗi màn hình".</li>
+<li>Dyad và bolt.diy: công cụ sinh app từ prompt. Hợp để thử nhanh một ý, không hợp để dựng mockup cần kiểm soát từng màn hình cho buổi test.</li>
+</ul>
+</li>
+<li><strong>Chỗ trống:</strong> không repo nào trong danh sách lo phần khó nhất của luồng clip: tải video lớn trên mạng yếu (tải tiếp khi đứt), sắp thứ tự và cắt khung bộ ảnh. Phần này cần thư viện riêng, chưa nghiên cứu ở đây.</li>
+</ol>
+<p>Độ tin cậy: <strong>cao</strong> cho số liệu repo (đọc trực tiếp), <strong>trung bình</strong> cho phần đánh giá độ hợp (suy từ tài liệu, chưa dựng thử). Stack hiện tại của app aipub chưa rõ (chưa thấy trong tài liệu của team). Nếu team đã chọn một bộ UI khác thì nên theo bộ đó.</p>
+<h2>2. Bảng số liệu</h2>
+<div class="tw"><table style="table-layout:fixed;min-width:881px"><colgroup><col style="width:156px"><col style="width:202px"><col style="width:98px"><col style="width:135px"><col style="width:125px"><col style="width:165px"></colgroup>
+<thead>
+<tr>
+<th>Repo</th>
+<th>Là gì</th>
+<th>Sao GitHub</th>
+<th>License</th>
+<th>Cập nhật gần nhất</th>
+<th>Bản phát hành gần nhất</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/vercel/ai">vercel/ai</a></td>
+<td>Thư viện TypeScript gọi model AI, stream, tool, UI hooks</td>
+<td>28.178</td>
+<td>Apache-2.0</td>
+<td>25/11/2026</td>
+<td><a href="https://www.npmjs.com/package/ai">npm <code>ai</code></a> 7.0.181 (23/11/2026)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/vercel/ai-elements">vercel/ai-elements</a></td>
+<td>Component cho app AI, xây trên shadcn/ui</td>
+<td>2.537</td>
+<td>Apache-2.0</td>
+<td>14/10/2026</td>
+<td>ai-elements@1.9.1 (14/10/2026)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/vercel/chatbot">vercel/chatbot</a></td>
+<td>Template chatbot Next.js đầy đủ</td>
+<td>21.070</td>
+<td>Apache-2.0</td>
+<td>03/11/2026</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="https://github.com/dyad-sh/dyad">dyad-sh/dyad</a></td>
+<td>App builder AI chạy trên máy, tự mang API key</td>
+<td>22.440</td>
+<td>Apache-2.0; riêng <code>src/pro</code> là FSL-1.1</td>
+<td>24/11/2026</td>
+<td>v1.24.0 (23/11/2026), có bản Mac, Windows, Linux</td>
+</tr>
+<tr>
+<td><a href="https://github.com/stackblitz-labs/bolt.diy">stackblitz-labs/bolt.diy</a></td>
+<td>Workspace AI sinh app full-stack trong trình duyệt, chọn model tuỳ ý</td>
+<td>20.128</td>
+<td>MIT</td>
+<td>21/11/2026</td>
+<td>v1.0.3 (15/11/2026)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/tremorlabs/tremor">tremorlabs/tremor</a></td>
+<td>Component biểu đồ, KPI, bảng (Tailwind + Radix)</td>
+<td>3.728</td>
+<td>Apache-2.0</td>
+<td>10/10/2025</td>
+<td><a href="https://www.npmjs.com/package/@tremor/react">npm <code>@tremor/react</code></a> 3.18.7, đứng từ 13/01/2025</td>
+</tr>
+<tr>
+<td><a href="https://github.com/refinedev/refine">refinedev/refine</a></td>
+<td>Framework React cho trang quản trị, công cụ nội bộ, CRUD</td>
+<td>36.074</td>
+<td>MIT</td>
+<td>10/09/2026</td>
+<td><a href="https://github.com/refinedev/refine/releases"><code>@refinedev/core</code></a> 5.0.12 (02/04/2026)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cosscom/ui">cosscom/ui</a> (trước là <code>origin-space/originui</code>)</td>
+<td>coss ui, bộ design system chính thức của Cal.com; Origin UI cũ nằm trong <code>apps/origin</code></td>
+<td>11.181</td>
+<td>MIT</td>
+<td>24/11/2026</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="https://github.com/magicuidesign/magicui">magicuidesign/magicui</a></td>
+<td>Component hiệu ứng, chuyển động để copy vào app</td>
+<td>23.536</td>
+<td>MIT</td>
+<td>24/11/2026</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ant-design/ant-design">ant-design/ant-design</a></td>
+<td>Bộ component React kiểu doanh nghiệp</td>
+<td>100.365</td>
+<td>MIT</td>
+<td>25/11/2026</td>
+<td>6.7.2 (23/11/2026)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ant-design/ant-design-mobile">ant-design/ant-design-mobile</a></td>
+<td>Bản cho điện thoại của Ant Design</td>
+<td>12.100</td>
+<td>MIT</td>
+<td>14/09/2026</td>
+<td><a href="https://www.npmjs.com/package/antd-mobile">npm <code>antd-mobile</code></a> 5.43.0</td>
+</tr>
+<tr>
+<td><a href="https://github.com/mui/material-ui">mui/material-ui</a></td>
+<td>Bộ component React theo Material Design</td>
+<td>99.391</td>
+<td>MIT</td>
+<td>25/11/2026</td>
+<td>v9.6.0 (23/11/2026)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/penpot/penpot">penpot/penpot</a></td>
+<td>Công cụ thiết kế mã nguồn mở, thay Figma, tự host được</td>
+<td>62.709</td>
+<td>MPL-2.0</td>
+<td>24/11/2026</td>
+<td>2.19.5 (24/11/2026)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ghi chú:</p>
+<ul>
+<li>Link <code>github.com/origin-space/originui</code> trong gợi ý của owner nay chuyển sang <code>cosscom/ui</code>. README ghi "coss.com/ui (formerly Origin UI)" và gọi Origin UI là "pre-acquisition".</li>
+<li>GitHub ghi license của vercel/ai, ai-elements, chatbot và dyad là "NOASSERTION". Đọc file LICENSE thì ba repo Vercel là Apache-2.0; Dyad là Apache-2.0 trừ thư mục <code>src/pro</code> (Functional Source License 1.1).</li>
+</ul>
+<h2>3. Từng repo, xét theo aipub</h2>
+<h3>Vercel AI SDK, AI Elements, template chatbot</h3>
+<ul>
+<li><strong>Làm được gì:</strong> stream câu trả lời của model; gọi tool; nối kết quả tool với một component React. Tài liệu gọi việc này là "Generative UI" (<a href="https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces">ai-sdk.dev</a>).</li>
+<li><strong>Lưu ý:</strong> bản AI SDK RSC vẫn là thử nghiệm; tài liệu khuyên dùng AI SDK UI cho production (<a href="https://ai-sdk.dev/docs/ai-sdk-rsc/overview">ai-sdk.dev</a>).</li>
+<li><strong>Với aipub:</strong> hợp cho bước "xem bản từng kênh". Mỗi kênh là một lần gọi tool trả về caption, và một thẻ xem trước hiện dần khi caption viết xong. KOL thấy tiến triển thay vì chờ một màn hình trống. AI Elements có sẵn ô nhập kèm tệp đính kèm và hiển thị nội dung đang stream.</li>
+<li><strong>Không phải công cụ dựng mockup.</strong> Đây là thư viện cho app thật.</li>
+</ul>
+<h3>Dyad và bolt.diy</h3>
+<ul>
+<li><strong>Làm được gì:</strong> gõ mô tả, nhận về app chạy được kèm xem trước. Dyad chạy trên máy (Mac, Windows; bản phát hành có cả .deb và AppImage cho Linux). bolt.diy chạy trong trình duyệt hoặc Docker và hỗ trợ hơn 22 nhà cung cấp model (theo README).</li>
+<li><strong>Lưu ý:</strong><ul>
+<li>Cả hai cần API key của model, nên tốn tiền theo lượt.</li>
+<li>bolt.diy lưu key trong cookie trình duyệt (README ghi rõ). Chỉ chạy trên máy mình, không mở ra ngoài.</li>
+<li>Phần Pro của Dyad dùng license FSL, không phải mã nguồn mở hoàn toàn.</li>
+</ul>
+</li>
+<li><strong>Với aipub:</strong> sinh nhanh một bản nháp app để xem cảm giác thì được. Nhưng cho buổi test với KOL, mỗi màn hình phải đúng ý thiết kế (một nút, chữ của nghề, trạng thái lỗi bằng lời thường). Sinh bằng prompt thì phải sửa nhiều vòng, khó kiểm soát hơn skill <code>mockup</code>.</li>
+</ul>
+<h3>Tremor</h3>
+<ul>
+<li><strong>Làm được gì:</strong> khoảng 35 component biểu đồ, KPI và bảng cho dashboard (README).</li>
+<li><strong>Lưu ý:</strong> gói npm <code>@tremor/react</code> đứng ở 3.18.7 từ 13/01/2025; repo chính cập nhật lần cuối 10/10/2025. Các repo template của <a href="https://github.com/tremorlabs">tổ chức tremorlabs</a> cập nhật tới 30/01/2026. Nhịp phát triển đã chậm.</li>
+<li><strong>Với aipub:</strong> chỉ dùng cho báo cáo ở gói Business (bài đã đăng, số xem theo kênh). Không đưa vào luồng chính của KOL.</li>
+</ul>
+<h3>Refine</h3>
+<ul>
+<li><strong>Làm được gì:</strong> framework headless cho trang quản trị, CRUD, phân quyền; có sẵn tích hợp Ant Design, MUI, Mantine, Chakra (README). README hiện quảng bá "Refine AI agent".</li>
+<li><strong>Lưu ý:</strong> bản <code>@refinedev/core</code> gần nhất là 02/04/2026, repo cập nhật lần cuối 10/09/2026.</li>
+<li><strong>Với aipub:</strong> hợp cho trang quản trị nội bộ (xem khách, hỗ trợ, tình trạng đăng bài), không hợp cho người dùng cuối.</li>
+</ul>
+<h3>coss ui (trước là Origin UI) và Magic UI</h3>
+<ul>
+<li><strong>coss ui:</strong> bộ component nhỏ gọn kiểu Tailwind (ô nhập, hộp thoại, bước, bảng giá…), MIT, đang được cập nhật, nay là design system của Cal.com.<ul>
+<li>Với aipub: nền tốt cho app thật, vì nhẹ và dễ làm cho điện thoại.</li>
+</ul>
+</li>
+<li><strong>Magic UI:</strong> component hiệu ứng và chuyển động để copy vào app, MIT.<ul>
+<li>Với aipub: hợp cho landing aipub.social. Trong app thì dùng rất ít; hiệu ứng nhiều làm người không rành công nghệ rối.</li>
+</ul>
+</li>
+</ul>
+<h3>Ant Design và MUI</h3>
+<ul>
+<li><strong>Làm được gì:</strong> hai bộ component React lớn nhất (khoảng 100 nghìn sao mỗi bộ), quy tắc UX chặt, rất nhiều component form, bảng, bước.</li>
+<li><strong>Với aipub:</strong><ul>
+<li>Mặc định trông như phần mềm doanh nghiệp, ngược với ICP KOL.</li>
+<li>Ant Design có bản riêng cho điện thoại (<code>antd-mobile</code>), nhưng bản này cập nhật lần cuối 14/09/2026, chậm hơn bản chính.</li>
+<li>Chỉ nên dùng nếu team aipub đã dùng sẵn một trong hai bộ.</li>
+</ul>
+</li>
+</ul>
+<h3>Penpot</h3>
+<ul>
+<li><strong>Làm được gì:</strong> công cụ thiết kế mã nguồn mở thay Figma, tự host được. Có layout CSS Grid và Flex, design token, plugin và MCP server để AI đọc và sửa bản thiết kế. Mã MCP nay nằm trong thư mục <code>mcp/</code> của repo chính (README).</li>
+<li><strong>Với aipub:</strong> hữu ích nếu có designer vẽ giao diện trước rồi chuyển sang code. Cho buổi test luồng với KOL thì chưa cần: mockup HTML bấm được trên điện thoại sát với trải nghiệm thật hơn một bản vẽ.</li>
+</ul>
+<h2>4. Đề xuất bước tiếp</h2>
+<ol>
+<li>Dựng mockup bằng skill <code>mockup</code>, ưu tiên màn hình điện thoại. Lấy phong cách component theo coss ui để sau này chuyển sang code ít lệch. Ba màn hình:<ul>
+<li>chọn clip hoặc ảnh;</li>
+<li>xem bản từng kênh (thẻ hiện dần như khi stream);</li>
+<li>kết quả "Đã lên" kèm link.</li>
+</ul>
+</li>
+<li>Cho 5 KOL/KOC không rành công nghệ thử, không hướng dẫn trước. Đo:<ul>
+<li>có tự đi hết luồng không;</li>
+<li>mất bao lâu tới lần bấm Duyệt đầu tiên;</li>
+<li>dừng ở đâu.</li>
+</ul>
+</li>
+<li>Trước khi build app thật: hỏi team aipub stack đang dùng, rồi nghiên cứu riêng phần tải video lớn và chỉnh bộ ảnh (sắp thứ tự, cắt khung).</li>
+</ol><div class="src">Nguồn: <code>marketing/aipub-ui-repos-2026-11-25.md</code> (bản .md cho agent đọc)</div></main></body></html>
