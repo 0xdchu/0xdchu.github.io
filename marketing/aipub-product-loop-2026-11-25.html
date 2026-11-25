@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vòng lặp sản phẩm aipub</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one column; the loop diagram is the page, the step table below backs it at phone width */
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --fg:#16202C; --muted:#5A6676; --line:#C8D0DB;
+  --accent:#2E59D9; --next:#B86A00; --next-bg:#FFF1DC; --now-bg:#E3EAFE;
+  --f-body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E131A; --surface:#161D27; --fg:#E5EAF1; --muted:#97A3B4; --line:#2F3A49;
+  --accent:#86A2FF; --next:#F2A945; --next-bg:#3A2A12; --now-bg:#1E2A4D; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E131A; --surface:#161D27; --fg:#E5EAF1; --muted:#97A3B4; --line:#2F3A49;
+  --accent:#86A2FF; --next:#F2A945; --next-bg:#3A2A12; --now-bg:#1E2A4D; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.55}
+.wrap{max-width:980px;margin:0 auto;padding-block:32px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:28px}
+header{display:grid;gap:6px}
+.eyebrow a{color:inherit}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:30px;line-height:1.2;margin:0;font-weight:700;text-wrap:balance}
+h2{font-size:18px;margin:0;font-weight:600}
+.lede{margin:0;color:var(--muted);max-width:65ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.diagram{overflow-x:auto;padding:12px}
+.diagram svg{display:block;width:100%;min-width:720px;height:auto}
+.ring{fill:none;stroke:var(--line);stroke-width:3}
+.head{fill:var(--muted)}
+.back{fill:none;stroke:var(--next);stroke-width:2;stroke-dasharray:6 6}
+#mk path{fill:var(--next)}
+.note{font:500 13px var(--f-body);fill:var(--muted)}
+.hub{font:700 22px var(--f-body);fill:var(--fg);letter-spacing:.08em}
+.hubsub{font:400 13px var(--f-body);fill:var(--muted)}
+.node rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+.node.now rect{fill:var(--now-bg);stroke:var(--accent);stroke-width:2}
+.node.next rect{fill:var(--next-bg);stroke:var(--next);stroke-width:2}
+.node .num{font:500 14px var(--f-mono);fill:var(--muted)}
+.node .t{font:600 14px var(--f-body);fill:var(--fg)}
+.node .s{font:400 12.5px var(--f-body);fill:var(--muted)}
+.pill rect{stroke:none}
+.pill.now rect{fill:var(--accent)}
+.pill.next rect{fill:var(--next)}
+.pill text{font:600 11.5px var(--f-body);fill:var(--surface)}
+.status{display:grid;gap:10px;padding:20px}
+.status ul{margin:0;padding-left:20px;display:grid;gap:4px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-family:var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:none}
+.chip{display:inline-block;font-size:12px;font-weight:600;padding:1px 9px;border-radius:99px;white-space:nowrap}
+.chip.now{background:var(--now-bg);color:var(--accent)}
+.chip.next{background:var(--next-bg);color:var(--next)}
+.sd{font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <div class="eyebrow"><a href="../index.html">what-to-build</a> · aipub · 25/11/2026</div>
+    <h1>Vòng lặp sản phẩm aipub</h1>
+    <p class="lede">Từ ICP đến Tracking rồi quay lại. Thước đo được chốt ở bước 2 và dùng ở bước 8; bước 4 có vòng nhỏ riêng khi KOL thử chưa ổn.</p>
+  </header>
+  <div class="card diagram" role="img" aria-label="Sơ đồ vòng lặp 8 bước, từ ICP và Problem tới Tracking rồi quay lại; bước 4 có nhánh quay về bước 2">
+    <svg viewBox="0 0 900 640" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="mk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z"/></marker></defs>
+<ellipse class="ring" cx="450" cy="330" rx="300" ry="235"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(564.8 112.9) rotate(18.0)"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(727.2 240.1) rotate(62.1)"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(727.2 419.9) rotate(117.9)"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(564.8 547.1) rotate(162.0)"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(335.2 547.1) rotate(-162.0)"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(172.8 419.9) rotate(-117.9)"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(172.8 240.1) rotate(-62.1)"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(335.2 112.9) rotate(-18.0)"/>
+<text class="note" x="292" y="92" text-anchor="end">vòng sau</text>
+<path class="back" d="M600 463 Q520 330 600 199" marker-end="url(#mk)"/>
+<text class="note" x="548" y="322" text-anchor="end">Thử chưa ổn:</text>
+<text class="note" x="548" y="340" text-anchor="end">sửa bước 2</text>
+<text class="hub" x="360" y="324" text-anchor="middle">VÒNG LẶP</text>
+<text class="hubsub" x="360" y="346" text-anchor="middle">mỗi vòng: đo, học, sửa</text>
+<g class="node now"><rect x="337" y="62" width="226" height="66" rx="10"/><text class="num" x="351" y="89">1</text><text class="t" x="371" y="89">ICP &amp; Problem</text><text class="s" x="371" y="110">kèm bằng chứng</text></g>
+<g class="pill now"><rect x="481" y="51" width="74" height="22" rx="11"/><text x="518" y="66" text-anchor="middle">gần xong</text></g>
+<g class="node next"><rect x="549" y="131" width="226" height="66" rx="10"/><text class="num" x="563" y="158">2</text><text class="t" x="583" y="158">Thước đo + Core Features</text><text class="s" x="583" y="179">ưu tiên, gắn gói giá</text></g>
+<g class="pill next"><rect x="693" y="120" width="74" height="22" rx="11"/><text x="730" y="135" text-anchor="middle">làm tiếp</text></g>
+<g class="node "><rect x="637" y="297" width="226" height="66" rx="10"/><text class="num" x="651" y="324">3</text><text class="t" x="671" y="324">User Flow &amp; Wireframe</text><text class="s" x="671" y="345">luồng đăng một bài</text></g>
+<g class="node "><rect x="549" y="463" width="226" height="66" rx="10"/><text class="num" x="563" y="490">4</text><text class="t" x="583" y="490">Prototype + thử với KOL</text><text class="s" x="583" y="511">màn soạn và preview</text></g>
+<g class="node "><rect x="337" y="532" width="226" height="66" rx="10"/><text class="num" x="351" y="559">5</text><text class="t" x="371" y="559">Data Map → Architecture</text><text class="s" x="371" y="580">song song: UI Design</text></g>
+<g class="node "><rect x="125" y="463" width="226" height="66" rx="10"/><text class="num" x="139" y="490">6</text><text class="t" x="159" y="490">Code + Test</text><text class="s" x="159" y="511">viết test cùng lúc</text></g>
+<g class="node "><rect x="37" y="297" width="226" height="66" rx="10"/><text class="num" x="51" y="324">7</text><text class="t" x="71" y="324">Deploy beta</text><text class="s" x="71" y="345">nhóm nhỏ trước, rồi mở rộng</text></g>
+<g class="node "><rect x="125" y="131" width="226" height="66" rx="10"/><text class="num" x="139" y="158">8</text><text class="t" x="159" y="158">Tracking</text><text class="s" x="159" y="179">đọc kết quả, quay lại</text></g>
+    </svg>
+  </div>
+  <section class="card status">
+    <h2>Đang ở đâu</h2>
+    <ul>
+      <li><b>Bước 1 gần xong:</b> đã có file ICP (độ tin cậy trung bình) và ảnh chụp giao diện hai đối thủ.</li>
+      <li><b>Đã chọn hướng màn hình chính:</b> một cột soạn, một cột preview theo từng nền tảng (một ảnh, carousel, Reels).</li>
+      <li><b>Làm tiếp:</b> bước 2, gồm thước đo thành công và danh sách tính năng chia mức ưu tiên, gắn với gói Free, Pro, Business.</li>
+    </ul>
+  </section>
+  <section class="card tbl">
+    <table>
+      <thead><tr><th>#</th><th>Bước</th><th>Ra cái gì</th><th>Phần sdlc</th></tr></thead>
+      <tbody>
+        <tr><td class="n">1</td><td>ICP &amp; Problem <span class="chip now">gần xong</span></td><td>Nhóm khách, vấn đề, bằng chứng</td><td class="sd">intent</td></tr>
+        <tr><td class="n">2</td><td>Thước đo + Core Features <span class="chip next">làm tiếp</span></td><td>Thước đo thành công; tính năng chia mức ưu tiên, gắn gói giá</td><td class="sd">intent</td></tr>
+        <tr><td class="n">3</td><td>User Flow &amp; Wireframe</td><td>Luồng đăng một bài, khung màn hình</td><td class="sd">plan</td></tr>
+        <tr><td class="n">4</td><td>Prototype + thử với KOL</td><td>Bản bấm được cho màn soạn và preview; kết quả thử với 3–5 KOL. Chưa ổn thì quay lại bước 2</td><td class="sd">plan</td></tr>
+        <tr><td class="n">5</td><td>Data Map → Architecture, song song UI Design</td><td>Dữ liệu cần lưu (gồm sự kiện cần đo), kiến trúc, giao diện các màn còn lại</td><td class="sd">plan</td></tr>
+        <tr><td class="n">6</td><td>Code + Test</td><td>FE, BE và test viết cùng lúc</td><td class="sd">build</td></tr>
+        <tr><td class="n">7</td><td>Deploy beta</td><td>Một nhóm nhỏ dùng trước, rồi mở cho tất cả</td><td class="sd">verify · ship</td></tr>
+        <tr><td class="n">8</td><td>Tracking</td><td>Đọc kết quả theo thước đo ở bước 2, quyết định vòng sau sửa gì</td><td class="sd">ship → intent</td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+</body>
+</html>
