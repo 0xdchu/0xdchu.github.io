@@ -29,7 +29,7 @@ h2{font-size:18px;margin:0;font-weight:600}
 .lede{margin:0;color:var(--muted);max-width:65ch}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px}
 .diagram{overflow-x:auto;padding:12px}
-.diagram svg{display:block;width:100%;min-width:720px;height:auto}
+.diagram svg{display:block;width:100%;min-width:768px;height:auto}
 .ring{fill:none;stroke:var(--line);stroke-width:3}
 .head{fill:var(--muted)}
 .back{fill:none;stroke:var(--next);stroke-width:2;stroke-dasharray:6 6}
@@ -69,34 +69,34 @@ tr:last-child td{border-bottom:none}
     <h1>Vòng lặp sản phẩm aipub</h1>
     <p class="lede">Từ ICP đến Tracking rồi quay lại. Thước đo được chốt ở bước 2 và dùng ở bước 8; bước 4 có vòng nhỏ riêng khi KOL thử chưa ổn.</p>
   </header>
-  <div class="card diagram" role="img" aria-label="Sơ đồ vòng lặp 8 bước, từ ICP và Problem tới Tracking rồi quay lại; bước 4 có nhánh quay về bước 2">
-    <svg viewBox="0 0 900 640" xmlns="http://www.w3.org/2000/svg">
+  <div class="card diagram" role="img" aria-label="Sơ đồ vòng lặp 8 bước theo hình chữ nhật bo góc, từ ICP và Problem tới Tracking rồi quay lại; bước 4 có nhánh quay về bước 2">
+    <svg viewBox="0 0 960 660" xmlns="http://www.w3.org/2000/svg">
       <defs><marker id="mk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z"/></marker></defs>
-<ellipse class="ring" cx="450" cy="330" rx="300" ry="235"/>
-<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(578.6 117.7) rotate(20.4)"/>
-<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(729.8 245.3) rotate(63.7)"/>
-<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(729.8 414.7) rotate(116.3)"/>
-<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(578.6 542.3) rotate(159.6)"/>
-<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(321.4 542.3) rotate(-159.6)"/>
-<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(170.2 414.7) rotate(-116.3)"/>
-<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(170.2 245.3) rotate(-63.7)"/>
-<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(321.4 117.7) rotate(-20.4)"/>
-<text class="note" x="292" y="92" text-anchor="end">vòng sau</text>
-<path class="back" d="M600 463 Q520 330 600 199" marker-end="url(#mk)"/>
-<text class="note" x="548" y="322" text-anchor="end">Thử chưa ổn:</text>
-<text class="note" x="548" y="340" text-anchor="end">sửa bước 2</text>
-<text class="hub" x="360" y="324" text-anchor="middle">VÒNG LẶP</text>
-<text class="hubsub" x="360" y="346" text-anchor="middle">mỗi vòng: đo, học, sửa</text>
-<g class="node now"><rect x="337" y="62" width="226" height="66" rx="10"/><text class="num" x="351" y="89">1</text><text class="t" x="371" y="89">ICP &amp; Problem</text><text class="s" x="371" y="110">kèm bằng chứng</text></g>
-<g class="pill now"><rect x="481" y="51" width="74" height="22" rx="11"/><text x="518" y="66" text-anchor="middle">gần xong</text></g>
-<g class="node next"><rect x="549" y="131" width="226" height="66" rx="10"/><text class="num" x="563" y="158">2</text><text class="t" x="583" y="158">Thước đo + Core Features</text><text class="s" x="583" y="179">ưu tiên, gắn gói giá</text></g>
-<g class="pill next"><rect x="693" y="120" width="74" height="22" rx="11"/><text x="730" y="135" text-anchor="middle">làm tiếp</text></g>
-<g class="node "><rect x="637" y="297" width="226" height="66" rx="10"/><text class="num" x="651" y="324">3</text><text class="t" x="671" y="324">User Flow &amp; Wireframe</text><text class="s" x="671" y="345">luồng đăng một bài</text></g>
-<g class="node "><rect x="549" y="463" width="226" height="66" rx="10"/><text class="num" x="563" y="490">4</text><text class="t" x="583" y="490">Prototype + thử với KOL</text><text class="s" x="583" y="511">màn soạn và preview</text></g>
-<g class="node "><rect x="337" y="532" width="226" height="66" rx="10"/><text class="num" x="351" y="559">5</text><text class="t" x="371" y="559">Data Map → Architecture</text><text class="s" x="371" y="580">song song: UI Design</text></g>
-<g class="node "><rect x="125" y="463" width="226" height="66" rx="10"/><text class="num" x="139" y="490">6</text><text class="t" x="159" y="490">Code + Test</text><text class="s" x="159" y="511">viết test cùng lúc</text></g>
-<g class="node "><rect x="37" y="297" width="226" height="66" rx="10"/><text class="num" x="51" y="324">7</text><text class="t" x="71" y="324">Deploy beta</text><text class="s" x="71" y="345">nhóm nhỏ trước, rồi mở rộng</text></g>
-<g class="node "><rect x="125" y="131" width="226" height="66" rx="10"/><text class="num" x="139" y="158">8</text><text class="t" x="159" y="158">Tracking</text><text class="s" x="159" y="179">đọc kết quả, quay lại</text></g>
+<rect class="ring" x="130" y="80" width="700" height="500" rx="80"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(480.0 80.0) rotate(0.0)"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(817.5 117.1) rotate(57.6)"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(830.0 330.0) rotate(90.0)"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(817.5 542.9) rotate(122.4)"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(480.0 580.0) rotate(180.0)"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(142.5 542.9) rotate(-122.4)"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(130.0 330.0) rotate(-90.0)"/>
+<path class="head" d="M9 0 L-6 -6.5 L-6 6.5 Z" transform="translate(142.5 117.1) rotate(-57.6)"/>
+<text class="note" x="158" y="122">vòng sau</text>
+<path class="back" d="M717 410 C 640 410, 615 300, 615 121" marker-end="url(#mk)"/>
+<text class="note" x="600" y="322" text-anchor="end">Thử chưa ổn:</text>
+<text class="note" x="600" y="340" text-anchor="end">sửa bước 2</text>
+<text class="hub" x="410" y="324" text-anchor="middle">VÒNG LẶP</text>
+<text class="hubsub" x="410" y="346" text-anchor="middle">mỗi vòng: đo, học, sửa</text>
+<g class="node now"><rect x="232" y="47" width="226" height="66" rx="10"/><text class="num" x="246" y="74">1</text><text class="t" x="266" y="74">ICP &amp; Problem</text><text class="s" x="266" y="95">kèm bằng chứng</text></g>
+<g class="pill now"><rect x="376" y="36" width="74" height="22" rx="11"/><text x="413" y="51" text-anchor="middle">gần xong</text></g>
+<g class="node next"><rect x="502" y="47" width="226" height="66" rx="10"/><text class="num" x="516" y="74">2</text><text class="t" x="536" y="74">Thước đo + Core Features</text><text class="s" x="536" y="95">ưu tiên, gắn gói giá</text></g>
+<g class="pill next"><rect x="646" y="36" width="74" height="22" rx="11"/><text x="683" y="51" text-anchor="middle">làm tiếp</text></g>
+<g class="node "><rect x="717" y="217" width="226" height="66" rx="10"/><text class="num" x="731" y="244">3</text><text class="t" x="751" y="244">User Flow &amp; Wireframe</text><text class="s" x="751" y="265">luồng đăng một bài</text></g>
+<g class="node "><rect x="717" y="377" width="226" height="66" rx="10"/><text class="num" x="731" y="404">4</text><text class="t" x="751" y="404">Prototype + thử với KOL</text><text class="s" x="751" y="425">màn soạn và preview</text></g>
+<g class="node "><rect x="502" y="547" width="226" height="66" rx="10"/><text class="num" x="516" y="574">5</text><text class="t" x="536" y="574">Data Map → Architecture</text><text class="s" x="536" y="595">song song: UI Design</text></g>
+<g class="node "><rect x="232" y="547" width="226" height="66" rx="10"/><text class="num" x="246" y="574">6</text><text class="t" x="266" y="574">Code + Test</text><text class="s" x="266" y="595">viết test cùng lúc</text></g>
+<g class="node "><rect x="17" y="377" width="226" height="66" rx="10"/><text class="num" x="31" y="404">7</text><text class="t" x="51" y="404">Deploy beta</text><text class="s" x="51" y="425">nhóm nhỏ trước, rồi mở rộng</text></g>
+<g class="node "><rect x="17" y="217" width="226" height="66" rx="10"/><text class="num" x="31" y="244">8</text><text class="t" x="51" y="244">Tracking</text><text class="s" x="51" y="265">đọc kết quả, quay lại</text></g>
     </svg>
   </div>
   <section class="card status">
