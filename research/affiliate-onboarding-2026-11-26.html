@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onboarding Affiliate 30 ngày — Quy trình chuẩn</title>
+<style>
+  :root{
+    --ink:#17211b;
+    --muted:#5b6b61;
+    --line:#dbe4dd;
+    --accent:#2f7d4f;
+    --accent-2:#7ed957;
+    --soft:#f3f8f4;
+    --bg:#f7f9f7;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:64px}
+  body{
+    margin:0;
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+    font-size:16px;
+  }
+  a{color:var(--accent)}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  header.hero{
+    background:linear-gradient(180deg,#ffffff 0%,#eef7f1 100%);
+    border-bottom:1px solid var(--line);
+    padding:56px 0 36px;
+  }
+  .eyebrow{
+    margin:0 0 12px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+  h1{
+    margin:0 0 14px;
+    font-size:clamp(30px,5vw,46px);
+    line-height:1.15;
+    letter-spacing:-.02em;
+  }
+  .lede{
+    margin:0;
+    max-width:720px;
+    font-size:18px;
+    color:var(--muted);
+  }
+  .chips{
+    list-style:none;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    padding:0;
+    margin:20px 0 0;
+  }
+  .chips li{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:5px 12px;
+    font-size:13px;
+    color:var(--muted);
+  }
+  nav{
+    position:sticky;
+    top:0;
+    z-index:5;
+    background:rgba(255,255,255,.96);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;
+    gap:16px;
+    overflow-x:auto;
+    padding:10px 24px;
+    font-size:14px;
+    white-space:nowrap;
+  }
+  nav a{
+    color:var(--muted);
+    text-decoration:none;
+    padding:4px 0;
+    border-bottom:2px solid transparent;
+  }
+  nav a:hover{color:var(--accent);border-color:var(--accent)}
+  main{padding:36px 0 64px}
+  section{margin:0 0 44px;scroll-margin-top:64px}
+  h2{
+    font-size:24px;
+    margin:0 0 14px;
+    letter-spacing:-.01em;
+  }
+  h2 .num{color:var(--accent);margin-right:8px;font-variant-numeric:tabular-nums}
+  h3{font-size:17px;margin:0 0 8px}
+  p{margin:0 0 12px}
+  ul,ol{margin:0 0 12px;padding-left:22px}
+  li{margin:0 0 6px}
+  .muted{color:var(--muted)}
+  .grid{
+    display:grid;
+    gap:12px;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px;
+  }
+  .card h3{font-size:16px}
+  .card p:last-child{margin-bottom:0}
+  .principle{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px;
+  }
+  .principle .n{
+    display:inline-block;
+    font-size:12px;
+    font-weight:700;
+    color:var(--accent);
+    background:var(--soft);
+    border-radius:999px;
+    padding:2px 9px;
+    margin-bottom:8px;
+  }
+  .note{
+    background:var(--soft);
+    border-left:3px solid var(--accent);
+    border-radius:0 8px 8px 0;
+    padding:12px 14px;
+    font-size:14px;
+    margin:14px 0 0;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    font-size:14px;
+    margin:0 0 14px;
+  }
+  th,td{
+    padding:9px 11px;
+    border-bottom:1px solid var(--line);
+    text-align:left;
+    vertical-align:top;
+  }
+  th{background:var(--soft);font-weight:600}
+  tr:last-child td{border-bottom:0}
+  .table-wrap{
+    overflow-x:auto;
+    margin:0 0 14px;
+    border:1px solid var(--line);
+    border-radius:10px;
+  }
+  .table-wrap table{margin:0;border:0;border-radius:0}
+  .account{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:11px 13px;
+    font-size:14px;
+  }
+  .account input{accent-color:var(--accent);margin-top:4px}
+  .account strong{display:block}
+  .account small{color:var(--muted)}
+  .timeline{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+  .timeline > li{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px;
+  }
+  .when{
+    display:inline-block;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--accent);
+    background:var(--soft);
+    border-radius:999px;
+    padding:3px 10px;
+    margin-bottom:8px;
+  }
+  .steps{counter-reset:step;list-style:none;padding:0}
+  .steps li{
+    counter-increment:step;
+    position:relative;
+    padding:10px 0 10px 44px;
+    border-bottom:1px solid var(--line);
+  }
+  .steps li:last-child{border-bottom:0}
+  .steps li::before{
+    content:counter(step);
+    position:absolute;
+    left:0;
+    top:9px;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    background:var(--soft);
+    color:var(--accent);
+    font-size:13px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .check{
+    display:flex;
+    gap:9px;
+    align-items:flex-start;
+    padding:6px 0;
+    font-size:14px;
+  }
+  .check input{accent-color:var(--accent);margin-top:4px}
+  fieldset{
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:#fff;
+    padding:14px 16px;
+    margin:0 0 12px;
+  }
+  legend{font-weight:700;font-size:14px;padding:0 6px;color:var(--accent)}
+  details{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 14px;
+    margin:0 0 8px;
+  }
+  summary{cursor:pointer;font-weight:600}
+  details p{margin:10px 0 0;color:var(--muted)}
+  footer{
+    border-top:1px solid var(--line);
+    padding:24px 0 40px;
+    color:var(--muted);
+    font-size:13px;
+  }
+  @media (max-width:600px){
+    header.hero{padding:36px 0 28px}
+    .lede{font-size:16px}
+    main{padding:28px 0 48px}
+  }
+  @media print{
+    nav{display:none}
+    body{background:#fff}
+    header.hero{background:#fff}
+    section{break-inside:avoid}
+    .card,.principle,.timeline > li,details{break-inside:avoid}
+    a{color:inherit;text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Tài liệu đối tác · Phiên bản 1.0 · 26/11/2026</p>
+    <h1>Onboarding Affiliate 30 ngày</h1>
+    <p class="lede">Một người, một danh tính, một tài khoản mỗi nền tảng. Review chỉ cho sản phẩm đã dùng thật. Link affiliate luôn kèm disclosure.</p>
+    <ul class="chips">
+      <li>30 ngày</li>
+      <li>10 tài khoản chuẩn</li>
+      <li>1 danh tính</li>
+      <li>Đo bằng doanh thu &amp; refund</li>
+    </ul>
+  </div>
+</header>
+
+<nav aria-label="Mục lục">
+  <div class="wrap">
+    <a href="#principles">Nguyên tắc</a>
+    <a href="#accounts">Bộ tài khoản</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#review">Quy trình review</a>
+    <a href="#disclosure">Disclosure</a>
+    <a href="#links">Link &amp; tracking</a>
+    <a href="#warmup">Warm-up &amp; dự phòng</a>
+    <a href="#metrics">Chỉ số</a>
+    <a href="#checklist">Checklist</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="principles">
+    <h2><span class="num">01</span>Năm nguyên tắc không thương lượng</h2>
+    <div class="grid">
+      <div class="principle">
+        <span class="n">01</span>
+        <h3>Một danh tính, một tài khoản mỗi nền tảng</h3>
+        <p>Không mua, mượn, chia sẻ hoặc nhân bản tài khoản. Cùng một handle ở mọi nơi để nhận diện được.</p>
+      </div>
+      <div class="principle">
+        <span class="n">02</span>
+        <h3>Xác minh bằng ID của chính mình</h3>
+        <p>Dùng luồng xác minh của nền tảng. Không dùng giấy tờ của người khác, không thuê xác minh.</p>
+      </div>
+      <div class="principle">
+        <span class="n">03</span>
+        <h3>Chỉ review sản phẩm đã dùng thật</h3>
+        <p>Không bịa trải nghiệm, không review theo đơn đặt hàng, không "ủ" tài khoản bằng review sản phẩm bất kỳ.</p>
+      </div>
+      <div class="principle">
+        <span class="n">04</span>
+        <h3>Disclosure ở mọi nơi có link</h3>
+        <p>Nói rõ bạn nhận hoa hồng, trước link, bằng ngôn ngữ dễ hiểu. Không giấu ở footer.</p>
+      </div>
+      <div class="principle">
+        <span class="n">05</span>
+        <h3>Không automation, đo bằng kết quả</h3>
+        <p>Không tự động đăng ký, đăng review hay vote. Đo bằng doanh thu, refund, EPC — không bằng số review.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="accounts">
+    <h2><span class="num">02</span>Bộ 10 tài khoản chuẩn</h2>
+    <p class="muted">Tạo đủ trong một đợt, cùng một handle. X giới hạn 15 ký tự nên chọn handle ≤ 15. Facebook Page dùng handle sạch; hồ sơ cá nhân dùng biến thể. Telegram tạo bằng số điện thoại. Hoàn thiện profile trước bài đầu tiên.</p>
+    <div class="grid">
+      <label class="account"><input type="checkbox"><span><strong>YouTube</strong><small>Kênh thương hiệu</small></span></label>
+      <label class="account"><input type="checkbox"><span><strong>Facebook Page</strong><small>Handle sạch</small></span></label>
+      <label class="account"><input type="checkbox"><span><strong>Facebook cá nhân</strong><small>Biến thể của handle</small></span></label>
+      <label class="account"><input type="checkbox"><span><strong>Instagram</strong><small>Profile + bio link</small></span></label>
+      <label class="account"><input type="checkbox"><span><strong>Threads</strong><small>Cùng handle</small></span></label>
+      <label class="account"><input type="checkbox"><span><strong>TikTok</strong><small>Video ngắn</small></span></label>
+      <label class="account"><input type="checkbox"><span><strong>Lemon8</strong><small>Bài dạng ảnh</small></span></label>
+      <label class="account"><input type="checkbox"><span><strong>LinkedIn</strong><small>Hồ sơ nghề nghiệp</small></span></label>
+      <label class="account"><input type="checkbox"><span><strong>X (Twitter)</strong><small>Handle ≤ 15 ký tự</small></span></label>
+      <label class="account"><input type="checkbox"><span><strong>Telegram</strong><small>Kênh thương hiệu</small></span></label>
+    </div>
+    <p class="note">Nếu nền tảng chặn đăng ký cùng ngày, thử lại hôm sau. Không cắt bớt account, không đổi handle giữa chừng.</p>
+  </section>
+
+  <section id="timeline">
+    <h2><span class="num">03</span>Timeline 30 ngày</h2>
+    <ol class="timeline">
+      <li>
+        <span class="when">Ngày 1–3 · Nền móng</span>
+        <h3>Chuẩn bị danh tính và bằng chứng</h3>
+        <ul>
+          <li>Qualification: ≥ 14 ngày dùng thật hoặc ≥ 3 workflow đã hoàn tất; ghi lại 3 kết quả cụ thể.</li>
+          <li>Tạo đủ 10 tài khoản theo bộ chuẩn; cùng handle.</li>
+          <li>Hoàn thiện profile: ảnh, bio, thông tin liên hệ.</li>
+          <li>Mở partner account trên Affitor; đọc terms trước khi promote.</li>
+          <li>Chưa gắn link affiliate ở giai đoạn này.</li>
+        </ul>
+      </li>
+      <li>
+        <span class="when">Ngày 4–7 · Danh tính &amp; review đầu</span>
+        <h3>Tạo chỗ đứng trên nền tảng review</h3>
+        <ul>
+          <li>Tạo G2, Trustpilot, Capterra/GetApp, Product Hunt — một account mỗi nơi.</li>
+          <li>Verify Trustpilot bằng ID của chính mình, hoặc qua invitation của business.</li>
+          <li>Review đầu tiên: sản phẩm đã dùng thật, chưa gắn link, có ngày/gói/workflow.</li>
+          <li>Lưu evidence pack: receipt, ngày dùng, screenshot, ghi chú workflow.</li>
+        </ul>
+      </li>
+      <li>
+        <span class="when">Tuần 2 · Link &amp; nội dung</span>
+        <h3>Bắt đầu đo được</h3>
+        <ul>
+          <li>Lập link registry: program, link, subID, kênh, ngày, trạng thái.</li>
+          <li>Gắn subID theo kênh và UTM.</li>
+          <li>Chuẩn hóa disclosure template cho từng kênh.</li>
+          <li>Publish 1 use-case review có link và disclosure.</li>
+          <li>Review thứ hai nếu có trải nghiệm thật thứ hai.</li>
+        </ul>
+      </li>
+      <li>
+        <span class="when">Tuần 3–4 · Sản phẩm của bạn</span>
+        <h3>Chuyển sang sản phẩm mình affiliate</h3>
+        <ul>
+          <li>Chỉ review sản phẩm affiliate sau khi đã dùng thật.</li>
+          <li>Kiểm tra rule của nền tảng về người có lợi ích thương mại trước khi đăng.</li>
+          <li>Disclosure rõ ràng; ưu tiên invitation verified-customer nếu vendor có.</li>
+          <li>Thêm 1 comparison hoặc tutorial.</li>
+          <li>Đọc EPC, CR, refund; reconcile tháng đầu.</li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+
+  <section id="review">
+    <h2><span class="num">04</span>Quy trình viết review</h2>
+    <ol class="steps">
+      <li><strong>Headline:</strong> công việc cụ thể sản phẩm giải quyết cho bạn.</li>
+      <li><strong>Context:</strong> vai trò, quy mô nhóm, gói đang dùng, thời gian đã dùng.</li>
+      <li><strong>Workflow:</strong> 2–3 việc thật bạn đã làm trong sản phẩm.</li>
+      <li><strong>Điểm mạnh:</strong> một ví dụ có ngày hoặc số liệu của chính bạn.</li>
+      <li><strong>Hạn chế thật:</strong> một điểm chưa tốt; nói rõ ai phù hợp, ai không.</li>
+      <li><strong>Disclosure:</strong> quan hệ hoa hồng, bằng ngôn ngữ dễ hiểu.</li>
+    </ol>
+    <p class="note">Không có trải nghiệm cụ thể, có ngày → không đăng. Không review sản phẩm chưa dùng. Không review sản phẩm mình bán như thể mình là khách hàng.</p>
+  </section>
+
+  <section id="disclosure">
+    <h2><span class="num">05</span>Disclosure</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Thị trường</th><th>Quy định</th><th>Cách đặt</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Mỹ</td><td>FTC 16 CFR 255.5</td><td>Rõ ràng, dễ thấy, trước link; first line; on-screen; description</td></tr>
+          <tr><td>EU</td><td>UCPD / Omnibus</td><td>Trước nội dung hoặc link; trong caption</td></tr>
+          <tr><td>Việt Nam</td><td>Luật BVQLNTD 19/2023/QH15; NĐ 55/2024</td><td>First line hoặc caption; on-screen; gần link</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>Mẫu tiếng Việt</h3>
+        <p>“Mình nhận hoa hồng nếu bạn mua qua link này; giá bạn trả không đổi.”</p>
+      </div>
+      <div class="card">
+        <h3>Mẫu tiếng Anh</h3>
+        <p>“I earn a commission if you buy through this link, at no extra cost to you.”</p>
+      </div>
+      <div class="card">
+        <h3>Video</h3>
+        <p>Nói trong 30 giây đầu, chữ trên màn hình, và trong description.</p>
+      </div>
+    </div>
+    <p class="note">Lỗi thường gặp: chỉ để ở footer, chỉ dùng hashtag, đặt sau link, hoặc thiếu ở một kênh trong khi các kênh khác có.</p>
+  </section>
+
+  <section id="links">
+    <h2><span class="num">06</span>Link affiliate &amp; tracking</h2>
+    <p>Trước khi join chương trình, kiểm tra: commission %, recurring hay one-time, cookie window, attribution, payout threshold và chu kỳ, clawback khi refund, danh sách tactic bị cấm.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Trường trong registry</th><th>Ví dụ</th><th>Mục đích</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Program</td><td>Affitor / network</td><td>Phân bổ doanh thu theo chương trình</td></tr>
+          <tr><td>Product</td><td>Tên sản phẩm + gói</td><td>Tránh promote gói đã ngừng</td></tr>
+          <tr><td>Link</td><td>URL đã track</td><td>Audit và khôi phục</td></tr>
+          <tr><td>subID</td><td><code>yt-vn-01</code></td><td>Tách doanh thu theo kênh</td></tr>
+          <tr><td>Kênh</td><td>YouTube, blog, newsletter</td><td>Quyết định kill/scale</td></tr>
+          <tr><td>Ngày tạo</td><td>2026-11-26</td><td>Phát hiện link cũ</td></tr>
+          <tr><td>Trạng thái</td><td>active / paused / dead</td><td>Kiểm tra hàng tháng</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul>
+      <li>Mỗi kênh một subID riêng; thêm UTM khi cần.</li>
+      <li>Không bid trademark của brand; không coupon/extension injection nếu terms không cho phép.</li>
+      <li>Kiểm tra link health mỗi tháng; thay link chết trước khi mất traffic.</li>
+      <li>Reconcile payout mỗi tháng: clicks, conversions, commission, refund, clawback, net.</li>
+    </ul>
+  </section>
+
+  <section id="warmup">
+    <h2><span class="num">07</span>Warm-up &amp; dự phòng</h2>
+    <p><strong>14 ngày đầu:</strong> hoàn thiện profile → verify bằng ID → review đầu tiên (không link) → review thứ hai nếu có trải nghiệm thật → tuần 3 mới review sản phẩm affiliate, có disclosure, cách review trước một khoảng.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Evidence pack</h3>
+        <p>Receipt, gói và ngày dùng, screenshot tài khoản, ghi chú workflow, thư trao đổi với support. Lưu ngoài nền tảng — account bị khóa có thể che mất lịch sử của chính nó.</p>
+      </div>
+      <div class="card">
+        <h3>Đa dạng hóa</h3>
+        <p>2–3 nền tảng review + một kênh sở hữu (blog, newsletter, video). Kênh sở hữu không mất khi nền tảng khóa.</p>
+      </div>
+      <div class="card">
+        <h3>Nếu review bị gỡ</h3>
+        <p>Đọc lý do → so với guidelines → appeal một lần kèm evidence nếu review thật → sửa pattern cho nội dung sau. Không repost, không mở account mới.</p>
+      </div>
+      <div class="card">
+        <h3>Nếu account bị khóa</h3>
+        <p>Appeal qua kênh chính thức → export nội dung từ bản sao của mình → chuyển sang kênh sở hữu và nền tảng khác. Không mở account trùng cùng nền tảng.</p>
+      </div>
+    </div>
+    <p class="note">Quy tắc quyết định: không viết được review cụ thể, có ngày, có trải nghiệm thật → bỏ qua, không đăng cho đủ số.</p>
+  </section>
+
+  <section id="metrics">
+    <h2><span class="num">08</span>Chỉ số cần theo dõi</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>EPC</h3>
+        <p>Net commission ÷ clicks. Biết mỗi click đáng bao nhiêu.</p>
+      </div>
+      <div class="card">
+        <h3>CR</h3>
+        <p>Conversions ÷ clicks. Biết nội dung và kênh nào chuyển đổi.</p>
+      </div>
+      <div class="card">
+        <h3>Refund-adjusted commission</h3>
+        <p>Commission gộp − refund − clawback. Con số thực nhận.</p>
+      </div>
+      <div class="card">
+        <h3>LTV theo kênh</h3>
+        <p>Doanh thu trung bình mỗi khách × số tháng giữ chân dự kiến.</p>
+      </div>
+    </div>
+    <p class="note">Counter-metric: refund rate theo kênh. EPC cao nhưng refund cao không phải là thắng. Kill kênh sau 200 clicks không có conversion; scale kênh có EPC dương sau refund.</p>
+    <p><strong>Weekly 30 phút:</strong> clicks, conversions, EPC, refund theo subID → nội dung nào tạo click, nội dung nào tạo sale → kiểm tra disclosure trên mọi link đang sống → một quyết định kill/keep/scale.</p>
+  </section>
+
+  <section id="checklist">
+    <h2><span class="num">09</span>Checklist 30 ngày</h2>
+    <fieldset>
+      <legend>Ngày 1–3</legend>
+      <label class="check"><input type="checkbox"> Qualification: ≥ 14 ngày dùng hoặc ≥ 3 workflow, ghi 3 kết quả cụ thể</label>
+      <label class="check"><input type="checkbox"> Tạo đủ 10 tài khoản, cùng handle</label>
+      <label class="check"><input type="checkbox"> Hoàn thiện profile từng kênh</label>
+      <label class="check"><input type="checkbox"> Mở partner account Affitor, đọc terms</label>
+      <label class="check"><input type="checkbox"> Lưu evidence pack ra ngoài nền tảng</label>
+    </fieldset>
+    <fieldset>
+      <legend>Ngày 4–7</legend>
+      <label class="check"><input type="checkbox"> Tạo G2, Trustpilot, Capterra/GetApp, Product Hunt</label>
+      <label class="check"><input type="checkbox"> Verify Trustpilot bằng ID của mình</label>
+      <label class="check"><input type="checkbox"> Review đầu tiên trên sản phẩm đã dùng thật, chưa gắn link</label>
+      <label class="check"><input type="checkbox"> Kiểm tra guidelines của từng nền tảng review</label>
+    </fieldset>
+    <fieldset>
+      <legend>Tuần 2</legend>
+      <label class="check"><input type="checkbox"> Link registry có program, link, subID, kênh, ngày, trạng thái</label>
+      <label class="check"><input type="checkbox"> subID + UTM cho từng kênh</label>
+      <label class="check"><input type="checkbox"> Disclosure template cho từng kênh</label>
+      <label class="check"><input type="checkbox"> Publish 1 use-case review có link + disclosure</label>
+      <label class="check"><input type="checkbox"> Review thứ hai nếu có trải nghiệm thật</label>
+    </fieldset>
+    <fieldset>
+      <legend>Tuần 3–4</legend>
+      <label class="check"><input type="checkbox"> Review sản phẩm affiliate sau khi đã dùng thật</label>
+      <label class="check"><input type="checkbox"> Kiểm tra rule commercial-interest của nền tảng</label>
+      <label class="check"><input type="checkbox"> Disclosure trước link ở mọi kênh</label>
+      <label class="check"><input type="checkbox"> Publish 1 comparison hoặc tutorial</label>
+      <label class="check"><input type="checkbox"> Đọc EPC, CR, refund; reconcile tháng đầu</label>
+    </fieldset>
+  </section>
+
+  <section id="faq">
+    <h2><span class="num">10</span>Câu hỏi thường gặp</h2>
+    <details>
+      <summary>Có phải đăng review mỗi ngày không?</summary>
+      <p>Không. Đăng khi có trải nghiệm cụ thể. Mật độ không phải chỉ tiêu; review không có trải nghiệm thật sẽ bị gỡ và làm yếu account.</p>
+    </details>
+    <details>
+      <summary>Có được review sản phẩm mình affiliate không?</summary>
+      <p>Được, nếu đã dùng thật, có disclosure, và nền tảng cho phép. Kiểm tra rule của từng nền tảng trước khi đăng; một số nơi hạn chế người có lợi ích thương mại.</p>
+    </details>
+    <details>
+      <summary>Bị khóa tài khoản thì tạo account mới à?</summary>
+      <p>Không. Appeal bằng evidence pack trước. Mở account mới cùng nền tảng thường bị coi là ban evasion và kéo dài block. Nếu khóa final, chuyển sang nền tảng khác với cùng danh tính thật.</p>
+    </details>
+    <details>
+      <summary>Có bắt buộc đủ 10 kênh không?</summary>
+      <p>Bộ chuẩn là 10, cùng handle. Nếu nền tảng throttle đăng ký cùng ngày, thử lại hôm sau — không cắt bớt account, không đổi handle.</p>
+    </details>
+    <details>
+      <summary>Review trên G2/Trustpilot khác blog thế nào?</summary>
+      <p>Có moderation, rule riêng và giới hạn với người có lợi ích thương mại. Blog là kênh sở hữu; review platform là nơi cần danh tính và trải nghiệm rõ ràng hơn.</p>
+    </details>
+    <details>
+      <summary>Có cần nhiều tài khoản để dự phòng không?</summary>
+      <p>Không. Một người, một account mỗi nền tảng. Dự phòng bằng kênh sở hữu và nền tảng khác, không bằng account trùng.</p>
+    </details>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Tài liệu đi kèm quy trình <strong>pm-affiliate</strong> · Phiên bản 1.0 · Cập nhật 26/11/2026.</p>
+    <p>Dùng nội bộ và gửi đối tác. Khi nền tảng đổi rule, cập nhật tài liệu trước khi gửi tiếp.</p>
+  </div>
+</footer>
+
+</body>
+</html>
